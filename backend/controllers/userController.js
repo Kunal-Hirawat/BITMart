@@ -1,3 +1,5 @@
+import userModel from "../models/userModel.js"
+
 export const registerContoller= async(req,res) => {
     try {
         const {name,email,contact,password,address}=req.body
