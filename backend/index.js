@@ -1,6 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
 import connectDB from "./config/db.js";
+import userRoutes from "./routes/userRoute.js"
 
 // configure env
 dotenv.config({path: '../.env' });
@@ -13,6 +14,11 @@ const app = express();
 
 // MiddleWare
 app.use(express.json());
+
+
+// routes
+app.use('/api/users',userRoutes);
+
 
 // rest api
 app.get('/',(req,res)=>{
