@@ -1,4 +1,6 @@
-export const registerContoller= async(req,res) => {
+import userModel from "../models/userModel.js"
+import {hashPassword} from "../utils/auth_util.js"
+export const userController= async(req,res) => {
     try {
         const {name,email,contact,password,address}=req.body
         if(!name){
@@ -13,6 +15,30 @@ export const registerContoller= async(req,res) => {
         if(!password){
             return res.send({error:'Password is required'})
         }
+
+        //checking if user already exists
+
+        const userexists= await userModel.findOne({ $or:[{email}, {contact}]})
+
+        if (userexists){
+            return res.status(200).send({
+                success:false,
+                message:'User Already Exists. Please Login',
+            })
+        }
+
+        //hashing the password
+        const hashedPassword= await hashPassword(password)
+ 
+        //saving user
+        const user=new userModel({name,email,contact,password:hashedPassword,address}).save()
+
+        res.status(201).send({
+            success:true,
+            message:'User Registration Successful',
+            user
+        })
+
     } catch (error) {
         console.log(error);
         res.status(500).send({
@@ -20,5 +46,4 @@ export const registerContoller= async(req,res) => {
             message:'Error!!!. Please Try Again'
         })
     }
-    //okay
 }
