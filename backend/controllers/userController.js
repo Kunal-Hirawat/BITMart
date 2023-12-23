@@ -1,5 +1,3 @@
-import userModel from "../models/userModel.js"
-
 export const registerContoller= async(req,res) => {
     try {
         const {name,email,contact,password,address}=req.body
@@ -19,8 +17,7 @@ export const registerContoller= async(req,res) => {
         console.log(error);
         res.status(500).send({
             success:false,
-            message:'Error Occured. Please Try Again'
+            message:'Error!!!. Please Try Again'
         })
     }
-//hey
 }
