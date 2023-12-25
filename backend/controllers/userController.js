@@ -34,7 +34,7 @@ export const registerContoller= async(req,res) => {
  
         //saving user
         const user=new userModel({name,email,contact,password:hashedPassword,address}).save()
-
+        
         res.status(201).send({
             success:true,
             message:'User Registration Successful',
