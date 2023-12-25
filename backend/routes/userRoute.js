@@ -13,6 +13,6 @@ router.post("/register",registerContoller);
 router.post('/login',loginController);
 
 //test routes
-router.get('test',requireSignIn,isAdmin, testController);
+router.get('/test',requireSignIn,isAdmin, testController);
 
 export default router;
