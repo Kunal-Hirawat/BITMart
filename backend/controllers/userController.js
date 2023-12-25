@@ -1,7 +1,6 @@
 import userModel from "../models/userModel.js"
 import { comparePassword } from "../utils/auth_util.js"
-import JWT from 'jsonwebtoken'
-import dotenv from "dotenv" 
+import JWT from 'jsonwebtoken' 
 
 export const registerContoller= async(req,res) => {
     try {
@@ -66,7 +65,7 @@ export const loginController= async(req,res) =>{
 
         var user=false;
 
-        if(email){
+        if(email && !contact){
             user=await userModel.findOne({email})
             if(!user){
                 return res.status(404).send({
@@ -75,8 +74,17 @@ export const loginController= async(req,res) =>{
                 })
             }
         }
-        else{
+        else if(contact && !email){
             user=await userModel.findOne({contact})
+            if(!user){
+                return res.status(404).send({
+                    success:false,
+                    message:'User Not Found'
+                })
+            }
+        }
+        else{
+            user=await userModel.findOne({contact,email})
             if(!user){
                 return res.status(404).send({
                     success:false,
