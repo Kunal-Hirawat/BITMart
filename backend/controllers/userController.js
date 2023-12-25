@@ -1,5 +1,6 @@
 import userModel from "../models/userModel.js"
 import { comparePassword } from "../utils/auth_util.js"
+import JWT from 'jsonwebtoken'
 
 export const registerContoller= async(req,res) => {
     try {
@@ -64,7 +65,7 @@ export const loginController= async(req,res) =>{
 
         var user=false;
 
-        if(email){
+        if(email && !contact){
             user=await userModel.findOne({email})
             if(!user){
                 return res.status(404).send({
@@ -73,8 +74,17 @@ export const loginController= async(req,res) =>{
                 })
             }
         }
-        else{
+        else if(contact && !email){
             user=await userModel.findOne({contact})
+            if(!user){
+                return res.status(404).send({
+                    success:false,
+                    message:'User Not Found'
+                })
+            }
+        }
+        else{
+            user=await userModel.findOne({contact,email})
             if(!user){
                 return res.status(404).send({
                     success:false,
@@ -87,7 +97,7 @@ export const loginController= async(req,res) =>{
 
         const correctPassword= await comparePassword(password,user.password);
         if(!correctPassword){
-            res.send(200).send({
+            return res.status(200).send({
                 success:false,
                 message:'Invalid Password'
             })
@@ -95,7 +105,7 @@ export const loginController= async(req,res) =>{
 
         //extracting token
 
-        const token =await JWT.sign({_id:user._id},JWT_KEY,{expiresIn: "7d"});
+        const token =await JWT.sign({_id:user._id},process.env.JWT_KEY,{expiresIn: "7d"});
         res.status(200).send({
             success:true,
             message:'Login Successful',

@@ -3,7 +3,7 @@ import {registerContoller,
     loginController,
      testController} from "../controllers/userController.js";
 
-import { requireSignIn } from '../../middlewares/authMiddleware.js';
+import { requireSignIn , isAdmin} from "../middlewares/authMiddleware.js";
 
 const router=express.Router();
 //checking
