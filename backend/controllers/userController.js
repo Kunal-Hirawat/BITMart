@@ -1,7 +1,6 @@
 import userModel from "../models/userModel.js"
 import { comparePassword } from "../utils/auth_util.js"
 import JWT from 'jsonwebtoken'
-import dotenv from "dotenv" 
 
 export const registerContoller= async(req,res) => {
     try {
