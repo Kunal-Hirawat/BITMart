@@ -1,5 +1,7 @@
 import userModel from "../models/userModel.js"
 import { comparePassword } from "../utils/auth_util.js"
+import JWT from 'jsonwebtoken'
+import dotenv from "dotenv" 
 
 export const registerContoller= async(req,res) => {
     try {
@@ -87,7 +89,7 @@ export const loginController= async(req,res) =>{
 
         const correctPassword= await comparePassword(password,user.password);
         if(!correctPassword){
-            res.send(200).send({
+            return res.status(200).send({
                 success:false,
                 message:'Invalid Password'
             })
@@ -95,7 +97,7 @@ export const loginController= async(req,res) =>{
 
         //extracting token
 
-        const token =await JWT.sign({_id:user._id},JWT_KEY,{expiresIn: "7d"});
+        const token =await JWT.sign({_id:user._id},process.env.JWT_KEY,{expiresIn: "7d"});
         res.status(200).send({
             success:true,
             message:'Login Successful',
