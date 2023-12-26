@@ -23,7 +23,7 @@ const productSchema = new mongoose.Schema(
         required: true,
     },
     photo:{
-        type: Buffer,
+        data: Buffer,
         contentType : String,
     }
 
@@ -32,5 +32,5 @@ const productSchema = new mongoose.Schema(
 );
 
 
-const User = mongoose.model('User', userSchema)
-export default User
+const product = mongoose.model('Product', productSchema)
+export default product

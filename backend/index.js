@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoute.js"
+import productRoutes from "./routes/productRoute.js"
 
 // configure env
 dotenv.config({path: '../.env' });
@@ -18,6 +19,7 @@ app.use(express.json());
 
 // routes
 app.use('/api/auth',userRoutes);
+app.use('/api/product',productRoutes);
 
 
 // rest api

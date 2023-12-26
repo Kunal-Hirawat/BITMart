@@ -1,8 +1,8 @@
-import productModel from "..\backendcontrollersproductController.js";
-import fs from "fs";
+import productModel from '../models/productModel.js';
+import fs from 'fs';
 import slugify from 'slugify'
 
-export const productController = async (req, res) => {
+export const createProductController = async (req, res) => {
   try {
     const { name, description, price, quantity, slug } = req.fields;
     const { photo } = req.files;
@@ -16,17 +16,17 @@ export const productController = async (req, res) => {
         return res.status(500).send({ error: "Price is Required" });
       case !quantity:
         return res.status(500).send({ error: "Quantity is Required" });
-      case photo && photo.size > 1000000:
+      case photo && photo.size > 10000000:
         return res
           .status(500)
-          .send({ error: "Photo should be less than 1mb in size" });
+          .send({ error: "Photo should be less than 10mb in size" });
     }
 
     const product =new productModel({name,description,price,quantity,slug:slugify(name)})
 
     if(photo){
         product.photo.data=fs.readFileSync(photo.path)
-        product.contentType=photo.type
+        product.photo.contentType=photo.type
     }
 
     await product.save();
@@ -63,7 +63,11 @@ export const getProductController=async(req,res)=>{
 
 export const getSingleProductController= async(req,res)=>{
     try {
-        const product = await productModel.findOne({slug:req.fields.slug})
+        const product = await productModel.findOne({slug:req.params.slug});
+        res.status(200).send({
+          success:true,
+          product
+      })
     } catch (error) {
         console.log(error)
         res.status(500).send({
