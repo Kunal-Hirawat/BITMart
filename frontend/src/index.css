@@ -20,11 +20,13 @@
 .pnf-title {
   font-size: 100px;
   font-weight: 700;
+  color:#062e58;
 }
 
 .pnf-heading {
   font-weight: normal;
   padding-bottom: 20px;
+  color:#062e58;
 }
 
 .pnf-btn {
