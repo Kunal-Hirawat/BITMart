@@ -1,6 +1,4 @@
-
-
- @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap');
 
 
 *{
@@ -11,8 +9,6 @@
 }
 
 
-/* =================================
-======== page not found css ======= */
 .pnf {
   display: flex;
   min-height: 65vh;
@@ -28,21 +24,50 @@
 
 .pnf-heading {
   font-weight: normal;
+  padding-bottom: 20px;
 }
 
 .pnf-btn {
-  color: black;
-  border: 1px solid black;
-  text-decoration: none;
-  padding: 10px;
-  margin-top: 10px;
-}
-.pnf-btn:hover {
-  background-color: black;
+  align-items: center;
+  background-color: #062e58;
+  border-radius: 100px;
   color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  vertical-align: middle;
 }
-/* ========================================= */
-/* =========contact us ========= */
+
+.pnf-btn:hover,
+.pnf-btn:focus { 
+  background-color: #16437E;
+  color: white
+}
+
+.pnf-btn:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+.pnf-btn:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
+
 .contactus {
   margin: 0;
   padding: 0;
@@ -52,16 +77,14 @@
   justify-content: center;
 }
 
-/* ==================== */
 .product-link {
   text-decoration: none !important;
-  color: black !important;
+  color: #062e58 !important;
 }
 
 .cat-btn {
   padding: 40px 0px;
   font-size: 24px;
-  text-transform: uppercase;
 }
 .cat-btn:hover {
   background-color: #434343;
