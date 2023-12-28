@@ -18,7 +18,15 @@ li {
 }
 a {
   text-decoration: none;
-  color: rgb(204, 204, 204);
+  color: white;
+}
+
+a:hover{
+  filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 1));
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+ box-shadow: 0px 5px 10px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
 }
 
 .nav {
@@ -49,6 +57,10 @@ a {
   margin: 0.4rem;
   background: rgb(204, 204, 204);
   transition: 0.3s ease-in;
+}
+
+#cart-logo{
+  padding-top: 5px;
 }
 
 @media screen and (max-width: 768px) {
