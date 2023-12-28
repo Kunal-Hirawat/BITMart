@@ -29,7 +29,6 @@ a {
   background: rgb(0, 33, 65);
 }
 .nav_name {
-  text-transform: uppercase;
   font-family: 'Baloo Bhai 2', sans-serif;
   font-size: 2.5rem;
 }

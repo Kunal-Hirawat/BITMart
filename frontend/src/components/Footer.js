@@ -28,8 +28,6 @@ const Footer = () => {
           <Link to="/info">Info</Link>
 
           <Link to="/support">Support</Link>
-
-          <Link to="/termsOfUse">Terms Of Use</Link>
         </p>
 
         <h6>
