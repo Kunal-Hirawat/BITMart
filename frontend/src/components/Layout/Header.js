@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../Header.css";
+import { MdShoppingCart } from "react-icons/md";
 
 function Header() {
   const [active, setActive] = useState("nav_menu");
@@ -16,8 +17,8 @@ function Header() {
   };
   return (
     <nav className="nav">
-      <a href="#" className="nav_name">
-         BITMart
+      <a href="../" className="nav_name">
+      <MdShoppingCart id="cart-logo" />BITMart
       </a>
       <ul className={active}>
         <li className="nav_item">
