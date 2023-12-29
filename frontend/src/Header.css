@@ -59,8 +59,9 @@ transition: all 0.4s ease 0s;
   transition: 0.3s ease-in;
 }
 
-#cart-logo{
-  padding-top: 5px;
+.nav #cart-logo {
+    padding-top: 7px;
+    margin: -2px;
 }
 
 @media screen and (max-width: 768px) {
