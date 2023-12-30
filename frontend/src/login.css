@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Baloo Bhai 2', sans-serif;
+}
+
+.login-page{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: #f5f9fc;
+}
+
+.login{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 70px;
+    padding-left: 50px;
+    padding-right: 120px;
+    color: #062e58;
+    font-weight: 700;
+    font-size: larger;
+}
+
+.login p{
+    color: gray;
+    font-weight: 200;
+    font-size: small;
+    padding-bottom: 30px;
+}
+
+.login a{
+    color: gray;
+    font-weight: 200;
+    font-size: small;
+    text-decoration: underline;
+}
+
+.login h1{
+    padding:10px;
+}
+
+.login form{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-input{
+    padding: 11px;
+}
+
+.form-input input{
+    outline:none;
+    border: none;
+    border-bottom: 2px solid #062e58;
+    background: #f5f9fc;
+    width: 270px;
+    font-size: large;
+    color:#062e58;
+    font-weight:700;
+}
+.form-input i{
+    padding: 7px;   
+}
+
+.button{
+    padding: 25px;
+    padding-bottom: 15px;
+}
+
+.submit-button {
+    align-items: center;
+    background-color: #062e58;
+    border-radius: 100px;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 40px;
+    min-width: 0px;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    vertical-align: middle;
+  }
+  
+  .submit-button:hover,
+  .submit-button:focus { 
+    background-color: #16437E;
+    color: white
+  }
+  
+  .submit-button:active {
+    background: #09223b;
+    color: rgb(255, 255, 255, .7);
+  }
+  
+  .submit-button:disabled { 
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, .08);
+    color: rgba(0, 0, 0, .3);
+  }
+
+  #login-image{
+    margin-right: 50px;
+    margin-bottom: 50px;
+  }

@@ -92,3 +92,8 @@
   background-color: #434343;
   color: white;
 }
+
+::-webkit-scrollbar{
+  width: 0px;
+}
+

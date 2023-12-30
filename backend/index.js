@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoute.js"
 import productRoutes from "./routes/productRoute.js"
+import cors from 'cors'
 
 // configure env
 dotenv.config({path: '../.env' });
@@ -14,6 +15,7 @@ connectDB();
 const app = express();
 
 // MiddleWare
+app.use(cors());
 app.use(express.json());
 
 

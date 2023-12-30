@@ -1,5 +1,10 @@
 {
   "dependencies": {
+    "concurrently": "^8.2.2",
     "jsonwebtoken": "^9.0.2"
+  },
+
+  "scripts": {
+    "start": "concurrently \"..\backend\npm start\" \"..\frontend\npm start\""
   }
 }

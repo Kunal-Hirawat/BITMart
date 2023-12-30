@@ -22,27 +22,27 @@ function Header() {
       </a>
       <ul className={active}>
         <li className="nav_item">
-          <a href="#" className="nav_link">
+          <a href="../" className="nav_link">
             Home
           </a>
         </li>
         <li className="nav_item">
-          <a href="#" className="nav_link">
+          <a href="/" className="nav_link">
             Buy/Sell
           </a>
         </li>
         <li className="nav_item">
-          <a href="#" className="nav_link">
+          <a href="/" className="nav_link">
             Lost/Found
           </a>
         </li>
         <li className="nav_item">
-          <a href="#" className="nav_link">
-            LogIn
+          <a href="../login" className="nav_link">
+            SignIn
           </a>
         </li>
         <li className="nav_item">
-          <a href="#" className="nav_link">
+          <a href="../register" className="nav_link">
             SignUp
           </a>
         </li>
