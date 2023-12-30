@@ -1,0 +1,83 @@
+
+.welcome{
+    height: 50vh;
+    width: 100%;
+    background-color: #F5F9FC;
+}
+
+.welcome h2{
+    text-align: center;
+    line-height: 100px;
+}
+
+
+.products{
+    -ms-flex:0 0 100%;
+    flex:0 0 105%;
+    max-width:100%
+}
+
+.prod_head{
+    text-align:center!important;
+}
+
+.card_container{
+    display:-ms-flexbox!important;
+    display:flex!important;
+    justify-content: center;
+}
+
+.card{
+    position:relative;
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    min-width:0;
+    word-wrap:break-word;
+    background-color: #F5F9FC;
+    background-clip:border-box;
+    border:1px solid lightcyan;
+    border-radius:.25rem;
+    margin:.5rem!important
+}
+
+.card-img{
+    width:100%;
+    /* border-top-left-radius:calc(.25rem - 1px);
+    border-top-right-radius:calc(.25rem - 1px); */
+}
+
+.card-body{
+    -ms-flex:1 1 auto;
+    flex:1 1 auto;
+    padding:1.25rem
+}
+
+.card-title{
+    margin-bottom:.75rem;
+    text-align:center!important;
+}
+
+
+.card-text:last-child{
+    margin-bottom:0
+}
+
+.more-btn{
+    align-self: center;
+    margin-top: 50%;
+}
+
+.more-btn button{
+        /* size: 12rem; */
+        border-radius: 0.25rem;
+        border-color: whitesmoke;
+        background-color: #F5F9FC;
+        cursor: pointer;
+        margin-left: 12vw;
+        width: 76%;
+        font-size: large;
+        font-weight: bolder;
+        margin-bottom: 5px;
+}
