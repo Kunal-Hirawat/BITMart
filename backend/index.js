@@ -3,11 +3,8 @@ import dotenv from "dotenv"
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoute.js"
 import productRoutes from "./routes/productRoute.js"
-<<<<<<< HEAD
 import cors from 'cors'
-=======
-import cors from 'cors';
->>>>>>> Kunal
+
 
 // configure env
 dotenv.config({path: '../.env' });
