@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoute.js"
 import productRoutes from "./routes/productRoute.js"
+import cors from 'cors';
 
 // configure env
 dotenv.config({path: '../.env' });
@@ -13,8 +14,11 @@ connectDB();
 // rest object
 const app = express();
 
-// MiddleWare
+// MiddleWare for pasing request body
 app.use(express.json());
+
+// MiddleWare for handling cors policy
+app.use(cors());
 
 
 // routes

@@ -25,7 +25,15 @@ const productSchema = new mongoose.Schema(
     photo:{
         data: Buffer,
         contentType : String,
-    }
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    contact: {
+      type: String,
+      required: true,
+    },
 
   },
   { timestamps: true }

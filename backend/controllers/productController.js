@@ -4,7 +4,7 @@ import slugify from 'slugify'
 
 export const createProductController = async (req, res) => {
   try {
-    const { name, description, price, quantity, slug } = req.fields;
+    const { name, description, price, quantity, slug , email , contact } = req.fields;
     const { photo } = req.files;
 
     switch (true) {
@@ -20,9 +20,13 @@ export const createProductController = async (req, res) => {
         return res
           .status(500)
           .send({ error: "Photo should be less than 10mb in size" });
+      case !contact:
+        return res.status(500).send({ error: "Contact is Required" });
+      case !email:
+          return res.status(500).send({ error: "Email is Required" });
     }
 
-    const product =new productModel({name,description,price,quantity,slug:slugify(name)})
+    const product =new productModel({name,description,price,quantity,slug:slugify(name),email,contact})
 
     if(photo){
         product.photo.data=fs.readFileSync(photo.path)
