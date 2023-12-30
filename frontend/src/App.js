@@ -14,9 +14,9 @@ function App() {
         <Route path="/support" element={<Support />} />
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
-        <Route path="*" element={<Pagenotfound />} />
         {/* <Route path="*" element={<Pagenotfound />} /> */}
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<Pagenotfound />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </>
   );
