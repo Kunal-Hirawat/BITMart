@@ -7,11 +7,13 @@ import { FaPhone } from "react-icons/fa6";
 import { toast } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import "../login.css";
+import { useAuth } from '../context/auth';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
   const [password, setPassword] = useState("");
+  const [auth , setAuth] = useAuth();
   const navigate=useNavigate();
 
   const handleSubmit = async (event) => {
@@ -21,6 +23,12 @@ const Login = () => {
       const res = await axios.post(`${url}`, { email, contact, password });
       if (res.data.success) {
         toast.success(res.data && res.data.message);
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token : res.data.token,
+        });
+        localStorage.setItem('auth' , JSON.stringify(res.data))
         navigate('../');
       } else toast.error(res.data.message);
     } catch (error) {

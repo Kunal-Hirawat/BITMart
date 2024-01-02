@@ -1,10 +1,19 @@
 import React, { useState } from "react";
+import {NavLink, Link} from "react-router-dom" ;
 import "../../Header.css";
 import { MdShoppingCart } from "react-icons/md";
+import { useAuth } from "../../context/auth";
 
 function Header() {
   const [active, setActive] = useState("nav_menu");
   const [icon, setIcon] = useState("nav_toggler");
+  const [auth , setAuth] = useAuth();
+  const handleLogout = () =>{
+    setAuth({
+      ...auth, user:null,token:''
+    })
+    localStorage.removeItem("auth");
+  }
   const navToggle = () => {
     if (active === "nav_menu") {
       setActive("nav_menu nav_active");
@@ -17,35 +26,45 @@ function Header() {
   };
   return (
     <nav className="nav">
-      <a href="../" className="nav_name">
+      <Link to="../" className="nav_name">
       <MdShoppingCart id="cart-logo" />BITMart
-      </a>
+      </Link>
       <ul className={active}>
         <li className="nav_item">
-          <a href="../" className="nav_link">
+          <NavLink to="../" className="nav_link">
             Home
-          </a>
+          </NavLink>
         </li>
         <li className="nav_item">
-          <a href="/" className="nav_link">
+          <NavLink to="/" className="nav_link">
             Buy/Sell
-          </a>
+          </NavLink>
         </li>
         <li className="nav_item">
-          <a href="/" className="nav_link">
+          <NavLink to="/" className="nav_link">
             Lost/Found
-          </a>
+          </NavLink>
         </li>
-        <li className="nav_item">
-          <a href="../login" className="nav_link">
+        {
+          !auth.user ? (<>
+          <li className="nav_item">
+          <NavLink to="../login" className="nav_link">
             SignIn
-          </a>
+          </NavLink>
         </li>
         <li className="nav_item">
-          <a href="../register" className="nav_link">
+          <NavLink to="../register" className="nav_link">
             SignUp
-          </a>
+          </NavLink>
         </li>
+          </>) : (<>
+        <li className="nav_item">
+          <NavLink onClick={handleLogout} to="../" className="nav_link">
+            LogOut
+          </NavLink>
+        </li>
+          </>)
+        }
       </ul>
       <div onClick={navToggle} className={icon}>
         <div className="line1"></div>

@@ -4,8 +4,10 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import Layout from '../components/Layout/Layout';
 import "../Home.css"
+import { useAuth } from '../context/auth';
 
 const Home = ()=>{
+    const [auth,setAuth] = useAuth();
     const [products, setProducts] = useState([]);
 
     const getProducts = async () => {
@@ -39,7 +41,7 @@ const Home = ()=>{
                 <h2 className='prod_head'>Latest Products</h2>
                 <div className='card_container'>
                 {latestProducts?.map( p => (
-        
+                         <div key={p._id}>
                         <div className="card" style={{width: '28rem'}}>
                             <img src={`http://localhost:5000/api/product/product-photo/${p._id}`} className="card-img" alt={p.name}/>
                             <div className="card-body">
@@ -49,6 +51,7 @@ const Home = ()=>{
                                <p className="card-text">Quantity : {p.quantity} </p>
                                <p className="card-text">Contact : {p.contact} </p>   
                             </div>
+                        </div>
                         </div>
                     ))
                 }
@@ -61,6 +64,8 @@ const Home = ()=>{
                   
                
                 </div>
+
+                {/* <pre>{JSON.stringify(auth , null , 4)}</pre> */}
         </Layout>
     );
 };
