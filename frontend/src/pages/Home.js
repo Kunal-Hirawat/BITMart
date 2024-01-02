@@ -4,10 +4,10 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import Layout from '../components/Layout/Layout';
 import "../Home.css"
-import { useAuth } from '../context/auth';
+// import { useAuth } from '../context/auth';
 
 const Home = ()=>{
-    const [auth,setAuth] = useAuth();
+    // const [auth,setAuth] = useAuth();
     const [products, setProducts] = useState([]);
 
     const getProducts = async () => {
