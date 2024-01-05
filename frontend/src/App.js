@@ -5,6 +5,7 @@ import Pagenotfound from "./pages/Pagenotfound.js";
 import Register from "./pages/Register.js";
 import Login from "./pages/login.js"
 import Home from "./pages/Home.js";
+import BuySell from "./pages/BuySell.js";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/support" element={<Support />} />
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
+        <Route path="/buy-sell" element = {<BuySell/>}></Route>
         {/* <Route path="*" element={<Pagenotfound />} /> */}
         <Route path="*" element={<Pagenotfound />} />
         <Route path="/" element={<Home />} />

@@ -1,0 +1,123 @@
+
+.container-fluid{
+    width:100%;
+    padding-right:15px;
+    padding-left:15px;
+    margin-right:auto;
+    margin-left:auto;
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-wrap:wrap;
+    flex-wrap:wrap;
+    -ms-flex-align:center;
+    align-items:center;
+    /* ms-flex-pack:justify; */
+    justify-content:space-between;
+}
+   
+.row{
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-wrap:wrap;
+    flex-wrap:wrap;
+    margin-right:-15px;
+    margin-left:-15px
+}
+
+.mt-3{
+    margin-top:1rem!important
+}
+
+.col-md-9{
+    -ms-flex:0 0 75%;
+    flex:0 0 100%;
+    /* max-width:75%; */
+    position:relative;
+    width:100%;
+    padding-left: 4rem;
+}
+
+.text-center{
+    text-align:center!important
+}
+
+.flex-wrap{
+    -ms-flex-wrap:wrap!important;
+    flex-wrap:wrap!important
+}
+
+.d-flex{
+    display:-ms-flexbox!important;
+    display:flex!important
+}
+
+.card{position:relative;
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    min-width:0;
+    word-wrap:break-word;
+    background-color:#fff;
+    background-clip:border-box;
+    border:1px solid rgba(0,0,0,.125);
+    border-radius:.25rem
+}
+    
+.m-2{margin: 2.5rem!important}
+
+.card-img-top{width:100%;border-top-left-radius:calc(.25rem - 1px);border-top-right-radius:calc(.25rem - 1px)}
+
+.card-body{-ms-flex:1 1 auto;flex:1 1 auto;padding:1.25rem}
+
+.card-title{margin-bottom:.75rem}
+
+.card-text:last-child{margin-bottom:0}
+
+.home-page h1 {
+    color: gray;
+    font-family: "Playfair Display", serif;
+}
+  
+.home-page {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.home-page .card {
+    background-color: rgba(128, 128, 128, 0.097);
+    width: 31rem;
+  }
+
+  .home-page .card-name-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+  
+.home-page .card-price {
+    color: green;
+    font-weight: bold;
+}
+
+.home-page button {
+    border-radius: 0;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+  
+.home-page .card-text {
+    color: rgb(90, 89, 89);
+}
+  
+.home-page .card img:hover {
+    transform: scale(0.9);
+}
+  
+.home-page .card-img-top {
+    height: 300px !important;
+}
