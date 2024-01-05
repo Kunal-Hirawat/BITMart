@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from "react-router-dom";
+import {Link , useNavigate} from "react-router-dom";
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Layout from '../components/Layout/Layout';
+import { useAuth } from '../context/auth';
 import "../Home.css"
-// import { useAuth } from '../context/auth';
 
 const Home = ()=>{
-    // const [auth,setAuth] = useAuth();
+    const [auth,setAuth] = useAuth();
+    const navigate = useNavigate();
     const [products, setProducts] = useState([]);
 
     const getProducts = async () => {
@@ -46,10 +47,30 @@ const Home = ()=>{
                             <img src={`http://localhost:5000/api/product/product-photo/${p._id}`} className="card-img" alt={p.name}/>
                             <div className="card-body">
                                <h3 className="card-title">{p.name}</h3>
-                               <p className="card-text">{p.description} </p>
+                               <p className="card-text">Desc : {p.description} </p>
                                <p className="card-text">Price : {p.price} </p>
                                <p className="card-text">Quantity : {p.quantity} </p>
-                               <p className="card-text">Contact : {p.contact} </p>   
+                               <div className="card-name-price">
+                                {
+                                    !auth.user ? ( 
+                                        <button
+                                        className="btn btn-info ms-1"
+                                        onClick={() => navigate(`/login`)}
+                                         >
+                                            More Details
+                                         </button>
+                                     ) : (
+                                        <button
+                                        className="btn btn-info ms-1"
+                                        onClick={() => navigate(`/product/${p.slug}`)}
+                                        >
+                                            More Details
+                                        </button>
+                                    )
+                    }
+                   
+
+                  </div>
                             </div>
                         </div>
                         </div>
@@ -64,8 +85,6 @@ const Home = ()=>{
                   
                
                 </div>
-
-                {/* <pre>{JSON.stringify(auth , null , 4)}</pre> */}
         </Layout>
     );
 };
