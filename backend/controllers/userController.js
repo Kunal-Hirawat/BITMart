@@ -4,7 +4,7 @@ import JWT from 'jsonwebtoken'
 
 export const registerContoller= async(req,res) => {
     try {
-        const {name,email,contact,password,address}=req.body
+        const {name,email,contact,password,address,securityQuestion,securityAnswer}=req.body
         if(!name){
             return res.send({message:'Name is required'})
         }
@@ -16,6 +16,12 @@ export const registerContoller= async(req,res) => {
         }
         if(!password){
             return res.send({message:'Password is required'})
+        }
+        if(!securityQuestion){
+            return res.send({message:'Security Question is required'})
+        }
+        if(!securityAnswer){
+            return res.send({message:'Security Answer is required'})
         }
 
         //checking if user already exists
@@ -31,9 +37,10 @@ export const registerContoller= async(req,res) => {
 
         //hashing the password
         const hashedPassword= await hashPassword(password)
+        const hashedAnswer=await hashPassword(securityAnswer);
  
         //saving user
-        const user=new userModel({name,email,contact,password:hashedPassword,address}).save()
+        const user=new userModel({name,email,contact,password:hashedPassword,address,securityQuestion,securityAnswer:hashedAnswer}).save()
         
         res.status(201).send({
             success:true,
@@ -56,42 +63,21 @@ export const loginController= async(req,res) =>{
 
         //checking if email/contact and password are entered
 
-        if((!email && !contact) || !password){
+        if(!email || !contact || !password){
             return res.status(404).send({
                 success:false,
                 message:'Invalid email/contact or password'
             })
         }
 
-        var user=false;
-
-        if(email && !contact){
-            user=await userModel.findOne({email})
+        
+            const user=await userModel.findOne({contact,email})
             if(!user){
                 return res.status(404).send({
                     success:false,
                     message:'User Not Found'
                 })
             }
-        }
-        else if(contact && !email){
-            user=await userModel.findOne({contact})
-            if(!user){
-                return res.status(404).send({
-                    success:false,
-                    message:'User Not Found'
-                })
-            }
-        }
-        else{
-            user=await userModel.findOne({contact,email})
-            if(!user){
-                return res.status(404).send({
-                    success:false,
-                    message:'User Not Found'
-                })
-            }
-        }
 
         //checking if password is correct or not
 
@@ -115,6 +101,8 @@ export const loginController= async(req,res) =>{
                 contact:user.contact,
                 address:user.address,
                 role: user.role,
+                securityQuestion:user.securityQuestion,
+                securityAnswer:user.securityAnswer
             },
             token,
         });
@@ -127,6 +115,110 @@ export const loginController= async(req,res) =>{
         })
     }
 }
+
+export const forgotPasswordController=async(req,res)=>{
+    try {
+        const {email,securityAnswer,newPassword} =req.body;
+        if(!email){
+            return res.status(400).send({message:'Please Enter Email'});
+        }
+        if(!securityAnswer){
+            return res.status(400).send({message:'Please Enter Answer'});
+        }
+        if(!newPassword){
+            return res.status(400).send({message:'Please Enter New Password'});
+        }
+        const user=await userModel.findOne({email,securityAnswer});
+        if(!user){
+            return res.status(404).send({
+                success:false,
+                message:'Answer to the security question is wrong'
+            })
+        }
+
+        const hashed=await hashPassword(newPassword);
+        await userModel.findByIdAndUpdate(user._id,{password:hashed});
+        return res.status(200).send({
+            success:true,
+            message:'Password changed successfully'
+        })
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            success:false,
+            message:'Error!!!. Please Try Again'
+        })
+    }
+}
+
+
+export const getSecurityQuestionController=async(req,res)=>{
+    try {
+        const {email}=req.query;
+        if(!email){
+            return res.status(400).send({message:'Please Enter Email'});
+        }
+        const user=await userModel.findOne({email});
+        if(!user){
+            return res.status(404).send({
+                success:false,
+                message:'No User found for this email id'
+            })
+        }
+        return res.status(200).send({
+            success:true,
+            securityQuestion:user.securityQuestion
+        })
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            success:false,
+            message:'Error!!!. Please Try Again'
+        })
+    }
+}
+
+export const checkSecurityAnswerController=async(req,res)=>{
+    try {
+
+        const {email,securityAnswer} =req.body;
+        if(!email){
+            return res.status(400).send({message:'Please Enter Email'});
+        }
+        if(!securityAnswer){
+            return res.status(400).send({message:'Please Enter Answer'});
+        }
+        const user=await userModel.findOne({email});
+        if(!user){
+            return res.status(404).send({
+                success:false,
+                message:'Answer to the security question is wrong'
+            })
+        }
+        const correctAnswer=await comparePassword(securityAnswer,user.securityAnswer);
+        if(!correctAnswer){
+            return res.status(404).send({
+                success:false,
+                message:'Answer to the security question is wrong'
+            })
+        }
+        return res.status(200).send({
+            success:true,
+            message:'Correct Answer'
+        })
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            success:false,
+            message:'Error!!!. Please Try Again'
+        })
+    }
+}
+
+
 
 export const testController=async(req,res)=>{
     try {

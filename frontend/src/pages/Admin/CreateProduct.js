@@ -28,7 +28,7 @@ const CreateProduct = () => {
       productData.append("quantity", quantity);
       productData.append("photo", photo);
       const { data } = axios.post(
-        "/api/v1/product/create-product",
+        "http://localhost:5000/api/product/create-product",
         productData
       );
       if (data?.success) {
