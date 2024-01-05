@@ -20,7 +20,7 @@ const userSchema =  mongoose.Schema(
 
     },
     address:{
-        type: String,
+        type: {},
     },
     email: {
       type: String,
@@ -30,6 +30,10 @@ const userSchema =  mongoose.Schema(
     password: {
       type: String,
       required: true,
+    },
+    role: {
+      type: Number,
+      default: 0,
     },
   },
   { timestamps: true }
