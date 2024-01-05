@@ -1,20 +1,35 @@
-import React,{useState} from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 import Layout from "../components/Layout/Layout";
 import { MdEmail } from "react-icons/md";
 import { FaLock, FaUser } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Icon } from "react-icons-kit";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { eye } from "react-icons-kit/feather/eye";
 import "../login.css";
-import { useAuth } from '../context/auth';
+import { useAuth } from "../context/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
   const [password, setPassword] = useState("");
-  const [auth , setAuth] = useAuth();
-  const navigate=useNavigate();
+  const [auth, setAuth] = useAuth();
+  const [icon, setIcon] = useState(eyeOff);
+  const [type, setType] = useState("password");
+  const navigate = useNavigate();
+
+  const handleToggle = () => {
+    if (type === "password") {
+      setIcon(eye);
+      setType("text");
+    } else {
+      setIcon(eyeOff);
+      setType("password");
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,10 +41,10 @@ const Login = () => {
         setAuth({
           ...auth,
           user: res.data.user,
-          token : res.data.token,
+          token: res.data.token,
         });
-        localStorage.setItem('auth' , JSON.stringify(res.data))
-        navigate('../');
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate("../");
       } else toast.error(res.data.message);
     } catch (error) {
       console.log(error);
@@ -52,7 +67,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                onChange={(event)=>setEmail(event.target.value)}
+                onChange={(event) => setEmail(event.target.value)}
                 required
               ></input>
             </div>
@@ -63,24 +78,40 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="Enter your contact"
-                onChange={(event)=>setContact(event.target.value)}
+                onChange={(event) => setContact(event.target.value)}
                 required
               ></input>
             </div>
-            <div className="form-input">
+            <div className="form-input" style={{ marginLeft: "30px" }}>
               <i>
                 <FaLock />
               </i>
               <input
-                type="password"
+                type={type}
                 placeholder="Enter password"
-                onChange={(event)=>setPassword(event.target.value)}
+                onChange={(event) => setPassword(event.target.value)}
                 required
               ></input>
+              <Icon
+                icon={icon}
+                id="login-password-image"
+                onClick={handleToggle}
+                style={{
+                  display: "inline",
+                  marginLeft: "-7%",
+                  verticalAlign: "middle",
+                  cursor:'pointer'
+                }}
+              ></Icon>
+            </div>
+            <div>
+              <p style={{ width: "270px", textAlign: "end" }}>
+                <a href="../forgotPassword">Forgot Password?</a>
+              </p>
             </div>
             <div className="button">
               <input
-                type='submit'
+                type="submit"
                 value={"Sign In"}
                 className="submit-button"
               ></input>

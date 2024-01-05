@@ -4,6 +4,7 @@ import Support from "./pages/support.js";
 import Pagenotfound from "./pages/Pagenotfound.js";
 import Register from "./pages/Register.js";
 import Login from "./pages/login.js"
+import ForgotPassword from "./pages/ForgotPassword.js";
 import Home from "./pages/Home.js";
 
 function App() {
@@ -14,9 +15,9 @@ function App() {
         <Route path="/support" element={<Support />} />
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
-        {/* <Route path="*" element={<Pagenotfound />} /> */}
+        <Route path="/forgotPassword" element={<ForgotPassword></ForgotPassword>}></Route>
+        <Route path="/" element={<Home></Home>}></Route>
         <Route path="*" element={<Pagenotfound />} />
-        <Route path="/" element={<Home />} />
       </Routes>
     </>
   );

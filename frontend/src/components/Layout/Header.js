@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {NavLink, Link} from "react-router-dom" ;
 import "../../Header.css";
 import { MdShoppingCart } from "react-icons/md";
+import { HiShoppingBag } from "react-icons/hi2";
+import { FaUser } from "react-icons/fa6";
 import { useAuth } from "../../context/auth";
 
 function Header() {
@@ -59,8 +61,13 @@ function Header() {
         </li>
           </>) : (<>
         <li className="nav_item">
-          <NavLink onClick={handleLogout} to="../" className="nav_link">
-            LogOut
+          <NavLink to="../" className="nav_link">
+            <FaUser size={18}></FaUser>
+          </NavLink>
+        </li>
+        <li className="nav_item">
+          <NavLink to="../cart" className="nav_link">
+            <HiShoppingBag size={20}/>
           </NavLink>
         </li>
           </>)

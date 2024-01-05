@@ -57,7 +57,7 @@
     padding: 11px;
 }
 
-.form-input input{
+.form-input input, .form-input select{
     outline:none;
     border: none;
     border-bottom: 2px solid #062e58;
@@ -67,6 +67,7 @@
     color:#062e58;
     font-weight:700;
 }
+
 i{
     padding: 7px;
 }
