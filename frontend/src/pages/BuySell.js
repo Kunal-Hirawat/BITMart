@@ -66,7 +66,7 @@ const BuySell = () => {
                         ) : (
                              <button
                              className="btn btn-info ms-1"
-                             onClick={() => navigate(`/product/${p.slug}`)}
+                             onClick={() => navigate(`/product/${p._id}`)}
                            >
                              More Details
                            </button>
