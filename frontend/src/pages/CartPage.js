@@ -26,7 +26,7 @@ const CartPage = () => {
       });
       return total.toLocaleString("en-US", {
         style: "currency",
-        currency: "USD",
+        currency: "INR",
       });
     } catch (error) {
       console.log(error);
@@ -80,7 +80,7 @@ const CartPage = () => {
   return (
     <Layout>
       <div className=" cart-page">
-        <div className="row">
+        <div className="row0">
           <div className="col-md-12">
             <h1 className="text-center bg-light p-2 mb-1">
               {!auth?.user
@@ -97,10 +97,10 @@ const CartPage = () => {
           </div>
         </div>
         <div className="container ">
-          <div className="row ">
+          <div className="row0">
             <div className="col-md-7  p-0 m-0">
               {cart?.map((p) => (
-                <div className="row card flex-row" key={p._id}>
+                <div className="row0 card flex-row" key={p._id}>
                   <div className="col-md-4">
                     <img
                       src={`http://localhost:5000/api/product/product-photo/${p._id}`}
@@ -126,7 +126,7 @@ const CartPage = () => {
                 </div>
               ))}
             </div>
-            <div className="col-md-5 cart-summary ">
+            <div className="col-md-4 cart-summary ">
               <h2>Cart Summary</h2>
               <p>Total | Checkout | Payment</p>
               <hr />

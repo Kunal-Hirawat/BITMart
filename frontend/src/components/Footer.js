@@ -1,9 +1,21 @@
 import React from 'react'
 import {Link} from "react-router-dom"
 import { FiFacebook ,FiInstagram,FiLinkedin,FiTwitter} from "react-icons/fi";
+import { useAuth } from "../context/auth";
+import toast from "react-hot-toast"
 import "../../src/Footer.css"
 
+
 const Footer = () => {
+  const [auth , setAuth] = useAuth();
+  const handleLogout = () =>{
+    setAuth({
+      ...auth, user:null,token:''
+    })
+    localStorage.removeItem("auth");
+    toast.success("LogOut Successful");
+    window.location.reload()
+  }
   return (
     <div className='footer'>
         <p className='icons-div'>
@@ -21,8 +33,17 @@ const Footer = () => {
           <Link to="">Buy/Sell</Link>
 
           <Link to="">Lost/Found</Link>
-
+          {
+          !auth.user ? (<> 
+          
           <Link to="/register">Register</Link>
+          </>) : (
+          <Link onClick={handleLogout} to="../" className="nav_link">
+          LogOut
+        </Link>)
+          
+        }
+
         </p>
         <p>
           <Link to="/info">Info</Link>

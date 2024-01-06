@@ -28,17 +28,17 @@ function Header() {
   };
   return (
     <nav className="nav">
-      <Link to="../" className="nav_name">
+      <Link to="/" className="nav_name">
       <MdShoppingCart id="cart-logo" />BITMart
       </Link>
       <ul className={active}>
         <li className="nav_item">
-          <NavLink to="../" className="nav_link">
+          <NavLink to="/" className="nav_link">
             Home
           </NavLink>
         </li>
         <li className="nav_item">
-          <NavLink to="/" className="nav_link">
+          <NavLink to="/buy-sell" className="nav_link">
             Buy/Sell
           </NavLink>
         </li>
@@ -50,23 +50,23 @@ function Header() {
         {
           !auth.user ? (<>
           <li className="nav_item">
-          <NavLink to="../login" className="nav_link">
+          <NavLink to="/login" className="nav_link">
             SignIn
           </NavLink>
         </li>
         <li className="nav_item">
-          <NavLink to="../register" className="nav_link">
+          <NavLink to="/register" className="nav_link">
             SignUp
           </NavLink>
         </li>
           </>) : (<>
         <li className="nav_item">
-          <NavLink to="../" className="nav_link">
+          <NavLink to="/dashboard/user/profile" className="nav_link">
             <FaUser size={18}></FaUser>
           </NavLink>
         </li>
         <li className="nav_item">
-          <NavLink to="../cart" className="nav_link">
+          <NavLink to="/cart" className="nav_link">
             <HiShoppingBag size={20}/>
           </NavLink>
         </li>

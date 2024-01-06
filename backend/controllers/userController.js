@@ -128,7 +128,8 @@ export const forgotPasswordController=async(req,res)=>{
         if(!newPassword){
             return res.status(400).send({message:'Please Enter New Password'});
         }
-        const user=await userModel.findOne({email,securityAnswer});
+        const hashedAnswer=await hashPassword(securityAnswer);
+        const user=await userModel.findOne({email:email},{securityAnswer:hashedAnswer});
         if(!user){
             return res.status(404).send({
                 success:false,

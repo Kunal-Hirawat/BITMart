@@ -81,3 +81,49 @@
         font-weight: bolder;
         margin-bottom: 5px;
 }
+
+.card-name-price{
+    padding-top: 3px;
+}
+
+.card-name-price button {
+    align-items: center;
+    background-color: #062e58;
+    border-radius: 100px;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 18px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 40px;
+    min-width: 255px;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    vertical-align: middle;
+
+  }
+  
+  .card-name-price button:hover,
+  .card-name-price button:focus { 
+    background-color: #16437E;
+    color: white
+  }
+  
+  .card-name-price button:active {
+    background: #09223b;
+    color: rgb(255, 255, 255, .7);
+  }
+  
+  .card-name-price button:disabled { 
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, .08);
+    color: rgba(0, 0, 0, .3);
+  }

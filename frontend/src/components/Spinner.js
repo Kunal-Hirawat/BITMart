@@ -20,7 +20,7 @@ const Spinner = () => {
       >
         <h1 className="Text-center">Redirecting to the login page in {count} seconds </h1>
         <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
+          <span className="visually-hidden"></span>
         </div>
       </div>
     </>

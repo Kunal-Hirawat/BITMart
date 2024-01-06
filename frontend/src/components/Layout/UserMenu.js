@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "../../UserMenu.css";
 const UserMenu = () => {
   return (
     <div>

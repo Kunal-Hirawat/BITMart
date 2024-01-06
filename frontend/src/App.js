@@ -17,6 +17,7 @@ import Orders from "./pages/user/Orders.js";
 import Profile from "./pages/user/Profile.js";
 import Products from "./pages/Admin/Products.js";
 import UpdateProduct from "./pages/Admin/UpdateProduct.js";
+import BuySell from "./pages/BuySell.js";
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
         {/* <Route path="*" element={<Pagenotfound />} /> */}
         <Route path="/forgotPassword" element={<ForgotPassword></ForgotPassword>}></Route>
         <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/buy-sell" element = {<BuySell/>}></Route>
+        {/* <Route path="*" element={<Pagenotfound />} /> */}
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
     </>
