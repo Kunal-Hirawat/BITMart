@@ -7,8 +7,8 @@ import { useAuth } from '../context/auth';
 import "../Home.css"
 
 const Home = ()=>{
-    const [auth,setAuth] = useAuth();
-    const navigate = useNavigate();
+    const [auth] = useAuth();
+const navigate = useNavigate();
     const [products, setProducts] = useState([]);
 
     const getProducts = async () => {
@@ -33,10 +33,10 @@ const Home = ()=>{
         <Layout>
             <div className='welcome'>
                  <h2>Welcome to BITMart</h2>
-                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan quam ac nisl sodales, eu dictum metus luctus. 
+                 {/* <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan quam ac nisl sodales, eu dictum metus luctus. 
                     Maecenas et tincidunt dui. In id mattis est, sed congue tortor. Cras vitae quam ut sem elementum ultrices vel et felis.
                      Mauris condimentum lectus vel dui dapibus.
-                </p>  
+                </p> */}
             </div>
             <div className='products'>
                 <h2 className='prod_head'>Latest Products</h2>

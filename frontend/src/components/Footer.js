@@ -28,7 +28,7 @@ const Footer = () => {
         <a href="https://twitter.com"><FiTwitter/></a>
         </p>
         <p>
-          <Link to="../">Home</Link> 
+          <Link to="/">Home</Link> 
 
           <Link to="">Buy/Sell</Link>
 

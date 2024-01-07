@@ -18,6 +18,7 @@ import Profile from "./pages/user/Profile.js";
 import Products from "./pages/Admin/Products.js";
 import UpdateProduct from "./pages/Admin/UpdateProduct.js";
 import BuySell from "./pages/BuySell.js";
+import Search from "./pages/Search.js";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/info" element={<Info />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/search" element={<Search></Search>}></Route>
         <Route path="/dashboard" element={<PrivateRoute />}>
         <Route path="user" element={<Dashboard />} />
         <Route path="user/orders" element={<Orders />} />

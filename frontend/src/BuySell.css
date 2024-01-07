@@ -74,7 +74,7 @@
 
 .card-text:last-child{margin-bottom:0}
 
-.home-page h1 {
+.home-page h1 , .home-page h3{
     color: gray;
     font-family: "Playfair Display", serif;
 }
@@ -115,7 +115,7 @@
 }
   
 .home-page .card img:hover {
-    transform: scale(0.9);
+    transform: scale(0.985);
 }
   
 .home-page .card-img-top {
