@@ -18,10 +18,6 @@ const Dashboard = () => {
   }
   return (
     <Layout title={"Dashboard- BITMart"}>
-      
-          {/* <div className="col-md-3">
-            <UserMenu />
-          </div> */}
           <div className="menu-layout">
         <div className="menu">
           <h1>
