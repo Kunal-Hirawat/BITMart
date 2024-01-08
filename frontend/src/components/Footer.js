@@ -28,7 +28,7 @@ const Footer = () => {
         <a href="https://twitter.com"><FiTwitter/></a>
         </p>
         <p>
-          <Link to="../">Home</Link> 
+          <Link to="/">Home</Link> 
 
           <Link to="">Buy/Sell</Link>
 
@@ -38,7 +38,7 @@ const Footer = () => {
           
           <Link to="/register">Register</Link>
           </>) : (
-          <Link onClick={handleLogout} to="../" className="nav_link">
+          <Link onClick={handleLogout} to="/" className="nav_link">
           LogOut
         </Link>)
           

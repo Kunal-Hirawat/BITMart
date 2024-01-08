@@ -1,26 +1,38 @@
 import React, { useState, useEffect } from "react";
-//import AdminMenu from "./../../components/Layout/AdminMenu";
-//import Layout from "./../../components/Layout/Layout";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "../../components/Layout/Layout";
+import "../../components/styles/CartStyles.css"
+import { useAuth } from "../../context/auth";
+import {Link} from "react-router-dom"
+
+
+
 const { Option } = Select;
 
 const UpdateProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
-//   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-//   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
 //   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
   const [id, setId] = useState("");
+
+  const [auth,setAuth] = useAuth();
+  const handleLogout = () =>{
+    setAuth({
+      ...auth, user:null,token:''
+    })
+    localStorage.removeItem("auth");
+    toast.success("LogOut Successful");
+    window.location.reload()
+  }
 
   //get single product
   const getSingleProduct = async () => {
@@ -34,7 +46,6 @@ const UpdateProduct = () => {
       setPrice(data.product.price);
       setQuantity(data.product.quantity);
     //   setShipping(data.product.shipping);
-    //   setCategory(data.product.category._id);
     } catch (error) {
       console.log(error);
     }
@@ -43,23 +54,7 @@ const UpdateProduct = () => {
     getSingleProduct();
     //eslint-disable-next-line
   }, []);
-  //get all category
-//   const getAllCategory = async () => {
-//     try {
-//       const { data } = await axios.get("/api/v1/category/get-category");
-//       if (data?.success) {
-//         setCategories(data?.category);
-//       }
-//     } catch (error) {
-//       console.log(error);
-//       toast.error("Something wwent wrong in getting catgeory");
-//     }
-//   };
-
-//   useEffect(() => {
-//     getAllCategory();
-//   }, []);
-
+ 
   //create product function
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -104,33 +99,34 @@ const UpdateProduct = () => {
   };
   return (
     <Layout title={"Dashboard - Create Product"}>
-      <div className="container-fluid m-3 p-3">
-        <div className="row">
-          <div className="col-md-3">
-            <AdminMenu />
+    <div className="menu-layout">
+        <div className="menu">
+          <h1>
+            Admin Panel
+          </h1>
+          <div className="menu-tabs">
+            <a href="/dashboard/admin/create-product">
+              Create Product
+            </a>
+            <a href="/dashboard/admin/products">
+              Products
+            </a>
+            <a href="/dashboard/admin/users">
+              Users
+            </a>
+            <Link onClick={handleLogout} to="/" className="nav_link">
+          LogOut
+        </Link>
           </div>
-          <div className="col-md-9">
-            <h1>Update Product</h1>
+        </div>
+
+        <div className="form ">
+          <form  className="form-container-2">
+            <h1>Update/Delete Product</h1>
+            <div className="d-flex flex-wrap">
             <div className="m-1 w-75">
-              {/* <Select
-                bordered={false}
-                placeholder="Select a category"
-                size="large"
-                showSearch
-                className="form-select mb-3"
-                onChange={(value) => {
-                  setCategory(value);
-                }}
-                value={category}
-              >
-                {categories?.map((c) => (
-                  <Option key={c._id} value={c._id}>
-                    {c.name}
-                  </Option>
-                ))}
-              </Select> */}
               <div className="mb-3">
-                <label className="btn btn-outline-secondary col-md-12">
+                <label className="submit-button1">
                   {photo ? photo.name : "Upload Photo"}
                   <input
                     type="file"
@@ -199,38 +195,118 @@ const UpdateProduct = () => {
                   onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
-              {/* <div className="mb-3">
-                <Select
-                  bordered={false}
-                  placeholder="Select Shipping "
-                  size="large"
-                  showSearch
-                  className="form-select mb-3"
-                  onChange={(value) => {
-                    setShipping(value);
-                  }}
-                  value={shipping ? "yes" : "No"}
-                >
-                  <Option value="0">No</Option>
-                  <Option value="1">Yes</Option>
-                </Select>
-              </div> */}
               <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleUpdate}>
+                <button className="submit-button1" onClick={handleUpdate}>
                   UPDATE PRODUCT
                 </button>
               </div>
               <div className="mb-3">
-                <button className="btn btn-danger" onClick={handleDelete}>
+                <button className="danger-btn" onClick={handleDelete}>
                   DELETE PRODUCT
                 </button>
               </div>
             </div>
           </div>
+            </form>
         </div>
       </div>
+      
     </Layout>
   );
 };
 
 export default UpdateProduct;
+
+
+//  <div className="container-fluid m-3 p-3">
+//         <div className="row0">
+//           <div className="col-md-3">
+//             <AdminMenu />
+//           </div>
+//           <div className="col-md-9">
+//             <h1>Update Product</h1>
+//             <div className="m-1 w-75">
+//               <div className="mb-3">
+//                 <label className="btn btn-outline-secondary col-md-12">
+//                   {photo ? photo.name : "Upload Photo"}
+//                   <input
+//                     type="file"
+//                     name="photo"
+//                     accept="image/*"
+//                     onChange={(e) => setPhoto(e.target.files[0])}
+//                     hidden
+//                   />
+//                 </label>
+//               </div>
+//               <div className="mb-3">
+//                 {photo ? (
+//                   <div className="text-center">
+//                     <img
+//                       src={URL.createObjectURL(photo)}
+//                       alt="product_photo"
+//                       height={"200px"}
+//                       className="img img-responsive"
+//                     />
+//                   </div>
+//                 ) : (
+//                   <div className="text-center">
+//                     <img
+//                       src={`http://localhost:5000/api/product/product-photo/${id}`}
+//                       alt="product_photo"
+//                       height={"200px"}
+//                       className="img img-responsive"
+//                     />
+//                   </div>
+//                 )}
+//               </div>
+//               <div className="mb-3">
+//                 <input
+//                   type="text"
+//                   value={name}
+//                   placeholder="write a name"
+//                   className="form-control"
+//                   onChange={(e) => setName(e.target.value)}
+//                 />
+//               </div>
+//               <div className="mb-3">
+//                 <textarea
+//                   type="text"
+//                   value={description}
+//                   placeholder="write a description"
+//                   className="form-control"
+//                   onChange={(e) => setDescription(e.target.value)}
+//                 />
+//               </div>
+
+//               <div className="mb-3">
+//                 <input
+//                   type="number"
+//                   value={price}
+//                   placeholder="write a Price"
+//                   className="form-control"
+//                   onChange={(e) => setPrice(e.target.value)}
+//                 />
+//               </div>
+//               <div className="mb-3">
+//                 <input
+//                   type="number"
+//                   value={quantity}
+//                   placeholder="write a quantity"
+//                   className="form-control"
+//                   onChange={(e) => setQuantity(e.target.value)}
+//                 />
+//               </div>
+//               <div className="mb-3">
+//                 <button className="btn btn-primary" onClick={handleUpdate}>
+//                   UPDATE PRODUCT
+//                 </button>
+//               </div>
+//               <div className="mb-3">
+//                 <button className="btn btn-danger" onClick={handleDelete}>
+//                   DELETE PRODUCT
+//                 </button>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div> 

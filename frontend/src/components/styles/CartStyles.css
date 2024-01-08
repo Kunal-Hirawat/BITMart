@@ -98,6 +98,16 @@
   padding-left: 15px
 }
 
+/* .col-md-9 {
+  -ms-flex: 0 0 58.333333%;
+  flex: 0 0 58.333333%;
+  max-width: 58.333333%;
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px
+} */
+
 .p-0 {
   padding: 0 !important
 }
@@ -295,4 +305,86 @@
 
 .menu-tabs a {
   color: black
+}
+
+.submit-button1 {
+  align-items: center;
+  background-color: #062e58;
+  border-radius: 100px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 10px;
+  font-weight: 200;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 30px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  vertical-align: middle;
+}
+
+.submit-button1:hover,
+.submit-button1:focus { 
+  background-color: #16437E;
+  color: white
+}
+
+.submit-button1:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+.submit-button1:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
+
+.danger-btn {
+  align-items: center;
+  background-color: red;
+  border-radius: 100px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 10px;
+  font-weight: 200;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 30px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  vertical-align: middle;
+}
+
+.danger-btn:hover,
+.danger-btn:focus { 
+  background-color: maroon;
+  color: white
+}
+
+.danger-btn:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+.danger-btn:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
 }

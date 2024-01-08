@@ -1,25 +1,55 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import Layout from "../../components/Layout/Layout";
 import UserMenu from "../../components/Layout/UserMenu";
 import { useAuth } from "../../context/auth";
+import "../../components/styles/CartStyles.css";
+import toast from "react-hot-toast"
+
 const Dashboard = () => {
-  const [auth] = useAuth();
+  const [auth,setAuth] = useAuth();
+  const handleLogout = () =>{
+    setAuth({
+      ...auth, user:null,token:''
+    })
+    localStorage.removeItem("auth");
+    toast.success("LogOut Successful");
+    window.location.reload()
+  }
   return (
     <Layout title={"Dashboard- BITMart"}>
-      <div className="container-fluid m-3 p-3 dashboard">
-        <div className="row">
-          <div className="col-md-3">
+      
+          {/* <div className="col-md-3">
             <UserMenu />
-          </div>
-          <div className="col-md-9">
-            <div className="card w-75 p-3">
-              <h3>{auth?.user?.name}</h3>
-              <h3>{auth?.user?.email}</h3>
-              <h3>{auth?.user?.address}</h3>
-            </div>
+          </div> */}
+          <div className="menu-layout">
+        <div className="menu">
+          <h1>
+            Dashboard
+          </h1>
+          <div className="menu-tabs">
+            <a href="/dashboard/user/profile">
+              Update Profile
+            </a>
+            <a href="/dashboard/user/orders">
+              Orders
+            </a>
+            <Link onClick={handleLogout} to="../" className="nav_link">
+          LogOut
+        </Link>
           </div>
         </div>
-      </div>
+        <div className="form ">
+          <form className="form-container-2">
+            <h1> User Details </h1>
+              <h3>Name : {auth?.user?.name}</h3>
+              <h3>Contact : {auth?.user?.contact}</h3>
+              <h3>Email : {auth?.user?.email}</h3>
+              <h3>Address : {auth?.user?.address}</h3>
+          </form>
+        </div>
+        </div>
+      
     </Layout>
   );
 };
