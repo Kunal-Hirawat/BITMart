@@ -5,6 +5,7 @@ import { MdShoppingCart } from "react-icons/md";
 import { HiShoppingBag } from "react-icons/hi2";
 import { FaUser } from "react-icons/fa6";
 import { useAuth } from "../../context/auth";
+import SearchInput from "../Forms/searchInput";
 
 function Header() {
   const [active, setActive] = useState("nav_menu");
@@ -32,6 +33,7 @@ function Header() {
       <MdShoppingCart id="cart-logo" />BITMart
       </Link>
       <ul className={active}>
+        <SearchInput></SearchInput>
         <li className="nav_item">
           <NavLink to="/" className="nav_link">
             Home
