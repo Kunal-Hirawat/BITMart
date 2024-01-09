@@ -7,6 +7,7 @@ import {
   updateProductController,
   deleteProductController,
   searchProductController,
+  productFilterController,
 } from "../controllers/productController.js";
 import { requireSignIn, isAdmin } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
@@ -44,5 +45,8 @@ router.delete("/delete-product/:pid", deleteProductController);
 
 //search product
 router.get("/search/:keyword", searchProductController);
+
+//product-filters
+router.post("/product-filter",productFilterController);
 
 export default router;
