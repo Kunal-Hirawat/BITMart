@@ -1,0 +1,29 @@
+.col-md-6{
+    position:relative;
+    width:100%;
+    padding-right:15px;
+    padding-left:15px;
+    flex:0 0 50%;
+    max-width:100%;
+}
+
+.product-details {
+  margin-top: 100px !important;
+}
+
+.product-details-info {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.product-details-info h6 {
+  margin-bottom: 20px !important;
+}
+/* 
+        .card-img-top{
+            width:50%;
+            border-top-left-radius:calc(.25rem - 1px);
+            border-top-right-radius:calc(.25rem - 1px);
+            padding-left:2vw ;} */

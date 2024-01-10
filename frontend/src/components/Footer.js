@@ -30,7 +30,7 @@ const Footer = () => {
         <p>
           <Link to="/">Home</Link> 
 
-          <Link to="">Buy/Sell</Link>
+          <Link to="/buy-sell">Buy/Sell</Link>
 
           <Link to="">Lost/Found</Link>
           {

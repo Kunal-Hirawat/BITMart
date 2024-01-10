@@ -19,12 +19,14 @@ import Products from "./pages/Admin/Products.js";
 import UpdateProduct from "./pages/Admin/UpdateProduct.js";
 import BuySell from "./pages/BuySell.js";
 import Search from "./pages/Search.js";
+import Product from "./pages/Product.js";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/info" element={<Info />} />
+        <Route path="/product/:id" element={<Product/>} />
         <Route path="/support" element={<Support />} />
         <Route path="/search" element={<Search></Search>}></Route>
         <Route path="/dashboard" element={<PrivateRoute />}>
