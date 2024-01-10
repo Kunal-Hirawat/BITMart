@@ -66,9 +66,9 @@ function Header() {
         </li>
           </>) : (<>
         <li className="nav_item">
-          <NavLink to="/dashboard/user/profile" className="nav_link">
-            <FaUser size={18}></FaUser>
-          </NavLink>
+        <NavLink to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}>
+        <FaUser size={18}></FaUser>
+        </NavLink>
         </li>
         <li className="nav_item">
           <NavLink to="/cart" className="nav_link">

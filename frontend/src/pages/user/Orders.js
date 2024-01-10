@@ -4,10 +4,22 @@ import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
+import "../../components/styles/CartStyles.css";
+import {Link} from "react-router-dom"
+import toast from "react-hot-toast"
+
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
+  const handleLogout = () =>{
+    setAuth({
+      ...auth, user:null,token:''
+    })
+    localStorage.removeItem("auth");
+    toast.success("LogOut Successful");
+    window.location.reload()
+  }
   const getOrders = async () => {
     try {
       const { data } = await axios.get("http://localhost:5000/api/auth/orders");
@@ -29,11 +41,14 @@ const Orders = () => {
           </h1>
           <div className="menu-tabs">
             <a href="/dashboard/user/profile">
-              Profile
+              Update Profile
             </a>
             <a href="/dashboard/user/orders">
               Orders
             </a>
+            <Link onClick={handleLogout} to="../" className="nav_link">
+          LogOut
+        </Link>
           </div>
         </div>
         <div>

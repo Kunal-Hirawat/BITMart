@@ -5,8 +5,21 @@ import { Link } from "react-router-dom";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "../../components/Layout/Layout";
 import "../../BuySell.css";
+import "../../components/styles/CartStyles.css"
+import { useAuth } from "../../context/auth";
+
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [auth, setAuth] = useAuth();
+
+  const handleLogout = () =>{
+    setAuth({
+      ...auth, user:null,token:''
+    })
+    localStorage.removeItem("auth");
+    toast.success("LogOut Successful");
+    window.location.reload()
+  }
 
   //get all products
   const getAllProducts = async () => {
@@ -25,13 +38,31 @@ const Products = () => {
   }, []);
   return (
     <Layout>
-      <div className="row dashboard">
-        <div className="col-md-3">
-          <AdminMenu />
+    <div className="menu-layout">
+        <div className="menu">
+          <h1>
+            Admin Panel
+          </h1>
+          <div className="menu-tabs">
+            <a href="/dashboard/admin/create-product">
+              Create Product
+            </a>
+            <a href="/dashboard/admin/products">
+              Products
+            </a>
+            <a href="/dashboard/admin/users">
+              Users
+            </a>
+            <Link onClick={handleLogout} to="/" className="nav_link">
+          LogOut
+        </Link>
+          </div>
         </div>
-        <div className="col-md-9 ">
-          <h1 className="text-center">All Products List</h1>
-          <div className="d-flex flex-wrap">
+
+        <div className="form ">
+          <form  className="form-container-2">
+            <h1>All Products List</h1>
+            <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <Link
                 key={p._id}
@@ -52,6 +83,7 @@ const Products = () => {
               </Link>
             ))}
           </div>
+            </form>
         </div>
       </div>
     </Layout>

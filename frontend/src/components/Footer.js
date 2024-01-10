@@ -38,7 +38,7 @@ const Footer = () => {
           
           <Link to="/register">Register</Link>
           </>) : (
-          <Link onClick={handleLogout} to="../" className="nav_link">
+          <Link onClick={handleLogout} to="/" className="nav_link">
           LogOut
         </Link>)
           

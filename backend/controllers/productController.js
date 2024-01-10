@@ -191,3 +191,25 @@ export const searchProductController = async (req, res) => {
     });
   }
 };
+
+
+
+export const productFilterController=async(req,res)=>{
+  try {
+
+      const {radio}=req.body
+      const products=await productModel.find({price:{$gt:radio[0],$lte:radio[1]}})
+      res.status(200).send({
+        success:true,
+        products,
+      })
+      
+  } catch (error) {
+      console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error while applying filter",
+      error,
+    });
+  }
+}
