@@ -75,7 +75,7 @@ export const getProductController = async (req, res) => {
 
 export const getSingleProductController = async (req, res) => {
   try {
-    const product = await productModel.findOne({ slug: req.params.slug });
+    const product = await productModel.findById(req.params.pid);
     res.status(200).send({
       success: true,
       product,

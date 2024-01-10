@@ -47,6 +47,8 @@ transition: all 0.4s ease 0s;
   justify-content: space-around;
   font-family: 'Baloo Bhai 2', sans-serif;
   gap: 4rem;
+  /* z-index: -1;
+  filter:blur(500px); */
 }
 .nav_toggler {
   display: none;
@@ -70,8 +72,10 @@ transition: all 0.4s ease 0s;
     cursor: pointer;
   }
   .nav_menu {
+    filter:blur(500px);
+
     position: absolute;
-    z-index: 100;
+    z-index: -1;
     top: 7vh;
     right: 0;
     height: 93vh;
@@ -80,11 +84,14 @@ transition: all 0.4s ease 0s;
     opacity: 0.9;
     flex-direction: column;
     transform: translateX(100%);
-    transition: 0.5s ease-in;
+    transition: 0.10s ease-in;
   }
 }
 /* Active Class */
 .nav_active {
+  filter:blur(0px);
+
+  z-index: 100;
   transform: translateX(0%);
 }
 
