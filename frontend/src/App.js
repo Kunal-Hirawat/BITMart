@@ -19,6 +19,8 @@ import Products from "./pages/Admin/Products.js";
 import UpdateProduct from "./pages/Admin/UpdateProduct.js";
 import BuySell from "./pages/BuySell.js";
 import Search from "./pages/Search.js";
+import CreateProductUser from "./pages/user/CreateProductUser.js";
+import UserProducts from "./pages/user/UserProduct.js";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="/search" element={<Search></Search>}></Route>
         <Route path="/dashboard" element={<PrivateRoute />}>
         <Route path="user" element={<Dashboard />} />
+        <Route path="user/create-product" element={<CreateProductUser />} />
+        <Route path="user/products" element={<UserProducts />} />
         <Route path="user/orders" element={<Orders />} />
         <Route path="user/profile" element={<Profile />} />
         </Route>

@@ -191,3 +191,20 @@ export const searchProductController = async (req, res) => {
     });
   }
 };
+
+export const getUserProductController = async (req, res) => {
+  try {
+    const products = await productModel.find({email: req.params.email}).select("-photo");
+    res.status(200).send({
+      success: true,
+      productsCount: products.length,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in getting products",
+    });
+  }
+};

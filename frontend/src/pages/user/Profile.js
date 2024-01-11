@@ -71,8 +71,11 @@ export default function Profile() {
             <a href="/dashboard/user/profile">
               Update Profile
             </a>
-            <a href="/dashboard/user/orders">
-              Orders
+            <a href="/dashboard/user/create-product">
+              Create Product
+            </a>
+            <a href="/cart">
+              My Favourites
             </a>
             <Link onClick={handleLogout} to="../" className="nav_link">
           LogOut
