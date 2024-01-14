@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {NavLink, Link} from "react-router-dom" ;
 import "../../Header.css";
 import { MdShoppingCart } from "react-icons/md";
@@ -27,6 +27,9 @@ function Header() {
       setIcon("nav_toggler toggle");
     } else setIcon("nav_toggler");
   };
+ 
+
+
   return (
     <nav className="nav">
       <Link to="/" className="nav_name">

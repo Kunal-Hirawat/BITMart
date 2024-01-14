@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "../../components/Layout/Layout";
 import "../../BuySell.css";
 import "../../components/styles/CartStyles.css"
 import { useAuth } from "../../context/auth";
 
-const UserProducts = () => {
+const UserProduct = () => {
   const [products, setProducts] = useState([]);
   const [auth, setAuth] = useAuth();
 
@@ -24,8 +23,8 @@ const UserProducts = () => {
   //get all products
   const getAllProducts = async () => {
     try {
-        const email=auth.user.email;
-      const { data } = await axios.get(`http://localhost:5000/api/product/get-user-product?email=${email}`);
+      const email=auth.user.email;
+      const { data } = await axios.get(`http://localhost:5000/api/product/get-user-product/${email}`);
       setProducts(data.products);
     } catch (error) {
       console.log(error);
@@ -41,20 +40,23 @@ const UserProducts = () => {
     <Layout>
     <div className="menu-layout">
         <div className="menu">
-          <h1>
-            Admin Panel
+        <h1>
+            Dashboard
           </h1>
           <div className="menu-tabs">
-            <a href="/dashboard/admin/create-product">
+            <a href="/dashboard/user/profile">
+              Update Profile
+            </a>
+            <a href="/dashboard/user/create-product">
               Create Product
             </a>
-            <a href="/dashboard/admin/products">
+            <a href="/dashboard/user/user-products">
               Products
             </a>
-            <a href="/dashboard/admin/users">
-              Users
+            <a href="/cart">
+              My Favourites
             </a>
-            <Link onClick={handleLogout} to="/" className="nav_link">
+            <Link onClick={handleLogout} to="../" className="nav_link">
           LogOut
         </Link>
           </div>
@@ -67,7 +69,7 @@ const UserProducts = () => {
             {products?.map((p) => (
               <Link
                 key={p._id}
-                to={`/dashboard/admin/product/${p.slug}`}
+                to={`/dashboard/user/user-products/${p._id}`}
                 className="product-link"
               >
                 <div className="card m-2" style={{ width: "18rem" }}>
@@ -91,4 +93,4 @@ const UserProducts = () => {
   );
 };
 
-export default UserProducts;
+export default UserProduct;

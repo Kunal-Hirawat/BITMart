@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import UserMenu from "../../components/Layout/UserMenu";
 import Layout from "./../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
@@ -73,6 +72,9 @@ export default function Profile() {
             </a>
             <a href="/dashboard/user/create-product">
               Create Product
+            </a>
+            <a href="/dashboard/user/user-products">
+              Products
             </a>
             <a href="/cart">
               My Favourites

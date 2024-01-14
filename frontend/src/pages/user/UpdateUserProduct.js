@@ -12,7 +12,7 @@ import {Link} from "react-router-dom"
 
 const { Option } = Select;
 
-const UpdateProduct = () => {
+const UpdateUserProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [name, setName] = useState("");
@@ -70,7 +70,7 @@ const UpdateProduct = () => {
         toast.error(data?.message);
       } else {
         toast.success("Product Updated Successfully");
-        navigate("/dashboard/admin/products");
+        navigate("/dashboard/user/user-products");
       }
     } catch (error) {
       console.log(error);
@@ -87,7 +87,7 @@ const UpdateProduct = () => {
         `http://localhost:5000/api/product/delete-product/${id}`
       );
       toast.success("Product Deleted Successfully");
-      navigate("/dashboard/admin/products");
+      navigate("/dashboard/user/user-products");
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
@@ -97,20 +97,23 @@ const UpdateProduct = () => {
     <Layout title={"Dashboard - Create Product"}>
     <div className="menu-layout">
         <div className="menu">
-          <h1>
-            Admin Panel
+        <h1>
+            Dashboard
           </h1>
           <div className="menu-tabs">
-            <a href="/dashboard/admin/create-product">
+            <a href="/dashboard/user/profile">
+              Update Profile
+            </a>
+            <a href="/dashboard/user/create-product">
               Create Product
             </a>
-            <a href="/dashboard/admin/products">
+            <a href="/dashboard/user/user-products">
               Products
             </a>
-            <a href="/dashboard/admin/users">
-              Users
+            <a href="/cart">
+              My Favourites
             </a>
-            <Link onClick={handleLogout} to="/" className="nav_link">
+            <Link onClick={handleLogout} to="../" className="nav_link">
           LogOut
         </Link>
           </div>
@@ -211,4 +214,4 @@ const UpdateProduct = () => {
   );
 };
 
-export default UpdateProduct;
+export default UpdateUserProduct;
