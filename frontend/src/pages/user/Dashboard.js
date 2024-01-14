@@ -1,7 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom"
 import Layout from "../../components/Layout/Layout";
-import UserMenu from "../../components/Layout/UserMenu";
 import { useAuth } from "../../context/auth";
 import "../../components/styles/CartStyles.css";
 import toast from "react-hot-toast"
@@ -27,8 +26,14 @@ const Dashboard = () => {
             <a href="/dashboard/user/profile">
               Update Profile
             </a>
-            <a href="/dashboard/user/orders">
-              Orders
+            <a href="/dashboard/user/create-product">
+              Create Product
+            </a>
+            <a href="/dashboard/user/user-products">
+              Products
+            </a>
+            <a href="/cart">
+              My Favourites
             </a>
             <Link onClick={handleLogout} to="../" className="nav_link">
           LogOut

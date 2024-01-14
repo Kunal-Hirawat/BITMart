@@ -10,7 +10,7 @@ import { useAuth } from "../../context/auth";
 
 const { Option } = Select;
 
-const CreateProduct = () => {
+const CreateProductUser = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -49,33 +49,35 @@ const CreateProduct = () => {
         toast.error(data?.message);
       } else {
         toast.success("Product Created Successfully");
-        navigate("/dashboard/admin/products");
+        navigate("/dashboard/user");
       }
     } catch (error) {
       console.log(error);
       toast.error("something went wrong");
     }
   };
-  
-
+ 
   return (
     <Layout title={"Dashboard - Create Product"}>
       <div className="menu-layout">
         <div className="menu">
-          <h1>
-            Admin Panel
+        <h1>
+            Dashboard
           </h1>
           <div className="menu-tabs">
-            <a href="/dashboard/admin/create-product">
+            <a href="/dashboard/user/profile">
+              Update Profile
+            </a>
+            <a href="/dashboard/user/create-product">
               Create Product
             </a>
-            <a href="/dashboard/admin/products">
+            <a href="/dashboard/user/user-products">
               Products
             </a>
-            <a href="/dashboard/admin/users">
-              Users
+            <a href="/cart">
+              My Favourites
             </a>
-            <Link onClick={handleLogout} to="/" className="nav_link">
+            <Link onClick={handleLogout} to="../" className="nav_link">
           LogOut
         </Link>
           </div>
@@ -162,4 +164,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default CreateProductUser;

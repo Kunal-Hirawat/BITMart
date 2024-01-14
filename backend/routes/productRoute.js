@@ -7,6 +7,7 @@ import {
   updateProductController,
   deleteProductController,
   searchProductController,
+  getUserProductController,
   productFilterController,
 } from "../controllers/productController.js";
 import { requireSignIn, isAdmin } from "../middlewares/authMiddleware.js";
@@ -45,6 +46,9 @@ router.delete("/delete-product/:pid", deleteProductController);
 
 //search product
 router.get("/search/:keyword", searchProductController);
+
+//get user product
+router.get("/get-user-product/:email", getUserProductController);
 
 //product-filters
 router.post("/product-filter",productFilterController);
