@@ -1,6 +1,6 @@
 .buy-sell-body{
-    background: url('../src/assets/images/5138229.jpg') no-repeat;
-    /* background: lightblue; */
+    /* background: url('../src/assets/images/5138229.jpg') no-repeat; */
+    background: lightblue;
     background-size: 100% 100%;
     display: flex;
     flex-wrap: wrap;
