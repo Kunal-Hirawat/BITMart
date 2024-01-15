@@ -28,12 +28,12 @@ const Home = () => {
   useEffect(() => {
     getProducts();
   }, []);
-  const latestProducts = products.slice(-4);
+  const latestProducts = products.slice(-2  );
 
   return (
     <Layout>
       <div className="welcome">
-        <h2>Welcome to BITMart</h2>
+        {/* <h2>Welcome to BITMart</h2> */}
         {/* <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan quam ac nisl sodales, eu dictum metus luctus. 
                     Maecenas et tincidunt dui. In id mattis est, sed congue tortor. Cras vitae quam ut sem elementum ultrices vel et felis.
                      Mauris condimentum lectus vel dui dapibus.

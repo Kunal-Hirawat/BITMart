@@ -33,7 +33,7 @@ transition: all 0.4s ease 0s;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 8vh;
+  height: 10vh;
   background: rgb(0, 33, 65);
 }
 .nav_name {
@@ -62,9 +62,15 @@ transition: all 0.4s ease 0s;
 }
 
 .nav #cart-logo {
-    padding-top: 7px;
-    margin: -2px;
+  padding-top: 7px;
+  margin: -2px;
 }
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
 
 @media screen and (max-width: 768px) {
   .nav_toggler {
@@ -73,7 +79,7 @@ transition: all 0.4s ease 0s;
   }
   .nav_menu {
     filter:blur(500px);
-
+    
     position: absolute;
     z-index: -1;
     top: 7vh;
@@ -90,7 +96,7 @@ transition: all 0.4s ease 0s;
 /* Active Class */
 .nav_active {
   filter:blur(0px);
-
+  
   z-index: 100;
   transform: translateX(0%);
 }
@@ -106,3 +112,4 @@ transition: all 0.4s ease 0s;
 .toggle .line3 {
   transform: rotate(45deg) translate(-4px, -5px);
 }
+
