@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useCart } from "../context/cart";
 import "../ProductDetails.css"
+import toast from "react-hot-toast";
 
 const Product = () => {
   const params = useParams();
-
+  const [cart, setCart] = useCart();
   const [product, setProduct] = useState({});
 
 
@@ -21,13 +23,13 @@ const Product = () => {
         `http://localhost:5000/api/product/get-product/${params.id}`
       );
       setProduct(data?.product);
-    //   getSimilarProduct(data?.product._id, data?.product.category._id);
+      //   getSimilarProduct(data?.product._id, data?.product.category._id);
     } catch (error) {
       console.log(error);
     }
   };
 
-  return (
+    return (
     <Layout>
       {/* console.log({product._id}); */}
       <div className="row container product-details">
@@ -52,7 +54,33 @@ const Product = () => {
               currency: "INR",
             })}
           </h6>
-          <button className="btn btn-secondary ms-1">ADD TO CART</button>
+          <button
+            className="submit-button2"
+            onClick={() => {
+              const items = JSON.parse(localStorage.getItem("cart"))
+              let exists = false
+
+              for (const item of items) {
+                if (item?._id === product?._id) {
+                  exists = true
+                  break
+                }
+              }
+              if (exists) {
+                toast.error("Item already exists in favourites")
+              }
+              else {
+                setCart([...cart, product]);
+                localStorage.setItem(
+                  "cart",
+                  JSON.stringify([...cart, product])
+                );
+                toast.success("Item added to favourites");
+              }
+            }}
+          >
+            ADD TO FAVOURITES
+          </button>
         </div>
       </div>
       <hr />
