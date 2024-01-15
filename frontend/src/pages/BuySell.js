@@ -91,12 +91,26 @@ const BuySell = () => {
 
   return (
     <Layout title={"All Products"}>
-      <div className="container-fluid row mt-3 home-page">
-        <div className="col-md-9 ">
-          <h1 className="text-center">All Products</h1>
+      <div className="buy-sell-body">
+        <h1 className="text-center">All Products</h1>
+        <div className="form-input">
+          <div className="form-label">
+            <label for="sortSelect">Sort By:</label>
+            <select id="sortSelect" onChange={(e) => setSortby(e.target.value)}>
+              <option value="0" selected>
+                Featured
+              </option>
+              <option value="1">Price: Low to High</option>
+              <option value="-1">Price: High to Low</option>
+              <option value="2">Alphabetical: A-Z</option>
+              <option value="-2">Alphabetical: Z-A</option>
+            </select>
+          </div>
+        </div>
+        <div className="filter-search">
           <div>
-            <h4>Filter By Price</h4>
-            <div>
+              <h4>Filter By Price</h4>
+              <div>
               <Radio.Group
                 onChange={(e) => {
                   setRadio(e.target.value);
@@ -114,18 +128,10 @@ const BuySell = () => {
               </Radio.Group>
             </div>
           </div>
-          <div className="form-input">
-            <label for="sortSelect">Sort By:</label>
-            <select id="sortSelect" onChange={(e) => setSortby(e.target.value)}>
-              <option value="0" selected>
-                Featured
-              </option>
-              <option value="1">Price: Low to High</option>
-              <option value="-1">Price: High to Low</option>
-              <option value="2">Alphabetical: A-Z</option>
-              <option value="-2">Alphabetical: Z-A</option>
-            </select>
-          </div>
+        </div>
+        <div className="container-fluid row mt-3 home-page">
+          <div className="col-md-9 ">
+            
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
@@ -169,6 +175,7 @@ const BuySell = () => {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </Layout>
   );

@@ -61,8 +61,9 @@
     outline:none;
     border: none;
     border-bottom: 2px solid #062e58;
-    background: #f5f9fc;
-    width: 270px;
+    /* background: #f5f9fc; */
+    background: #F5F6DB;
+    width: 22vw;
     font-size: large;
     color:#062e58;
     font-weight:700;
