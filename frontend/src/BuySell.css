@@ -1,28 +1,59 @@
+.buy-sell-body{
+    /* background: url('../src/assets/images/5138229.jpg') no-repeat; */
+    background: lightblue;
+    background-size: 100% 100%;
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.buy-sell-body h1{
+    width: 100vw;
+}
+
+.buy-sell-body .form-input{
+    width:100vw;
+}
+
+.buy-sell-body .form-label{
+    padding-right: 2vw;
+    float:right;
+    font-size: x-large;
+}
+
+.filter-search{
+    height: 100vh;
+    width: 25vw;
+    flex: 0 0 25%;
+    padding-left: 6vw;
+    padding-top: 5vw;
+    font-size: xx-large;
+}
+
 
 .home-page {
     display: flex;
     flex-wrap: wrap;
-    width:100%;
+    width:75%;
     padding-right:15px;
-    padding-left:15px;
+    padding-left:0px;
     margin-right:auto;
     margin-left:auto;
     align-items:center;
     justify-content:space-between;
-    margin-right:-15px;
-    margin-left:-15px;
-    margin-top:1rem!important;
+    flex: 0 0 75%;
 }
    
 
 
 .col-md-9{
-    -ms-flex:0 0 75%;
+    -ms-flex:0 0 100%;
     flex:0 0 100%;
 
     position:relative;
     width:100%;
-    padding-left: 4rem;
 }
 
 .text-center{
@@ -69,8 +100,15 @@
 }
 
 .home-page .card {
-    background-color: rgba(128, 128, 128, 0.097);
+    /* background-color: rgba(128, 128, 128, 0.097); */
     width: 31rem;
+    /* border: 1rem ridge ; */
+    border: 2px solid rgba(255, 255,255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,.2);
+    background: transparent;
+    padding: 1vw;
+    /* rgba(0, 33, 65, 0.6); */
   }
 
   .home-page .card-name-price {

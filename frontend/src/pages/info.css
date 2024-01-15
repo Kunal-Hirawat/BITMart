@@ -1,0 +1,42 @@
+.outer-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f5f9fc;
+}
+.outer-container div{
+    overflow:hidden
+}
+
+.outer-container h1{
+    padding-top: 40px;
+}
+
+.team-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 70vh;
+  background-color: #f5f9fc;
+}
+
+.profile-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.profile-container img{
+    height: 20vh;
+    min-height: 30px;
+    min-width: 30px;
+    width: 20vh;
+}
+
+.profile-container h3{
+    padding: 10px;
+}
