@@ -13,6 +13,7 @@ const Footer = () => {
       ...auth, user:null,token:''
     })
     localStorage.removeItem("auth");
+    localStorage.removeItem("cart");
     toast.success("LogOut Successful");
     window.location.reload()
   }

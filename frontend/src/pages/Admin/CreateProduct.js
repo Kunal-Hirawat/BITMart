@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import Layout from "./../../components/Layout/Layout";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { Select } from "antd";
 import { useNavigate } from "react-router-dom";
 import "../../components/styles/CartStyles.css"
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
-
-const { Option } = Select;
 
 const CreateProduct = () => {
   const navigate = useNavigate();
@@ -25,6 +22,7 @@ const CreateProduct = () => {
       ...auth, user:null,token:''
     })
     localStorage.removeItem("auth");
+    localStorage.removeItem("cart");
     toast.success("LogOut Successful");
     window.location.reload()
   }

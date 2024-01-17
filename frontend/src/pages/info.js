@@ -14,7 +14,7 @@ const About = () => {
           <div className="team-container">
             <div className="profile-container">
               <div>
-                <img src={testImage}></img>
+                <img src={testImage} alt="Kunal Hirawat"></img>
               </div>
               <div>
                 <h3>Kunal Hirawat</h3>
@@ -34,7 +34,7 @@ const About = () => {
             </div>
             <div className="profile-container">
               <div>
-                <img src={testImage}></img>
+                <img src={testImage} alt="Lakshay Bindlish"></img>
               </div>
               <div>
                 <h3>Lakshay Bindlish</h3>
@@ -54,7 +54,7 @@ const About = () => {
             </div>
             <div className="profile-container">
               <div>
-                <img src={testImage}></img>
+                <img src={testImage} alt="Akshay Varma"></img>
               </div>
               <div>
                 <h3>Akshay Varma</h3>

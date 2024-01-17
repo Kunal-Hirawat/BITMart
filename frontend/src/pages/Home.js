@@ -4,10 +4,14 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Layout from "../components/Layout/Layout";
 import { useAuth } from "../context/auth";
+import { useCart } from "../context/cart";
+import { RiHeart3Fill } from "react-icons/ri";
 import "../Home.css";
 
 const Home = () => {
   const [auth] = useAuth();
+  const [wishlist, setWishlist] = useState({});
+  const [cart, setCart] = useCart();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
@@ -24,11 +28,52 @@ const Home = () => {
     }
   };
 
+  const handleClick = (product) => {
+    if (!auth.user) {
+      toast.error("please login to continue");
+      navigate("/login");
+    } else {
+      const items = JSON.parse(localStorage.getItem("cart")) || [];
+      let exists = false;
+
+      if(items.length){
+        for (const item of items) {
+          if (item?._id === product._id) {
+            exists = true;
+            break;
+          }
+        }
+      }
+      if (exists) {
+        const updatedCart = cart.filter((item) => item._id !== product._id);
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        toast("Product removed from favourites",{icon:'🥺'});
+      } else {
+        setCart([...cart, product]);
+        localStorage.setItem("cart", JSON.stringify([...cart, product]));
+        toast("Product added to favourites",{icon:'❤️'});
+      }
+    }
+  };
+
   // Fetch products from the backend
   useEffect(() => {
     getProducts();
   }, []);
-  const latestProducts = products.slice(-2  );
+  const latestProducts = products.slice(-2);
+
+  useEffect(() => {
+    const initialWishlistState = {};
+    const items = JSON.parse(localStorage.getItem("cart")) || [];
+
+      if(items.length){
+        for (const item of items) {
+          initialWishlistState[item._id]=true;
+        }
+      }
+    setWishlist(initialWishlistState);
+  }, [cart]);
 
   return (
     <Layout>
@@ -45,6 +90,12 @@ const Home = () => {
           {latestProducts?.map((p) => (
             <div key={p._id}>
               <div className="card" style={{ width: "28rem" }}>
+                <div className="heart-container">
+                  <RiHeart3Fill
+                    className={wishlist[p._id] ? "heart-active" : "heart"}
+                    onClick={() => handleClick(p)}
+                  ></RiHeart3Fill>
+                </div>
                 <img
                   src={`http://localhost:5000/api/product/product-photo/${p._id}`}
                   className="card-img"

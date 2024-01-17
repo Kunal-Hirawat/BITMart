@@ -4,6 +4,8 @@ import axios from "axios";
 import Layout from "./../components/Layout/Layout";
 import { Radio } from "antd";
 import { useAuth } from "../context/auth";
+import { useCart } from "../context/cart";
+import { RiHeart3Fill } from "react-icons/ri";
 import "../BuySell.css";
 import { Prices } from "../components/Prices";
 import toast from "react-hot-toast";
@@ -15,6 +17,8 @@ const BuySell = () => {
   const [radio, setRadio] = useState([]);
   const [sortby, setSortby] = useState("");
   const [selectedValue, setSelectedValue] = useState(null);
+  const [wishlist, setWishlist] = useState({});
+  const [cart, setCart] = useCart();
 
   const getAllProducts = async () => {
     try {
@@ -49,10 +53,39 @@ const BuySell = () => {
 
   const deselectOnClick = async (e) => {
     const { value } = e.target;
-    if (value == selectedValue) {
+    if (value === selectedValue) {
       console.log("double clicked button", value);
       setSelectedValue(null);
       setRadio([]);
+    }
+  };
+
+  const handleClick = (product) => {
+    if (!auth.user) {
+      toast.error("please login to continue");
+      navigate("/login");
+    } else {
+      const items = JSON.parse(localStorage.getItem("cart")) || [];
+      let exists = false;
+
+      if(items.length){
+        for (const item of items) {
+          if (item?._id === product._id) {
+            exists = true;
+            break;
+          }
+        }
+      }
+      if (exists) {
+        const updatedCart = cart.filter((item) => item._id !== product._id);
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        toast("Product removed from favourites",{icon:'🥺'});
+      } else {
+        setCart([...cart, product]);
+        localStorage.setItem("cart", JSON.stringify([...cart, product]));
+        toast("Product added to favourites",{icon:'❤️'});
+      }
     }
   };
 
@@ -88,6 +121,18 @@ const BuySell = () => {
     if (radio.length) handleFilter();
     else getAllProducts();
   }, [radio]);
+
+  useEffect(() => {
+    const initialWishlistState = {};
+    const items = JSON.parse(localStorage.getItem("cart")) || [];
+
+      if(items.length){
+        for (const item of items) {
+          initialWishlistState[item._id]=true;
+        }
+      }
+    setWishlist(initialWishlistState);
+  }, [cart]);
 
   return (
     <Layout title={"All Products"}>
@@ -135,6 +180,12 @@ const BuySell = () => {
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
+                <div className="heart-container">
+                  <RiHeart3Fill
+                    className={wishlist[p._id] ? "heart-active" : "heart"}
+                    onClick={() => handleClick(p)}
+                  ></RiHeart3Fill>
+                </div>
                 <img
                   src={`http://localhost:5000/api/product/product-photo/${p._id}`}
                   className="card-img-top"

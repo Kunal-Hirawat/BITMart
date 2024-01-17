@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import UserMenu from "../../components/Layout/UserMenu";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
@@ -17,6 +16,7 @@ const Orders = () => {
       ...auth, user:null,token:''
     })
     localStorage.removeItem("auth");
+    localStorage.removeItem("cart");
     toast.success("LogOut Successful");
     window.location.reload()
   }

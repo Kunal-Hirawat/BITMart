@@ -131,3 +131,42 @@
     background: rgba(0, 0, 0, .08);
     color: rgba(0, 0, 0, .3);
   }
+
+  .heart {
+    font-size: 35px;
+    color: rgb(124, 118, 118);
+    margin-top: 7px;
+    width: 70px;
+    outline: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+ }
+
+ .heart:hover,.heart-active:hover{
+    transform: scale(1.1);
+ }
+ 
+ .heart-active {
+    font-size: 35px;
+    color: rgb(192, 39, 39);
+    margin-top: 7px;
+    width: 70px;
+    outline: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+ }
+
+ .heart-container{
+    height: 6vh;
+    width:6vh;
+    border-radius: 50%;
+    backdrop-filter: blur(20px);
+    background-color: rgb(213, 207, 207);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+ }
+ 
