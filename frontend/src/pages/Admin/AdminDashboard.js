@@ -25,6 +25,9 @@ const AdminDashboard = () => {
             Admin Panel
           </h1>
           <div className="menu-tabs">
+          <a href="/dashboard/admin/profile">
+              Update Profile
+            </a>
             <a href="/dashboard/admin/create-product">
               Create Product
             </a>

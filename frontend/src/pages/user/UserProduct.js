@@ -9,6 +9,7 @@ import { useAuth } from "../../context/auth";
 
 const UserProduct = () => {
   const [products, setProducts] = useState([]);
+  const [lostfound,setLostFound]=useState([]);
   const [auth, setAuth] = useAuth();
 
   const handleLogout = () =>{
@@ -27,6 +28,8 @@ const UserProduct = () => {
       const email=auth.user.email;
       const { data } = await axios.get(`http://localhost:5000/api/product/get-user-product/${email}`);
       setProducts(data.products);
+      const { lostfoundData }= await axios.get(`http://localhost:5000/api/lostfound/get-user-product/${email}`);
+      setLostFound(lostfoundData.products);
     } catch (error) {
       console.log(error);
       toast.error("Something Went Wrong");
@@ -66,6 +69,8 @@ const UserProduct = () => {
         <div className="form ">
           <form  className="form-container-2">
             <h1>All Products List</h1>
+            <div style={{display:products.length?"block":"none"}}>
+            <h3>Buy/Sell Products:</h3>
             <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <Link
@@ -86,6 +91,33 @@ const UserProduct = () => {
                 </div>
               </Link>
             ))}
+          </div>
+          </div>
+
+
+          <div style={{display:lostfound.length?"block":"none"}}>
+            <h3>Lost/Found Items:</h3>
+            <div className="d-flex flex-wrap">
+            {lostfound?.map((p) => (
+              <Link
+                key={p._id}
+                to={`/dashboard/user/lostfound-products/${p._id}`}
+                className="product-link"
+              >
+                <div className="card m-2" style={{ width: "18rem" }}>
+                  <img
+                    src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{p.name}</h5>
+                    <p className="card-text">{p.description}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
           </div>
             </form>
         </div>

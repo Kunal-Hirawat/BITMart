@@ -22,8 +22,14 @@ import CreateProductUser from "./pages/user/CreateProductUser.js";
 import Product from "./pages/Product.js";
 import UserProduct from "./pages/user/UserProduct.js";
 import UpdateUserProduct from "./pages/user/UpdateUserProduct.js";
+import { useAuth } from "./context/auth.js";
+import LostFound from "./pages/LostFound.js";
+import UpdateLostFoundProduct from "./pages/user/UpdateLostFoundProduct.js";
+import AdminProfile from "./pages/Admin/AdminProfile.js";
+import UpdateAdminLostFound from "./pages/Admin/UpdateAdminLostFoundProduct.js";
 
 function App() {
+  const [auth]=useAuth();
   return (
     <>
       <Routes>
@@ -34,7 +40,8 @@ function App() {
         <Route path="/dashboard" element={<PrivateRoute />}>
         <Route path="user" element={<Dashboard />} />
         <Route path="user/create-product" element={<CreateProductUser />} />
-        <Route path="user/user-products/:id" element={<UpdateUserProduct />} />  
+        <Route path="user/user-products/:id" element={<UpdateUserProduct />} />
+        <Route path="user/lostfound-products/:id" element={<UpdateLostFoundProduct />} />
         <Route path="user/user-products" element={<UserProduct />} />
         <Route path="user/profile" element={<Profile />} />
         </Route>
@@ -42,15 +49,18 @@ function App() {
         <Route path="admin" element={<AdminDashboard />} />
         <Route path="admin/create-product" element={<CreateProduct />} />  
         <Route path="admin/product/:id" element={<UpdateProduct />} />  
-        <Route path="admin/products" element={<Products />} />          
+        <Route path="admin/products" element={<Products />} /> 
+        <Route path="admin/lostfound-product/:id" element={UpdateAdminLostFound}></Route>         
         <Route path="admin/users" element={<Users />} />  
+        <Route path="admin/profile" element={<AdminProfile />} />
         </Route>
-        <Route path="/register" element={<Register/>}></Route>
-        <Route path="/login" element={<Login/>}></Route>
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/forgotPassword" element={<ForgotPassword></ForgotPassword>}></Route>
+        <Route path="/register" element={!auth.user?<Register/>:<Pagenotfound></Pagenotfound>}></Route>
+        <Route path="/login" element={!auth.user?<Login/>:<Pagenotfound></Pagenotfound>}></Route>
+        <Route path="/cart" element={!auth.user?<Login></Login>:<CartPage />} />
+        <Route path="/forgotPassword" element={!auth.user?<ForgotPassword></ForgotPassword>:<Pagenotfound></Pagenotfound>}></Route>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/buy-sell" element = {<BuySell/>}></Route>
+        <Route path="/lost-found" element={<LostFound></LostFound>}></Route>
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
     </>

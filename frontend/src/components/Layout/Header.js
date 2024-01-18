@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import {NavLink, Link} from "react-router-dom" ;
 import "../../Header.css";
 import { MdShoppingCart } from "react-icons/md";
@@ -10,13 +10,7 @@ import SearchInput from "../Forms/searchInput";
 function Header() {
   const [active, setActive] = useState("nav_menu");
   const [icon, setIcon] = useState("nav_toggler");
-  const [auth , setAuth] = useAuth();
-  const handleLogout = () =>{
-    setAuth({
-      ...auth, user:null,token:''
-    })
-    localStorage.removeItem("auth");
-  }
+  const [auth] = useAuth();
   const navToggle = () => {
     if (active === "nav_menu") {
       setActive("nav_menu nav_active");
@@ -48,7 +42,7 @@ function Header() {
           </NavLink>
         </li>
         <li className="nav_item">
-          <NavLink to="/" className="nav_link">
+          <NavLink to="/lost-found" className="nav_link">
             Lost/Found
           </NavLink>
         </li>
