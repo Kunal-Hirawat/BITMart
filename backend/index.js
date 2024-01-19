@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoute.js"
 import productRoutes from "./routes/productRoute.js"
+import lostfoundRoutes from "./routes/lostfoundRoute.js"
 import cors from 'cors'
 
 
@@ -25,6 +26,7 @@ app.use(cors());
 // routes
 app.use('/api/auth',userRoutes);
 app.use('/api/product',productRoutes);
+app.use('/api/lostfound',lostfoundRoutes);
 
 
 // rest api

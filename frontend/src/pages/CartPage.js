@@ -1,35 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Layout from "./../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import toast from "react-hot-toast";
 import "../components/styles/CartStyles.css";
 
 const CartPage = () => {
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   const [cart, setCart] = useCart();
-  const [clientToken, setClientToken] = useState("");
-  const [instance, setInstance] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
-  //total price
-  const totalPrice = () => {
-    try {
-      let total = 0;
-      cart?.map((item) => {
-        total = total + item.price;
-      });
-      return total.toLocaleString("en-US", {
-        style: "currency",
-        currency: "INR",
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
   //delete item
   const removeCartItem = (pid) => {
     try {
@@ -101,5 +79,3 @@ const CartPage = () => {
 };
 
 export default CartPage;
-
-

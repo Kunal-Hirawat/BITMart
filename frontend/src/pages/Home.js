@@ -61,8 +61,8 @@ const Home = () => {
   useEffect(() => {
     getProducts();
   }, []);
-  const latestProducts = products.slice(-2);
-
+  const latestProducts = products.slice(-4);
+  
   useEffect(() => {
     const initialWishlistState = {};
     const items = JSON.parse(localStorage.getItem("cart")) || [];

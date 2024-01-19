@@ -14,7 +14,9 @@ const CreateProductUser = () => {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [photo, setPhoto] = useState("");
-
+  const [location,setLocation]=useState("");
+  const [datetime,setDateTime]=useState("");
+  const [isLostFound,setIsLostFound]=useState("false");
   const [auth, setAuth] = useAuth();
 
   const handleLogout = () =>{
@@ -34,13 +36,19 @@ const CreateProductUser = () => {
       const productData = new FormData();
       productData.append("name", name);
       productData.append("description", description);
-      productData.append("price", price);
-      productData.append("quantity", quantity);
       productData.append("photo", photo);
       productData.append("email", (auth.user.email));
       productData.append("contact", (auth.user.contact));
+      if(isLostFound==="true"){
+        productData.append("location", location);
+        productData.append("datetime", datetime);
+      }
+      else{
+        productData.append("price", price);
+        productData.append("quantity", quantity);
+      }
       const { data } = axios.post(
-        "http://localhost:5000/api/product/create-product",
+        isLostFound==="true"?"http://localhost:5000/api/lostfound/create-product":"http://localhost:5000/api/product/create-product",
         productData
       );
       if (data?.success) {
@@ -53,6 +61,13 @@ const CreateProductUser = () => {
       console.log(error);
       toast.error("something went wrong");
     }
+  };
+
+  const handleDateTimeChange = (e) => {
+    const inputValue = e.target.value;
+    const dateObj = new Date(inputValue);
+    const istDateTime = dateObj.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+    setDateTime(istDateTime);
   };
  
   return (
@@ -86,6 +101,13 @@ const CreateProductUser = () => {
             <h1>Create Product</h1>
             <div className="d-flex flex-wrap">
             <div className="m-1 w-75">
+            <div className="mb-3">
+              <h3>Select Product Type:</h3>
+              <select onChange={(event) => setIsLostFound(event.target.value)}>
+                <option value="false" selected>Buy/Sell</option>
+                <option value="true">Lost/Found</option>
+              </select>
+            </div>
             <div className="mb-3">
               <label className="submit-button1 ">
                 {photo ? photo.name : "Upload Photo"}
@@ -129,22 +151,42 @@ const CreateProductUser = () => {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="mb-3" style={{display:isLostFound==="true"?"none":"block"}}>
               <input
                 type="number"
+                min='1'
                 value={price}
                 placeholder="write a Price"
                 className="form-control"
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>
-            <div className="mb-3">
+            <div className="mb-3" style={{display:isLostFound==="true"?"none":"block"}}>
               <input
                 type="number"
+                min='1'
                 value={quantity}
                 placeholder="write a quantity"
                 className="form-control"
                 onChange={(e) => setQuantity(e.target.value)}
+              />
+            </div>
+            <div className="mb-3" style={{display:isLostFound==="false"?"none":"block"}}>
+              <input
+                type="text"
+                value={location}
+                placeholder="enter location of item"
+                className="form-control"
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
+            <div style={{display:isLostFound==="false"?"none":"block"}}>
+              <input
+                type='datetime-local'
+                value={datetime}
+                placeholder="enter date and time"
+                className="form-control"
+                onChange={(e)=>handleDateTimeChange(e)}  
               />
             </div>
             <div className="mb-3">

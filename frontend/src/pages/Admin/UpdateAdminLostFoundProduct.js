@@ -7,13 +7,13 @@ import "../../components/styles/CartStyles.css"
 import { useAuth } from "../../context/auth";
 import {Link} from "react-router-dom"
 
-const UpdateProduct = () => {
+const UpdateAdminLostFound = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [location, setLocation] = useState("");
+  const [datetime, setDatetime] = useState("");
   const [photo, setPhoto] = useState("");
   const [id, setId] = useState("");
 
@@ -32,13 +32,13 @@ const UpdateProduct = () => {
   const getSingleProduct = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/product/get-product/${params.id}`
+        `http://localhost:5000/api/lostfound/get-product/${params.id}`
       );
       setName(data.product.name);
       setId(data.product._id);
       setDescription(data.product.description);
-      setPrice(data.product.price);
-      setQuantity(data.product.quantity);
+      setLocation(data.product.location);
+      setDatetime(data.product.datetime);
     } catch (error) {
       console.log(error);
     }
@@ -55,11 +55,11 @@ const UpdateProduct = () => {
       const productData = new FormData();
       productData.append("name", name);
       productData.append("description", description);
-      productData.append("price", price);
-      productData.append("quantity", quantity);
+      productData.append("location", location);
+      productData.append("datetime", datetime);
       photo && productData.append("photo", photo);
       const { data } = axios.put(
-        `http://localhost:5000/api/product/update-product/${id}`,
+        `http://localhost:5000/api/lostfound/update-product/${id}`,
         productData
       );
       if (data?.success) {
@@ -80,7 +80,7 @@ const UpdateProduct = () => {
       let answer = window.prompt("Are You Sure want to delete this product ? ");
       if (!answer) return;
       const { data } = await axios.delete(
-        `http://localhost:5000/api/product/delete-product/${id}`
+        `http://localhost:5000/api/lostfound/delete-product/${id}`
       );
       toast.success("Product Deleted Successfully");
       navigate("/dashboard/admin/products");
@@ -89,6 +89,15 @@ const UpdateProduct = () => {
       toast.error("Something went wrong");
     }
   };
+
+  const handleDateTimeChange = (e) => {
+    const inputValue = e.target.value;
+    const dateObj = new Date(inputValue);
+    const istDateTime = dateObj.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+    setDatetime(istDateTime);
+  };
+
+
   return (
     <Layout title={"Dashboard - Create Product"}>
     <div className="menu-layout">
@@ -145,7 +154,7 @@ const UpdateProduct = () => {
                 ) : (
                   <div className="text-center">
                     <img
-                      src={`http://localhost:5000/api/product/product-photo/${id}`}
+                      src={`http://localhost:5000/api/lostfound/product-photo/${id}`}
                       alt="product_photo"
                       height={"200px"}
                       className="img img-responsive"
@@ -174,20 +183,20 @@ const UpdateProduct = () => {
 
               <div className="mb-3">
                 <input
-                  type="number"
-                  value={price}
-                  placeholder="write a Price"
+                  type="text"
+                  value={location}
+                  placeholder="enter location"
                   className="form-control"
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
               </div>
               <div className="mb-3">
                 <input
-                  type="number"
-                  value={quantity}
-                  placeholder="write a quantity"
+                  type='datetime-local'
+                  value={datetime}
+                  placeholder="enter date and time"
                   className="form-control"
-                  onChange={(e) => setQuantity(e.target.value)}
+                  onChange={(e) => handleDateTimeChange(e)}
                 />
               </div>
               <div className="mb-3">
@@ -210,4 +219,4 @@ const UpdateProduct = () => {
   );
 };
 
-export default UpdateProduct;
+export default UpdateAdminLostFound;
