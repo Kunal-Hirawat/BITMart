@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./styles/CartStyles.css"
+import loading from "../loading.gif"
 const Spinner = () => {
   const [count, setCount] = useState(3);
   const navigate = useNavigate();
@@ -14,13 +16,22 @@ const Spinner = () => {
   }, [count, navigate]);
   return (
     <>
-      <div
-        className="d-flex flex-column justify-content-center align-items-center"
+      {/* <div
+        className="spin"
         style={{ height: "100vh" }}
       >
-        <h1 className="Text-center">Redirecting to the login page in {count} seconds </h1>
+        <h1>Redirecting to the login page in {count} seconds </h1>
         <div className="spinner-border" role="status">
-          <span className="visually-hidden"></span>
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div> */}
+      <div
+        className="spin"
+        style={{ height: "100vh" }}
+      >
+        <h1>Redirecting to the login page in {count} seconds </h1>
+        <div>
+          <span><img src={loading} alt="loading"></img></span>
         </div>
       </div>
     </>
