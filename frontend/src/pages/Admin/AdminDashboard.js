@@ -48,6 +48,7 @@ const AdminDashboard = () => {
               <h3> Admin Name : {auth?.user?.name}</h3>
               <h3> Admin Email : {auth?.user?.email}</h3>
               <h3> Admin Contact : {auth?.user?.contact}</h3>
+              <h3 style={{display:auth?.user?.address?"block":"none"}}>Admin Address : {auth?.user?.address}</h3>
           </form>
         </div>
       </div>
