@@ -36,13 +36,18 @@ const Product = () => {
         <div className="col-md-6">
           <img
             src={`http://localhost:5000/api/product/product-photo/${product._id}`}
-            className="card-img-top"
+            className="card-img-top imgBorder"
             alt={product.name}
             height="300"
             width={"350px"}
           />
         </div>
         <div className="col-md-6 product-details-info">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div className="content">
           <h1 className="text-center">Product Details</h1>
           <hr />
           <h6>Name : {product.name}</h6>
@@ -83,7 +88,7 @@ const Product = () => {
           </button>
         </div>
       </div>
-      <hr />
+      </div>
     </Layout>
   );
 };
