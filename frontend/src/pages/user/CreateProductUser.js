@@ -62,13 +62,6 @@ const CreateProductUser = () => {
       toast.error("something went wrong");
     }
   };
-
-  const handleDateTimeChange = (e) => {
-    const inputValue = e.target.value;
-    const dateObj = new Date(inputValue);
-    const istDateTime = dateObj.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
-    setDateTime(istDateTime);
-  };
  
   return (
     <Layout title={"Dashboard - Create Product"}>
@@ -186,7 +179,7 @@ const CreateProductUser = () => {
                 value={datetime}
                 placeholder="enter date and time"
                 className="form-control"
-                onChange={(e)=>handleDateTimeChange(e)}  
+                onChange={(e)=>setDateTime(e.target.value)}  
               />
             </div>
             <div className="mb-3">

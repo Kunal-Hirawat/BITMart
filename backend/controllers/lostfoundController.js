@@ -17,10 +17,10 @@ export const createLostfoundController = async (req, res) => {
         return res.status(500).send({ error: "Location is Required" });
       case !datetime:
         return res.status(500).send({ error: "Date and Time is Required" });
-      case photo && photo.size > 1000000:
+      case !photo || photo.size > 1000000:
         return res
           .status(500)
-          .send({ error: "Photo should be less than 1mb in size" });
+          .send({ error: "Photo is required and it should be less than 1mb in size" });
       case !contact:
         return res.status(500).send({ error: "Contact is Required" });
       case !email:
@@ -143,10 +143,10 @@ export const getLostfoundController = async (req, res) => {
           return res.status(500).send({ error: "Location is Required" });
         case !datetime:
           return res.status(500).send({ error: "Date and Time is Required" });
-        case photo && photo.size > 1000000:
+        case !photo || photo.size > 1000000:
           return res
             .status(500)
-            .send({ error: "Photo should be less then 1mb" });
+            .send({ error: "Photo is required and it should be less then 1mb" });
       }
   
       const products = await LostfoundModel.findByIdAndUpdate(
@@ -222,7 +222,7 @@ export const getLostfoundController = async (req, res) => {
     try {
   
         const {startDate,endDate}=req.body
-        const products=await productModel.find({datetime:{$gte:startDate,endDate}})
+        const products=await LostfoundModel.find({datetime:{$gte:startDate,$lte:endDate}})
         res.status(200).send({
           success:true,
           products,

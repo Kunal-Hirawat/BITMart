@@ -27,8 +27,16 @@ const Products = () => {
     try {
       const { data } = await axios.get("http://localhost:5000/api/product/get-product");
       setProducts(data.products);
-      const { lostfoundData }= await axios.get("http://localhost:5000/api/lostfound/get-product");
-      setLostFound(lostfoundData.products);
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went Wrong");
+    }
+  };
+
+  const getLostfoundProducts=async()=>{
+    try {
+      const { data }= await axios.get(`http://localhost:5000/api/lostfound/get-product`);
+      setLostFound(data.products);
     } catch (error) {
       console.log(error);
       toast.error("Something Went Wrong");
@@ -38,6 +46,7 @@ const Products = () => {
   //lifecycle method
   useEffect(() => {
     getAllProducts();
+    getLostfoundProducts();
   }, []);
   return (
     <Layout>
@@ -69,7 +78,7 @@ const Products = () => {
           <form  className="form-container-2">
             <h1>All Products List</h1>
             <div style={{display:products.length?"block":"none"}}>
-            <h3>Buy/Sell Products:</h3>
+            <h2>Buy/Sell Products:</h2>
             <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <Link
@@ -92,14 +101,10 @@ const Products = () => {
             ))}
           </div>
           </div>
-            </form>
-        </div>
-      </div>
 
-      
 
-      <div style={{display:lostfound.length?"block":"none"}}>
-            <h3>Lost/Found Items:</h3>
+          <div style={{display:lostfound.length?"block":"none"}}>
+            <h2>Lost/Found Items:</h2>
             <div className="d-flex flex-wrap">
             {lostfound?.map((p) => (
               <Link
@@ -122,6 +127,9 @@ const Products = () => {
             ))}
           </div>
           </div>
+            </form>
+        </div>
+      </div>
     </Layout>
   );
 };

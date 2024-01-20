@@ -3,14 +3,13 @@ import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useCart } from "../context/cart";
-import "../ProductDetails.css"
+import "../ProductDetails.css";
 import toast from "react-hot-toast";
 
 const Product = () => {
   const params = useParams();
   const [cart, setCart] = useCart();
   const [product, setProduct] = useState({});
-
 
   //initalp details
   useEffect(() => {
@@ -23,13 +22,12 @@ const Product = () => {
         `http://localhost:5000/api/product/get-product/${params.id}`
       );
       setProduct(data?.product);
-      //   getSimilarProduct(data?.product._id, data?.product.category._id);
     } catch (error) {
       console.log(error);
     }
   };
 
-    return (
+  return (
     <Layout>
       {/* console.log({product._id}); */}
       <div className="row container product-details">
@@ -62,19 +60,20 @@ const Product = () => {
           <button
             className="submit-button2"
             onClick={() => {
-              const items = JSON.parse(localStorage.getItem("cart"))
-              let exists = false
+              const items = JSON.parse(localStorage.getItem("cart"));
+              let exists = false;
 
-              for (const item of items) {
-                if (item?._id === product?._id) {
-                  exists = true
-                  break
+              if (items.length) {
+                for (const item of items) {
+                  if (item?._id === product?._id) {
+                    exists = true;
+                    break;
+                  }
                 }
               }
               if (exists) {
-                toast.error("Item already exists in favourites")
-              }
-              else {
+                toast.error("Item already exists in favourites");
+              } else {
                 setCart([...cart, product]);
                 localStorage.setItem(
                   "cart",
@@ -95,4 +94,4 @@ const Product = () => {
 
 export default Product;
 
-///  1 2 3 4 
+///  1 2 3 4
