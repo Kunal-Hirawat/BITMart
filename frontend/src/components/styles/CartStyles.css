@@ -1,12 +1,14 @@
+body{
+  background-image: url("C:\Users\AKSHAY VARMA\Desktop\New folder (4)\BITMart\frontend\src\assets\images\OR68V80.jpg");
+}
 .cart-page {
   margin-top: 64px;
 }
 
 .cart-page h1 {
   padding: 15px !important;
-  font-family: "roboto", sans-serif;
   font-weight: normal;
-  background-color: rgba(0, 0, 255, 0.072) !important;
+  background-color: cornflowerblue !important;
 }
 
 .cart-page h1>p {
@@ -18,6 +20,7 @@
   padding: 5px !important;
   height: 150px !important;
   margin-bottom: 5px !important;
+  width: 90vw;
 }
 
 .cart-page .cart-remove-btn {
@@ -126,7 +129,7 @@
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, .125);
+  border: 4px solid rgba(0,33,65);
   border-radius: .25rem
 }
 
@@ -254,8 +257,15 @@
 
 .menu-layout .menu {
   padding: 20px;
+  background-color: rgb(0, 33, 65);
+  color: white;
+  height: max-content;
 }
 
+.menu-layout .menu .menu-tabs a:hover{
+  background: purple;
+  transition: 0.3s ease;
+}
 
 .menu-tabs li {
   border-width: 20px;
@@ -285,7 +295,8 @@
 }
 
 .form {
-  background-color: #e5e7eb;
+  /* background-color: rgba(0, 0, 255, 0.072); */
+  background-color: cornflowerblue;
   padding: 20px;
   padding-left: 100px;
   padding-right: 100px;
@@ -294,6 +305,13 @@
   margin-left: auto;
   margin-right: auto;
   border-radius: 5%;
+}
+
+.form h1{
+  border:4px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form button {
@@ -305,7 +323,7 @@
 }
 
 .menu-tabs a {
-  color: black
+  color: white
 }
 
 .submit-button1 {
@@ -430,4 +448,19 @@
   cursor: not-allowed;
   background: rgba(0, 0, 0, .08);
   color: rgba(0, 0, 0, .3);
+}
+/* d-flex flex-column justify-content-center align-items-center */
+.spin{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.spinner-border{
+  border: 4px solid black;
+}
+
+.spin h1{
+  color: #fff;
 }

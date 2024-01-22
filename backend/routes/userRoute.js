@@ -5,7 +5,7 @@ import {registerContoller,
      testController,
     forgotPasswordController,
     getSecurityQuestionController,
-    checkSecurityAnswerController} from "../controllers/userController.js";
+    checkSecurityAnswerController,getUserController, deleteUserController} from "../controllers/userController.js";
 
 import { requireSignIn,isAdmin} from "../middlewares/authMiddleware.js";
 
@@ -40,5 +40,11 @@ router.get("/user-auth", requireSignIn, (req, res) => {
 
 //update profile
 router.put("/profile", requireSignIn, updateProfileController);
+
+//get all users
+router.get("/users",getUserController);
+
+//delete user
+router.delete("/delete-user/:email", deleteUserController);
 
 export default router;
