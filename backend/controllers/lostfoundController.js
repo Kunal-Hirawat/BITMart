@@ -242,7 +242,7 @@ export const getLostfoundController = async (req, res) => {
   export const deletedUserLostFoundController = async (req, res) => {
     try {
       await LostfoundModel.deleteMany({email:req.params.email});
-      res.status(200).send({
+      res.status(200).send({        
         success: true,
         message: "Product Deleted successfully",
       });

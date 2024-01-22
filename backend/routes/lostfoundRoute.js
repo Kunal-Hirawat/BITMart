@@ -2,6 +2,7 @@ import express from "express";
 import {
   createLostfoundController,
   deleteLostfoundController,
+  deletedUserLostFoundController,
   getLostfoundController,
   getSingleLostfoundController,
   getUserLostfoundController,
@@ -52,6 +53,6 @@ router.get("/get-user-product/:email", getUserLostfoundController);
 router.post("/product-filter", lostfoundFilterController);
 
 //delete deleted user's product
-router.delete("/deleted-user-product/:email", deleteLostfoundController);
+router.delete("/deleted-user-product/:email", deletedUserLostFoundController);
 
 export default router;

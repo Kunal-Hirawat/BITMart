@@ -187,7 +187,7 @@ const BuySell = () => {
                   ></RiHeart3Fill>
                 </div>
                 <img
-                    src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
+                    src={`http://localhost:5000/api/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />
