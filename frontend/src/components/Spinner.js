@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/CartStyles.css"
-import loading from "../loading.gif"
+import loading from "../assets/images/loading.gif"
 const Spinner = () => {
   const [count, setCount] = useState(3);
   const navigate = useNavigate();

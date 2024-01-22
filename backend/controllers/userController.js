@@ -263,3 +263,45 @@ export const updateProfileController = async (req, res) => {
       });
     }
   };
+
+  export const getUserController = async(req,res) => {
+    try {
+    const users=await userModel.find({});
+    res.status(200).send({
+      success: true,
+      usersCount: users.length,
+      users,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in getting users",
+    });
+  }
+  };
+
+  //delete user controller
+export const deleteUserController = async (req, res) => {
+    try {
+      const user=await userModel.find({email:req.params.email});
+      if(user[0].role === 1){
+        return res.status(500).send({
+            success:false,
+            message:"Cannot Delete Admin"
+        })
+      }
+      await userModel.findOneAndDelete({email:req.params.email});
+      res.status(200).send({
+        success: true,
+        message: "User Deleted successfully",
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        message: "Error while deleting user",
+        error,
+      });
+    }
+  };

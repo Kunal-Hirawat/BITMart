@@ -77,8 +77,8 @@ export default function AdminProfile() {
             <a href="/dashboard/admin/user-products">
               Products
             </a>
-            <a href="/cart">
-              My Favourites
+            <a href="/dashboard/admin/users">
+              Users
             </a>
             <Link onClick={handleLogout} to="../" className="nav_link">
           LogOut

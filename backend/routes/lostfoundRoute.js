@@ -51,4 +51,7 @@ router.get("/get-user-product/:email", getUserLostfoundController);
 //product-filters
 router.post("/product-filter", lostfoundFilterController);
 
+//delete deleted user's product
+router.delete("/deleted-user-product/:email", deleteLostfoundController);
+
 export default router;

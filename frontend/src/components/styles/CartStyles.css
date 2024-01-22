@@ -1,5 +1,5 @@
 body{
-  background-image: url("C:\Users\AKSHAY VARMA\Desktop\New folder (4)\BITMart\frontend\src\assets\images\18129294.jpg");
+  background-image: url("C:\Users\AKSHAY VARMA\Desktop\New folder (4)\BITMart\frontend\src\assets\images\OR68V80.jpg");
 }
 .cart-page {
   margin-top: 64px;
@@ -8,7 +8,7 @@ body{
 .cart-page h1 {
   padding: 15px !important;
   font-weight: normal;
-  background-color: rgba(0, 0, 255, 0.072) !important;
+  background-color: cornflowerblue !important;
 }
 
 .cart-page h1>p {
@@ -257,8 +257,15 @@ body{
 
 .menu-layout .menu {
   padding: 20px;
+  background-color: rgb(0, 33, 65);
+  color: white;
+  height: max-content;
 }
 
+.menu-layout .menu .menu-tabs a:hover{
+  background: purple;
+  transition: 0.3s ease;
+}
 
 .menu-tabs li {
   border-width: 20px;
@@ -288,7 +295,8 @@ body{
 }
 
 .form {
-  background-color: rgba(0, 0, 255, 0.072);
+  /* background-color: rgba(0, 0, 255, 0.072); */
+  background-color: cornflowerblue;
   padding: 20px;
   padding-left: 100px;
   padding-right: 100px;
@@ -315,7 +323,7 @@ body{
 }
 
 .menu-tabs a {
-  color: black
+  color: white
 }
 
 .submit-button1 {
@@ -451,4 +459,8 @@ body{
 
 .spinner-border{
   border: 4px solid black;
+}
+
+.spin h1{
+  color: #fff;
 }
