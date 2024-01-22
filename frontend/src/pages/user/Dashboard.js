@@ -47,7 +47,7 @@ const Dashboard = () => {
               <h3>Name : {auth?.user?.name}</h3>
               <h3>Contact : {auth?.user?.contact}</h3>
               <h3>Email : {auth?.user?.email}</h3>
-              <h3>Address : {auth?.user?.address}</h3>
+              <h3 style={{display:auth?.user?.address?"block":"none"}}>Address : {auth?.user?.address}</h3>
           </form>
         </div>
         </div>

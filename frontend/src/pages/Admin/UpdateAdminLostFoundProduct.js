@@ -77,7 +77,7 @@ const UpdateAdminLostFound = () => {
   //delete a product
   const handleDelete = async () => {
     try {
-      let answer = window.prompt("Are You Sure want to delete this product ? ");
+      let answer = window.confirm("Are You Sure want to delete this product ? ");
       if (!answer) return;
       const { data } = await axios.delete(
         `http://localhost:5000/api/lostfound/delete-product/${id}`
@@ -88,13 +88,6 @@ const UpdateAdminLostFound = () => {
       console.log(error);
       toast.error("Something went wrong");
     }
-  };
-
-  const handleDateTimeChange = (e) => {
-    const inputValue = e.target.value;
-    const dateObj = new Date(inputValue);
-    const istDateTime = dateObj.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
-    setDatetime(istDateTime);
   };
 
 
@@ -196,7 +189,7 @@ const UpdateAdminLostFound = () => {
                   value={datetime}
                   placeholder="enter date and time"
                   className="form-control"
-                  onChange={(e) => handleDateTimeChange(e)}
+                  onChange={(e) => setDatetime(e.target.value)}
                 />
               </div>
               <div className="mb-3">

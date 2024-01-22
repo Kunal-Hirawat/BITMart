@@ -4,9 +4,10 @@ import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
 import "../../components/styles/CartStyles.css";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 
 export default function AdminProfile() {
+  const navigate=useNavigate();
   const [auth, setAuth] = useAuth();
   const handleLogout = () =>{
     setAuth({
@@ -53,6 +54,7 @@ export default function AdminProfile() {
         ls.user = data.updatedUser;
         localStorage.setItem("auth", JSON.stringify(ls));
         toast.success("Profile Updated Successfully");
+        navigate('/dashboard/admin');
       }
     } catch (error) {
       console.log(error);

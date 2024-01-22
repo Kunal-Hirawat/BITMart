@@ -50,7 +50,7 @@ function App() {
         <Route path="admin/create-product" element={<CreateProduct />} />  
         <Route path="admin/product/:id" element={<UpdateProduct />} />  
         <Route path="admin/products" element={<Products />} /> 
-        <Route path="admin/lostfound-product/:id" element={UpdateAdminLostFound}></Route>         
+        <Route path="admin/lostfound-product/:id" element={<UpdateAdminLostFound></UpdateAdminLostFound>}></Route>         
         <Route path="admin/users" element={<Users />} />  
         <Route path="admin/profile" element={<AdminProfile />} />
         </Route>

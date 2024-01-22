@@ -6,7 +6,6 @@ import { Radio } from "antd";
 import { useAuth } from "../context/auth";
 import { useCart } from "../context/cart";
 import { RiHeart3Fill } from "react-icons/ri";
-import noImage from "../assets/images/5138236.jpg"
 import "../BuySell.css";
 import { Prices } from "../components/Prices";
 import toast from "react-hot-toast";
@@ -188,11 +187,7 @@ const BuySell = () => {
                   ></RiHeart3Fill>
                 </div>
                 <img
-                    src={
-                      p.photo
-                        ? `http://localhost:5000/api/lostfound/product-photo/${p._id}`
-                        : noImage
-                    }
+                    src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />

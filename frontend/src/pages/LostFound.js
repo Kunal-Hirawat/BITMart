@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Layout from "./../components/Layout/Layout";
 import { useAuth } from "../context/auth";
-import noImage from "../assets/images/5138236.jpg"
 import "../BuySell.css";
 import toast from "react-hot-toast";
 
@@ -61,11 +60,20 @@ const LostFound = () => {
   useEffect(() => {
     switch (sortby) {
       case "1":
-        setProducts([...products].sort((a, b) => a.datetime - b.datetime));
+        setProducts(
+          [...products].sort(
+            (a, b) => new Date(a.datetime) - new Date(b.datetime)
+          )
+        );
         break;
       case "-1":
-        setProducts([...products].sort((a, b) => b.datetime - a.datetime));
+        setProducts(
+          [...products].sort(
+            (a, b) => new Date(b.datetime) - new Date(a.datetime)
+          )
+        );
         break;
+
       case "-2":
         setProducts(
           [...products].sort((a, b) =>
@@ -115,7 +123,7 @@ const LostFound = () => {
             <div>
               <span>From</span>
               <input
-                type='datetime-local'
+                type="datetime-local"
                 onChange={(e) => setStartDate(e.target.value)}
               ></input>
               <span>To</span>
@@ -132,11 +140,7 @@ const LostFound = () => {
               {products?.map((p) => (
                 <div className="card m-2" key={p._id}>
                   <img
-                    src={
-                      p.photo
-                        ? `http://localhost:5000/api/lostfound/product-photo/${p._id}`
-                        : noImage
-                    }
+                    src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />
