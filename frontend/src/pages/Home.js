@@ -36,7 +36,7 @@ const Home = () => {
       const items = JSON.parse(localStorage.getItem("cart")) || [];
       let exists = false;
 
-      if(items.length){
+      if (items.length) {
         for (const item of items) {
           if (item?._id === product._id) {
             exists = true;
@@ -48,11 +48,11 @@ const Home = () => {
         const updatedCart = cart.filter((item) => item._id !== product._id);
         setCart(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
-        toast("Product removed from favourites",{icon:'🥺'});
+        toast("Product removed from favourites", { icon: "🥺" });
       } else {
         setCart([...cart, product]);
         localStorage.setItem("cart", JSON.stringify([...cart, product]));
-        toast("Product added to favourites",{icon:'❤️'});
+        toast("Product added to favourites", { icon: "❤️" });
       }
     }
   };
@@ -62,16 +62,16 @@ const Home = () => {
     getProducts();
   }, []);
   const latestProducts = products.slice(-4);
-  
+
   useEffect(() => {
     const initialWishlistState = {};
     const items = JSON.parse(localStorage.getItem("cart")) || [];
 
-      if(items.length){
-        for (const item of items) {
-          initialWishlistState[item._id]=true;
-        }
+    if (items.length) {
+      for (const item of items) {
+        initialWishlistState[item._id] = true;
       }
+    }
     setWishlist(initialWishlistState);
   }, [cart]);
 

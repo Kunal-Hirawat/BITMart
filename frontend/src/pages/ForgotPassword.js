@@ -160,7 +160,7 @@ const ForgotPassword = () => {
                     display: "inline",
                     marginLeft: "-7%",
                     verticalAlign: "middle",
-                    cursor:'pointer'
+                    cursor: "pointer",
                   }}
                 ></Icon>
               </div>

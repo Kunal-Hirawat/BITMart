@@ -1,25 +1,26 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "./../../components/Layout/Layout";
-import "../../components/styles/CartStyles.css"
+import "../../components/styles/CartStyles.css";
 import { useAuth } from "../../context/auth";
-import {Link, useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-
 const Users = () => {
-  const [auth,setAuth] = useAuth();
-  const [users,setUsers] = useState([]);
-  const navigate=useNavigate();
-  const handleLogout = () =>{
+  const [auth, setAuth] = useAuth();
+  const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+  const handleLogout = () => {
     setAuth({
-      ...auth, user:null,token:''
-    })
+      ...auth,
+      user: null,
+      token: "",
+    });
     localStorage.removeItem("auth");
     localStorage.removeItem("cart");
     toast.success("LogOut Successful");
-    window.location.reload()
-  }
+    window.location.reload();
+  };
 
   //get all users
   const getAllUsers = async () => {
@@ -37,15 +38,19 @@ const Users = () => {
     try {
       let answer = window.confirm("Are You Sure want to delete this user ? ");
       if (!answer) return;
-      const {data}=await axios.delete(
+      const { data } = await axios.delete(
         `http://localhost:5000/api/auth/delete-user/${email}`
       );
-      if(!data?.success){
+      if (!data?.success) {
         toast.error(data.message);
         return;
       }
-      await axios.delete(`http://localhost:5000/api/product/deleted-user-product/${email}`)
-      await axios.delete(`http://localhost:5000/api/lostfound/deleted-user-product/${email}`)
+      await axios.delete(
+        `http://localhost:5000/api/product/deleted-user-product/${email}`
+      );
+      await axios.delete(
+        `http://localhost:5000/api/lostfound/deleted-user-product/${email}`
+      );
       toast.success("User Deleted Successfully");
       navigate("/dashboard/admin");
     } catch (error) {
@@ -58,61 +63,49 @@ const Users = () => {
   useEffect(() => {
     getAllUsers();
   }, []);
-  
+
   return (
     <Layout>
-    <div className="menu-layout">
+      <div className="menu-layout">
         <div className="menu">
-          <h1>
-            Admin Panel
-          </h1>
+          <h1>Admin Panel</h1>
           <div className="menu-tabs">
-          <a href="/dashboard/admin/profile">
-              Update Profile
-            </a>
-            <a href="/dashboard/admin/create-product">
-              Create Product
-            </a>
-            <a href="/dashboard/admin/products">
-              Products
-            </a>
-            <a href="/dashboard/admin/users">
-              Users
-            </a>
+            <a href="/dashboard/admin/profile">Update Profile</a>
+            <a href="/dashboard/admin/create-product">Create Product</a>
+            <a href="/dashboard/admin/products">Products</a>
+            <a href="/dashboard/admin/users">Users</a>
             <Link onClick={handleLogout} to="/" className="nav_link">
-          LogOut
-        </Link>
+              LogOut
+            </Link>
           </div>
         </div>
         <div className="form ">
           <form className="form-container-2">
             <h1>All Users</h1>
             <div className="d-flex flex-wrap">
-            {users?.map((u) => (
-              <Link
-                key={u._id}
-                className="product-link"
-              >
-                <div className="card m-2" style={{ width: "18rem" }}>
-                  <div className="card-body">
-                    <h5 className="card-title">{u.name}</h5>
-                    <p className="card-text">{u.contact}</p>                    
-                    <p className="card-text">{u.email}</p>      
-                    <div className="mb-3">
-                <button className="danger-btn" onClick={(e)=>handleDelete(u.email)}>
-                  DELETE USER
-                </button>
-              </div>              
+              {users?.map((u) => (
+                <Link key={u._id} className="product-link">
+                  <div className="card m-2" style={{ width: "18rem" }}>
+                    <div className="card-body">
+                      <h5 className="card-title">{u.name}</h5>
+                      <p className="card-text">{u.contact}</p>
+                      <p className="card-text">{u.email}</p>
+                      <div className="mb-3">
+                        <button
+                          className="danger-btn"
+                          onClick={(e) => handleDelete(u.email)}
+                        >
+                          DELETE USER
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          
-          </div>
-            </form>
-          </div>
+                </Link>
+              ))}
+            </div>
+          </form>
         </div>
-      
+      </div>
     </Layout>
   );
 };

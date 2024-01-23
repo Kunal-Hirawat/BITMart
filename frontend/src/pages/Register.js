@@ -165,7 +165,7 @@ const Register = () => {
                   display: "inline",
                   marginLeft: "-7%",
                   verticalAlign: "middle",
-                  cursor:'pointer'
+                  cursor: "pointer",
                 }}
               ></Icon>
             </div>

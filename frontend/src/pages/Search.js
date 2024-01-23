@@ -15,7 +15,7 @@ const formatDate = (date) => {
     minute: "numeric",
     hour12: true,
   });
-  const formattedDate = formatter.format(datetime); 
+  const formattedDate = formatter.format(datetime);
   const [datePart, timePart] = formattedDate.split(", ");
   const [month, day, year] = datePart.split("/");
   const [time, ampm] = timePart.split(" ");
@@ -28,7 +28,7 @@ const Search = () => {
   const navigate = useNavigate();
   const [auth] = useAuth();
 
-  window.addEventListener("beforeunload",(e) => {
+  window.addEventListener("beforeunload", (e) => {
     window.confirm("pakka");
   });
 

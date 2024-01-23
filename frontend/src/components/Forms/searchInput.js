@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useSearch } from "../../context/search";
 import { FaSearch } from "react-icons/fa";
-import "./searchInput.css"
+import "./searchInput.css";
 
 const SearchInput = () => {
   const [state, setState] = useSearch();
@@ -71,7 +71,7 @@ const SearchInput = () => {
     e.preventDefault();
 
     try {
-      if(!keyword){
+      if (!keyword) {
         return;
       }
       if (type == "BuySell") {
@@ -92,31 +92,33 @@ const SearchInput = () => {
     <div>
       <form onSubmit={handleSubmit} className="search-form">
         <div className="search-form-div">
-        <select value={type} onChange={(e) => setType(e.target.value)} className="search-select">
-          <option value="All" selected>
-            All
-          </option>
-          <option value="BuySell">Buy/Sell</option>
-          <option value="LostFound">Lost/Found</option>
-        </select>
+          <select
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+            className="search-select"
+          >
+            <option value="All" selected>
+              All
+            </option>
+            <option value="BuySell">Buy/Sell</option>
+            <option value="LostFound">Lost/Found</option>
+          </select>
         </div>
         <div className="search-form-div">
-        <input
-          type="search"
-          placeholder="Search"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-          className="search-input"
-        ></input>
+          <input
+            type="search"
+            placeholder="Search"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            className="search-input"
+          ></input>
         </div>
         <div className="search-form-div">
-        <button
-          type="submit"
-        >
-          <div className="search-icon-div">
-            <FaSearch className="search-icon"></FaSearch>
-          </div>
-        </button>
+          <button type="submit">
+            <div className="search-icon-div">
+              <FaSearch className="search-icon"></FaSearch>
+            </div>
+          </button>
         </div>
       </form>
     </div>

@@ -1,20 +1,20 @@
-import React from 'react'
-import Header from './Header'
-import Footer from '../Footer'
-import {Toaster} from 'react-hot-toast'
-import 'react-toastify/dist/ReactToastify.css';
+import React from "react";
+import Header from "./Header";
+import Footer from "../Footer";
+import { Toaster } from "react-hot-toast";
+import "react-toastify/dist/ReactToastify.css";
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <div>
-        <Header/>
-        <main style={{minHeight:"70vh"}}>
-          <Toaster></Toaster>
-            {children}
-        </main>
-        <Footer/>
+      <Header />
+      <main style={{ minHeight: "70vh" }}>
+        <Toaster></Toaster>
+        {children}
+      </main>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

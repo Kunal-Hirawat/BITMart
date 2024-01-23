@@ -18,6 +18,8 @@ const BuySell = () => {
   const [sortby, setSortby] = useState("");
   const [selectedValue, setSelectedValue] = useState(null);
   const [wishlist, setWishlist] = useState({});
+  const [min, setMin] = useState();
+  const [max, setMax] = useState();
   const [cart, setCart] = useCart();
 
   const getAllProducts = async () => {
@@ -30,6 +32,38 @@ const BuySell = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleRange = async () => {
+    if (!min) {
+      toast.error("Please enter minimum value");
+      return;
+    } else if (!max) {
+      toast.error("Please enter max value");
+      return;
+    } else if (min > max) {
+      toast.error("Maximum value cannot be less than minimum value");
+      return;
+    }
+    try {
+      const { data } = await axios.post(
+        "http://localhost:5000/api/product/product-filter",
+        { radio: [min, max] }
+      );
+      setProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+      toast.error("Error while filtering products");
+    }
+  };
+
+  const handleClear = async () => {
+    setMin(null);
+    setMax(null);
+    setRadio([]);
+    setSelectedValue(null);
+    document.getElementById("min-input").value = null;
+    document.getElementById("max-input").value = null;
   };
 
   const handleFilter = async () => {
@@ -47,13 +81,16 @@ const BuySell = () => {
 
   const onChange = async (e) => {
     const { value } = e.target;
-    console.log("radio checked", value);
+    setMin(null);
+    setMax(null);
     setSelectedValue(value);
   };
 
   const deselectOnClick = async (e) => {
     const { value } = e.target;
-    if (value === selectedValue) {
+    console.log(value);
+    console.log(selectedValue);
+    if (value == selectedValue) {
       console.log("double clicked button", value);
       setSelectedValue(null);
       setRadio([]);
@@ -68,7 +105,7 @@ const BuySell = () => {
       const items = JSON.parse(localStorage.getItem("cart")) || [];
       let exists = false;
 
-      if(items.length){
+      if (items.length) {
         for (const item of items) {
           if (item?._id === product._id) {
             exists = true;
@@ -80,11 +117,11 @@ const BuySell = () => {
         const updatedCart = cart.filter((item) => item._id !== product._id);
         setCart(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
-        toast("Product removed from favourites",{icon:'🥺'});
+        toast("Product removed from favourites", { icon: "🥺" });
       } else {
         setCart([...cart, product]);
         localStorage.setItem("cart", JSON.stringify([...cart, product]));
-        toast("Product added to favourites",{icon:'❤️'});
+        toast("Product added to favourites", { icon: "❤️" });
       }
     }
   };
@@ -126,11 +163,11 @@ const BuySell = () => {
     const initialWishlistState = {};
     const items = JSON.parse(localStorage.getItem("cart")) || [];
 
-      if(items.length){
-        for (const item of items) {
-          initialWishlistState[item._id]=true;
-        }
+    if (items.length) {
+      for (const item of items) {
+        initialWishlistState[item._id] = true;
       }
+    }
     setWishlist(initialWishlistState);
   }, [cart]);
 
@@ -154,8 +191,8 @@ const BuySell = () => {
         </div>
         <div className="filter-search">
           <div>
-              <h4>Filter By Price</h4>
-              <div>
+            <h4>Filter By Price</h4>
+            <div>
               <Radio.Group
                 onChange={(e) => {
                   setRadio(e.target.value);
@@ -171,62 +208,95 @@ const BuySell = () => {
                   </div>
                 ))}
               </Radio.Group>
+              <div className="filter-input-container">
+                <input
+                  type="number"
+                  placeholder="Min"
+                  min={0}
+                  max={999999999}
+                  onChange={(e) => setMin(e.target.value)}
+                  value={min}
+                  id="min-input"
+                  className="filter-input-box"
+                ></input>
+                <span>-</span>
+                <input
+                  type="number"
+                  placeholder="Max"
+                  max={999999999}
+                  min={0}
+                  onChange={(e) => setMax(e.target.value)}
+                  value={max}
+                  id="max-input"
+                  className="filter-input-box"
+                ></input>
+              </div>
+              <div>
+                <button onClick={handleRange} className="pnf-btn go-button">
+                  Go
+                </button>
+                <button onClick={handleClear} className="pnf-btn clear-button">
+                  Clear Filters
+                </button>
+              </div>
             </div>
           </div>
         </div>
         <div className="container-fluid row mt-3 home-page">
           <div className="col-md-9 ">
-            
-          <div className="d-flex flex-wrap">
-            {products?.map((p) => (
-              <div className="card m-2" key={p._id}>
-                <div className="heart-container">
-                  <RiHeart3Fill
-                    className={wishlist[p._id] ? "heart-active" : "heart"}
-                    onClick={() => handleClick(p)}
-                  ></RiHeart3Fill>
-                </div>
-                <img
+            <div className="d-flex flex-wrap">
+              {products?.map((p) => (
+                <div className="card m-2" key={p._id}>
+                  <div className="heart-container">
+                    <RiHeart3Fill
+                      className={wishlist[p._id] ? "heart-active" : "heart"}
+                      onClick={() => handleClick(p)}
+                    ></RiHeart3Fill>
+                  </div>
+                  <img
                     src={`http://localhost:5000/api/product/product-photo/${p._id}`}
+                    onClick={() =>
+                      navigate(!auth.user ? `/login` : `/product/${p._id}`)
+                    }
                     className="card-img-top"
                     alt={p.name}
                   />
-                <div className="card-body">
-                  <div className="card-name-price">
-                    <h5 className="card-title">{p.name}</h5>
-                    <h5 className="card-title card-price">
-                      {p.price.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "INR",
-                      })}
-                    </h5>
-                  </div>
-                  <p className="card-text ">
-                    {p.description.substring(0, 60)}
-                  </p>
-                  <div className="card-name-price">
-                    {!auth.user ? (
-                      <button
-                        className="btn btn-info ms-1"
-                        onClick={() => navigate(`/login`)}
-                      >
-                        More Details
-                      </button>
-                    ) : (
-                      <button
-                        className="btn btn-info ms-1"
-                        onClick={() => navigate(`/product/${p._id}`)}
-                      >
-                        More Details
-                      </button>
-                    )}
+                  <div className="card-body">
+                    <div className="card-name-price">
+                      <h5 className="card-title">{p.name}</h5>
+                      <h5 className="card-title card-price">
+                        {p.price.toLocaleString("en-US", {
+                          style: "currency",
+                          currency: "INR",
+                        })}
+                      </h5>
+                    </div>
+                    <p className="card-text ">
+                      {p.description.substring(0, 60)}
+                    </p>
+                    <div className="card-name-price">
+                      {!auth.user ? (
+                        <button
+                          className="btn btn-info ms-1"
+                          onClick={() => navigate(`/login`)}
+                        >
+                          More Details
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-info ms-1"
+                          onClick={() => navigate(`/product/${p._id}`)}
+                        >
+                          More Details
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </Layout>
   );

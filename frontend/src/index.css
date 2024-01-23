@@ -1,13 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap");
 
-
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Baloo Bhai 2', sans-serif;
+  font-family: "Baloo Bhai 2", sans-serif;
 }
-
 
 .pnf {
   display: flex;
@@ -20,13 +18,13 @@
 .pnf-title {
   font-size: 100px;
   font-weight: 700;
-  color:#062e58;
+  color: #062e58;
 }
 
 .pnf-heading {
   font-weight: normal;
   padding-bottom: 20px;
-  color:#062e58;
+  color: #062e58;
 }
 
 .pnf-btn {
@@ -49,25 +47,27 @@
   padding-right: 20px;
   text-align: center;
   touch-action: manipulation;
-  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
   vertical-align: middle;
 }
 
 .pnf-btn:hover,
-.pnf-btn:focus { 
-  background-color: #16437E;
-  color: white
+.pnf-btn:focus {
+  background-color: #16437e;
+  color: white;
 }
 
 .pnf-btn:active {
   background: #09223b;
-  color: rgb(255, 255, 255, .7);
+  color: rgb(255, 255, 255, 0.7);
 }
 
-.pnf-btn:disabled { 
+.pnf-btn:disabled {
   cursor: not-allowed;
-  background: rgba(0, 0, 0, .08);
-  color: rgba(0, 0, 0, .3);
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .contactus {
@@ -94,7 +94,18 @@
   color: white;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 0px;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

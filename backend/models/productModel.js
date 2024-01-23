@@ -6,25 +6,25 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    description:{
-        type: String,
-        required: true,
+    description: {
+      type: String,
+      required: true,
     },
-    price:{
-        type: Number,
-        required: true,
+    price: {
+      type: Number,
+      required: true,
     },
-    quantity:{
-        type: Number,
-        required: true,
+    quantity: {
+      type: Number,
+      required: true,
     },
-    slug:{
-        type: String,
-        required: true,
+    slug: {
+      type: String,
+      required: true,
     },
-    photo:{
-        data: Buffer,
-        contentType : String,
+    photo: {
+      data: Buffer,
+      contentType: String,
     },
     email: {
       type: String,
@@ -34,11 +34,9 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
   },
   { timestamps: true }
 );
 
-
-const product = mongoose.model('Product', productSchema)
-export default product
+const product = mongoose.model("Product", productSchema);
+export default product;

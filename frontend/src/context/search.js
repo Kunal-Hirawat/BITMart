@@ -1,12 +1,12 @@
-import { createContext, useState,useContext } from "react";
+import { createContext, useState, useContext } from "react";
 
 const SearchContext = createContext();
 const SearchProvider = ({ children }) => {
   const [state, setState] = useState({
     keyword: "",
-    type:"All",
+    type: "All",
     BuySellResults: [],
-    LostFoundResults:[],
+    LostFoundResults: [],
   });
 
   return (

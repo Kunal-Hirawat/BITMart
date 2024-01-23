@@ -26,6 +26,13 @@ const LostFound = () => {
     }
   };
 
+  const handleClear = async () => {
+    setEndDate([]);
+    setStartDate([]);
+    document.getElementById("startdate-input").value = null;
+    document.getElementById("enddate-input").value = null;
+  };
+
   const handleFilter = async () => {
     try {
       const { data } = await axios.post(
@@ -121,16 +128,25 @@ const LostFound = () => {
           <div>
             <h4>Filter By Date</h4>
             <div>
+              <div className="datefilter-input-container">
               <span>From</span>
               <input
                 type="datetime-local"
                 onChange={(e) => setStartDate(e.target.value)}
+                id="startdate-input"
               ></input>
+              </div>
+              <div className="datefilter-input-container">
               <span>To</span>
               <input
                 type="datetime-local"
                 onChange={(e) => setEndDate(e.target.value)}
+                id="enddate-input"
               ></input>
+              </div>
+              <button onClick={handleClear} className="pnf-btn clear-button">
+                Clear Filters
+              </button>
             </div>
           </div>
         </div>
@@ -143,6 +159,9 @@ const LostFound = () => {
                     src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
+                    onClick={() =>
+                      navigate(!auth.user ? `/login` : `/lostfound/${p._id}`)
+                    }
                   />
                   <div className="card-body">
                     <div className="card-name-price">

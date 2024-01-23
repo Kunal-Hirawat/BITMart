@@ -20,7 +20,9 @@ export const createProductController = async (req, res) => {
       case !photo || photo.size > 1000000:
         return res
           .status(500)
-          .send({ error: "Photo is required and should be less than 1mb in size" });
+          .send({
+            error: "Photo is required and should be less than 1mb in size",
+          });
       case !contact:
         return res.status(500).send({ error: "Contact is Required" });
       case !email:
@@ -194,12 +196,13 @@ export const searchProductController = async (req, res) => {
 
 export const getUserProductController = async (req, res) => {
   try {
-    const products = await productModel.find({email: req.params.email}).select("-photo");
+    const products = await productModel
+      .find({ email: req.params.email })
+      .select("-photo");
     return res.status(200).send({
       success: true,
       productsCount: products.length,
       products,
-      
     });
   } catch (error) {
     console.log(error);
@@ -210,31 +213,30 @@ export const getUserProductController = async (req, res) => {
   }
 };
 
-
-export const productFilterController=async(req,res)=>{
+export const productFilterController = async (req, res) => {
   try {
-
-      const {radio}=req.body
-      const products=await productModel.find({price:{$gt:radio[0],$lte:radio[1]}})
-      return res.status(200).send({
-        success:true,
-        products,
-      })
-      
+    const { radio } = req.body;
+    const products = await productModel.find({
+      price: { $gt: radio[0], $lte: radio[1] },
+    });
+    return res.status(200).send({
+      success: true,
+      products,
+    });
   } catch (error) {
-      console.log(error);
+    console.log(error);
     return res.status(400).send({
       success: false,
       message: "Error while applying filter",
       error,
     });
   }
-}
+};
 
 //delete deleted user product controller
 export const deletedUserProductController = async (req, res) => {
   try {
-    await productModel.deleteMany({email:req.params.email});
+    await productModel.deleteMany({ email: req.params.email });
     return res.status(200).send({
       success: true,
       message: "Product Deleted successfully",
@@ -248,4 +250,3 @@ export const deletedUserProductController = async (req, res) => {
     });
   }
 };
-

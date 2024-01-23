@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap");
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Baloo Bhai 2', sans-serif;
+  font-family: "Baloo Bhai 2", sans-serif;
 }
 
-.footer{
-  padding:20px;
-  color:white;
-  display:flex;
+.footer {
+  padding: 20px;
+  color: white;
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -20,64 +20,60 @@
 
 /*#f5f9fc*/
 
-.footer p{
-  padding:1px;
+.footer p {
+  padding: 1px;
 }
 
-
-.footer a{
-  text-decoration:none;
-  color:white;
-  padding:20px;
+.footer a {
+  text-decoration: none;
+  color: white;
+  padding: 20px;
 }
 
-.footer a:hover{
+.footer a:hover {
   filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 1));
--webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
--moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
- box-shadow: 0px 5px 10px -10px rgba(0,0,0,0.57);
-transition: all 0.4s ease 0s;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  box-shadow: 0px 5px 10px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
 }
 
-.footer .icons-div{
+.footer .icons-div {
   font-size: larger;
-  padding:10px;
+  padding: 10px;
 }
 
-.footer h6{
+.footer h6 {
   font-weight: 50;
   font-size: xx-small;
   padding-top: 5px;
 }
 
-@media (max-width: 380px){
-
-  .footer .icons-div{
-    font-size:  medium;
+@media (max-width: 380px) {
+  .footer .icons-div {
+    font-size: medium;
   }
-  .footer a{
-    text-decoration:none;
-    color:white;
-    padding:12px;
+  .footer a {
+    text-decoration: none;
+    color: white;
+    padding: 12px;
   }
-  .footer p{
+  .footer p {
     font-size: 15px;
   }
-
 }
 
-@media (max-width: 296px){
-
-  .footer .icons-div{
-    font-size:  medium;
+@media (max-width: 296px) {
+  .footer .icons-div {
+    font-size: medium;
   }
-  .footer p{
+  .footer p {
     font-size: 12px;
     font-weight: 200;
   }
-  .footer a{
-    text-decoration:none;
-    color:white;
-    padding:9px ;
+  .footer a {
+    text-decoration: none;
+    color: white;
+    padding: 9px;
   }
 }

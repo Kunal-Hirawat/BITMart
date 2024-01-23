@@ -4,20 +4,22 @@ import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
 import "../../components/styles/CartStyles.css";
-import {Link, useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 
 export default function AdminProfile() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [auth, setAuth] = useAuth();
-  const handleLogout = () =>{
+  const handleLogout = () => {
     setAuth({
-      ...auth, user:null,token:''
-    })
+      ...auth,
+      user: null,
+      token: "",
+    });
     localStorage.removeItem("auth");
     localStorage.removeItem("cart");
     toast.success("LogOut Successful");
-    window.location.reload()
-  }
+    window.location.reload();
+  };
   //state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -38,13 +40,16 @@ export default function AdminProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put("http://localhost:5000/api/auth/profile", {
-        name,
-        email,
-        password,
-        phone,
-        address,
-      });
+      const { data } = await axios.put(
+        "http://localhost:5000/api/auth/profile",
+        {
+          name,
+          email,
+          password,
+          phone,
+          address,
+        }
+      );
       if (data?.error) {
         toast.error(data?.error);
       } else {
@@ -54,7 +59,7 @@ export default function AdminProfile() {
         ls.user = data.updatedUser;
         localStorage.setItem("auth", JSON.stringify(ls));
         toast.success("Profile Updated Successfully");
-        navigate('/dashboard/admin');
+        navigate("/dashboard/admin");
       }
     } catch (error) {
       console.log(error);
@@ -66,41 +71,59 @@ export default function AdminProfile() {
     <Layout title={"Your Profile"}>
       <div className="menu-layout">
         <div className="menu">
-          <h1>
-            Dashboard
-          </h1>
+          <h1>Dashboard</h1>
           <div className="menu-tabs">
-            <a href="/dashboard/admin/profile">
-              Update Profile
-            </a>
-            <a href="/dashboard/admin/create-product">
-              Create Product
-            </a>
-            <a href="/dashboard/admin/user-products">
-              Products
-            </a>
-            <a href="/dashboard/admin/users">
-              Users
-            </a>
+            <a href="/dashboard/admin/profile">Update Profile</a>
+            <a href="/dashboard/admin/create-product">Create Product</a>
+            <a href="/dashboard/admin/user-products">Products</a>
+            <a href="/dashboard/admin/users">Users</a>
             <Link onClick={handleLogout} to="../" className="nav_link">
-          LogOut
-        </Link>
+              LogOut
+            </Link>
           </div>
         </div>
 
         <div className="form ">
           <form onSubmit={handleSubmit} className="form-container-2">
             <h1> User Profile </h1>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your name" />
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" disabled/>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" />
-            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Enter your phone" />
-            <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter your Address" />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your name"
+            />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              disabled
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+            />
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Enter your phone"
+            />
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Enter your Address"
+            />
 
-            <button type="submit" className="submit-button1">UPDATE</button>
+            <button type="submit" className="submit-button1">
+              UPDATE
+            </button>
           </form>
         </div>
       </div>
     </Layout>
-  )
+  );
 }

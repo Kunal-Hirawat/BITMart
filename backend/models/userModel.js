@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const userSchema =  mongoose.Schema(
+const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
@@ -16,11 +16,9 @@ const userSchema =  mongoose.Schema(
       //     },
       //     message:  'not a valid contact number. It should be 10 digits long and consist only of digits.',
       // },
-    
-
     },
-    address:{
-        type: {},
+    address: {
+      type: {},
     },
     email: {
       type: String,
@@ -35,18 +33,17 @@ const userSchema =  mongoose.Schema(
       type: Number,
       default: 0,
     },
-    securityQuestion:{
-      type:String,
-      required:true,
+    securityQuestion: {
+      type: String,
+      required: true,
     },
-    securityAnswer:{
-      type:String,
-      required:true,
-    }
+    securityAnswer: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-
-const User = mongoose.model('User', userSchema)
-export default User
+const User = mongoose.model("User", userSchema);
+export default User;

@@ -3,9 +3,9 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
-import "../../components/styles/CartStyles.css"
+import "../../components/styles/CartStyles.css";
 import { useAuth } from "../../context/auth";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const UpdateLostFoundProduct = () => {
   const navigate = useNavigate();
@@ -17,16 +17,18 @@ const UpdateLostFoundProduct = () => {
   const [photo, setPhoto] = useState("");
   const [id, setId] = useState("");
 
-  const [auth,setAuth] = useAuth();
-  const handleLogout = () =>{
+  const [auth, setAuth] = useAuth();
+  const handleLogout = () => {
     setAuth({
-      ...auth, user:null,token:''
-    })
+      ...auth,
+      user: null,
+      token: "",
+    });
     localStorage.removeItem("auth");
     localStorage.removeItem("cart");
     toast.success("LogOut Successful");
-    window.location.reload()
-  }
+    window.location.reload();
+  };
 
   //get single product
   const getSingleProduct = async () => {
@@ -47,7 +49,7 @@ const UpdateLostFoundProduct = () => {
     getSingleProduct();
     //eslint-disable-next-line
   }, []);
- 
+
   //create product function
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -77,7 +79,9 @@ const UpdateLostFoundProduct = () => {
   //delete a product
   const handleDelete = async () => {
     try {
-      let answer = window.confirm("Are You Sure want to delete this product ? ");
+      let answer = window.confirm(
+        "Are You Sure want to delete this product ? "
+      );
       if (!answer) return;
       const { data } = await axios.delete(
         `http://localhost:5000/api/lostfound/delete-product/${id}`
@@ -90,124 +94,112 @@ const UpdateLostFoundProduct = () => {
     }
   };
 
-
   return (
     <Layout title={"Dashboard - Create Product"}>
-    <div className="menu-layout">
+      <div className="menu-layout">
         <div className="menu">
-        <h1>
-            Dashboard
-          </h1>
+          <h1>Dashboard</h1>
           <div className="menu-tabs">
-            <a href="/dashboard/user/profile">
-              Update Profile
-            </a>
-            <a href="/dashboard/user/create-product">
-              Create Product
-            </a>
-            <a href="/dashboard/user/user-products">
-              Products
-            </a>
-            <a href="/cart">
-              My Favourites
-            </a>
+            <a href="/dashboard/user/profile">Update Profile</a>
+            <a href="/dashboard/user/create-product">Create Product</a>
+            <a href="/dashboard/user/user-products">Products</a>
+            <a href="/cart">My Favourites</a>
             <Link onClick={handleLogout} to="../" className="nav_link">
-          LogOut
-        </Link>
+              LogOut
+            </Link>
           </div>
         </div>
 
         <div className="form ">
-          <form  className="form-container-2">
+          <form className="form-container-2">
             <h1>Update/Delete Product</h1>
             <div className="d-flex flex-wrap">
-            <div className="m-1 w-75">
-              <div className="mb-3">
-                <label className="submit-button1">
-                  {photo ? photo.name : "Upload Photo"}
+              <div className="m-1 w-75">
+                <div className="mb-3">
+                  <label className="submit-button1">
+                    {photo ? photo.name : "Upload Photo"}
+                    <input
+                      type="file"
+                      name="photo"
+                      accept="image/*"
+                      onChange={(e) => setPhoto(e.target.files[0])}
+                      hidden
+                    />
+                  </label>
+                </div>
+                <div className="mb-3">
+                  {photo ? (
+                    <div className="text-center">
+                      <img
+                        src={URL.createObjectURL(photo)}
+                        alt="product_photo"
+                        height={"200px"}
+                        className="img img-responsive"
+                      />
+                    </div>
+                  ) : (
+                    <div className="text-center">
+                      <img
+                        src={`http://localhost:5000/api/lostfound/product-photo/${id}`}
+                        alt="product_photo"
+                        height={"200px"}
+                        className="img img-responsive"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="mb-3">
                   <input
-                    type="file"
-                    name="photo"
-                    accept="image/*"
-                    onChange={(e) => setPhoto(e.target.files[0])}
-                    hidden
+                    type="text"
+                    value={name}
+                    placeholder="write a name"
+                    className="form-control"
+                    onChange={(e) => setName(e.target.value)}
                   />
-                </label>
-              </div>
-              <div className="mb-3">
-                {photo ? (
-                  <div className="text-center">
-                    <img
-                      src={URL.createObjectURL(photo)}
-                      alt="product_photo"
-                      height={"200px"}
-                      className="img img-responsive"
-                    />
-                  </div>
-                ) : (
-                  <div className="text-center">
-                    <img
-                      src={`http://localhost:5000/api/lostfound/product-photo/${id}`}
-                      alt="product_photo"
-                      height={"200px"}
-                      className="img img-responsive"
-                    />
-                  </div>
-                )}
-              </div>
-              <div className="mb-3">
-                <input
-                  type="text"
-                  value={name}
-                  placeholder="write a name"
-                  className="form-control"
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <textarea
-                  type="text"
-                  value={description}
-                  placeholder="write a description"
-                  className="form-control"
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </div>
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    type="text"
+                    value={description}
+                    placeholder="write a description"
+                    className="form-control"
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </div>
 
-              <div className="mb-3">
-                <input
-                  type="text"
-                  value={location}
-                  placeholder="enter location"
-                  className="form-control"
-                  onChange={(e) => setLocation(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <input
-                  type='datetime-local'
-                  value={datetime}
-                  placeholder="enter date time"
-                  className="form-control"
-                  onChange={(e) => setDateTime(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <button className="submit-button1" onClick={handleUpdate}>
-                  UPDATE PRODUCT
-                </button>
-              </div>
-              <div className="mb-3">
-                <button className="danger-btn" onClick={handleDelete}>
-                  DELETE PRODUCT
-                </button>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    value={location}
+                    placeholder="enter location"
+                    className="form-control"
+                    onChange={(e) => setLocation(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="datetime-local"
+                    value={datetime}
+                    placeholder="enter date time"
+                    className="form-control"
+                    onChange={(e) => setDateTime(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <button className="submit-button1" onClick={handleUpdate}>
+                    UPDATE PRODUCT
+                  </button>
+                </div>
+                <div className="mb-3">
+                  <button className="danger-btn" onClick={handleDelete}>
+                    DELETE PRODUCT
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-            </form>
+          </form>
         </div>
       </div>
-      
     </Layout>
   );
 };

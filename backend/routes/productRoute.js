@@ -52,10 +52,9 @@ router.get("/search/:keyword", searchProductController);
 router.get("/get-user-product/:email", getUserProductController);
 
 //product-filters
-router.post("/product-filter",productFilterController);
+router.post("/product-filter", productFilterController);
 
 //delete deleted user's product
 router.delete("/deleted-user-product/:email", deletedUserProductController);
-
 
 export default router;

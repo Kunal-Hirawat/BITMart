@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../../UserMenu.css";
-import "../styles/CartStyles.css"
+import "../styles/CartStyles.css";
 const UserMenu = () => {
   return (
     <div>
@@ -24,20 +24,13 @@ const UserMenu = () => {
       </div> */}
       <div className="menu-layout">
         <div className="menu">
-          <h1>
-            Dashboard
-          </h1>
+          <h1>Dashboard</h1>
           <div className="menu-tabs">
-            <a href="/dashboard/user/profile">
-              Profile
-            </a>
-            <a href="/dashboard/user/orders">
-              Orders
-            </a>
+            <a href="/dashboard/user/profile">Profile</a>
+            <a href="/dashboard/user/orders">Orders</a>
           </div>
         </div>
-
-    </div>
+      </div>
     </div>
   );
 };

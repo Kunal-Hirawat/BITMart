@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-import {NavLink, Link} from "react-router-dom" ;
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 import "../../Header.css";
 import { MdShoppingCart } from "react-icons/md";
 import { HiShoppingBag } from "react-icons/hi2";
@@ -21,13 +21,12 @@ function Header() {
       setIcon("nav_toggler toggle");
     } else setIcon("nav_toggler");
   };
- 
-
 
   return (
     <nav className="nav">
       <Link to="/" className="nav_name">
-      <MdShoppingCart id="cart-logo" />BITMart
+        <MdShoppingCart id="cart-logo" />
+        BITMart
       </Link>
       <SearchInput></SearchInput>
       <ul className={active}>
@@ -46,31 +45,35 @@ function Header() {
             Lost/Found
           </NavLink>
         </li>
-        {
-          !auth.user ? (<>
-          <li className="nav_item">
-          <NavLink to="/login" className="nav_link">
-            SignIn
-          </NavLink>
-        </li>
-        <li className="nav_item">
-          <NavLink to="/register" className="nav_link">
-            SignUp
-          </NavLink>
-        </li>
-          </>) : (<>
-        <li className="nav_item">
-        <NavLink to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}>
-        <FaUser size={18}></FaUser>
-        </NavLink>
-        </li>
-        <li className="nav_item">
-          <NavLink to="/cart" className="nav_link">
-            <HiShoppingBag size={20}/>
-          </NavLink>
-        </li>
-          </>)
-        }
+        {!auth.user ? (
+          <>
+            <li className="nav_item">
+              <NavLink to="/login" className="nav_link">
+                SignIn
+              </NavLink>
+            </li>
+            <li className="nav_item">
+              <NavLink to="/register" className="nav_link">
+                SignUp
+              </NavLink>
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="nav_item">
+              <NavLink
+                to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
+              >
+                <FaUser size={18}></FaUser>
+              </NavLink>
+            </li>
+            <li className="nav_item">
+              <NavLink to="/cart" className="nav_link">
+                <HiShoppingBag size={20} />
+              </NavLink>
+            </li>
+          </>
+        )}
       </ul>
       <div onClick={navToggle} className={icon}>
         <div className="line1"></div>
