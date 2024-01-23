@@ -42,7 +42,7 @@ export const registerContoller= async(req,res) => {
         //saving user
         const user=new userModel({name,email,contact,password:hashedPassword,address,securityQuestion,securityAnswer:hashedAnswer}).save()
         
-        res.status(201).send({
+        return res.status(201).send({
             success:true,
             message:'User Registration Successful',
             user
@@ -92,7 +92,7 @@ export const loginController= async(req,res) =>{
         //extracting token
 
         const token =await JWT.sign({_id:user._id},process.env.JWT_KEY,{expiresIn: "7d"});
-        res.status(200).send({
+        return res.status(200).send({
             success:true,
             message:'Login Successful',
             user:{
@@ -109,7 +109,7 @@ export const loginController= async(req,res) =>{
         
     } catch (error) {
         console.log(error);
-        res.status(500).send({
+        return res.status(500).send({
             success:false,
             message:'Error!!!. Please Try Again'
         })
@@ -249,14 +249,14 @@ export const updateProfileController = async (req, res) => {
         },
         { new: true }
       );
-      res.status(200).send({
+      return res.status(200).send({
         success: true,
         message: "Profile Updated Successfully",
         updatedUser,
       });
     } catch (error) {
       console.log(error);
-      res.status(400).send({
+      return res.status(400).send({
         success: false,
         message: "Error While Updating profile",
         error,
@@ -267,14 +267,14 @@ export const updateProfileController = async (req, res) => {
   export const getUserController = async(req,res) => {
     try {
     const users=await userModel.find({});
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       usersCount: users.length,
       users,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error in getting users",
     });
@@ -292,13 +292,13 @@ export const deleteUserController = async (req, res) => {
         })
       }
       await userModel.findOneAndDelete({email:req.params.email});
-      res.status(200).send({
+      return res.status(200).send({
         success: true,
         message: "User Deleted successfully",
       });
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      return res.status(500).send({
         success: false,
         message: "Error while deleting user",
         error,

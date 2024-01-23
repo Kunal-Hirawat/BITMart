@@ -1,56 +1,123 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useSearch } from "../../context/search";
 import { FaSearch } from "react-icons/fa";
+import "./searchInput.css"
 
 const SearchInput = () => {
   const [state, setState] = useSearch();
-  const navigate=useNavigate();
+  const [type, setType] = useState("All");
+  const [keyword, setKeyword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit=async(e)=>{
+  const searchBuySell = async () => {
+    try {
+      const url = "http://localhost:5000/api/product/search";
+      const { data } = await axios.get(`${url}/${keyword}`);
+      setState({
+        ...state,
+        BuySellResults: data,
+        LostFoundResults: [],
+        type: type,
+        keyword: keyword,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went Wrong. Please Try Again");
+    }
+  };
+
+  const searchLostFound = async () => {
+    try {
+      const url = "http://localhost:5000/api/lostfound/search";
+      const { data } = await axios.get(`${url}/${keyword}`);
+      setState({
+        ...state,
+        LostFoundResults: data,
+        BuySellResults: [],
+        type: type,
+        keyword: keyword,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went Wrong. Please Try Again");
+    }
+  };
+
+  const searchBoth = async () => {
+    try {
+      const { data: lostFoundData } = await axios.get(
+        `http://localhost:5000/api/lostfound/search/${keyword}`
+      );
+      const { data: buySellData } = await axios.get(
+        `http://localhost:5000/api/product/search/${keyword}`
+      );
+      setState({
+        ...state,
+        LostFoundResults: lostFoundData,
+        BuySellResults: buySellData,
+        type: type,
+        keyword: keyword,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went Wrong. Please Try Again");
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-        const url = "http://localhost:5000/api/product/search";
-        const {data}=await axios.get(`${url}/${state.keyword}`);
-        console.log(data);
-        setState({...state,results:data});
-        navigate("/search");
-        
+      if(!keyword){
+        return;
+      }
+      if (type == "BuySell") {
+        searchBuySell();
+      } else if (type === "LostFound") {
+        searchLostFound();
+      } else {
+        searchBoth();
+      }
+      navigate("/search");
     } catch (error) {
-        console.log(error);
-        toast.error("Something Went Wrong. Please Try Again");
+      console.log(error);
+      toast.error("Something Went Wrong. Please Try Again");
     }
-  }
+  };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="search-form">
+        <div className="search-form-div">
+        <select value={type} onChange={(e) => setType(e.target.value)} className="search-select">
+          <option value="All" selected>
+            All
+          </option>
+          <option value="BuySell">Buy/Sell</option>
+          <option value="LostFound">Lost/Found</option>
+        </select>
+        </div>
+        <div className="search-form-div">
         <input
           type="search"
           placeholder="Search"
-          value={state.keyword}
-          onChange={(e) => setState({ ...state, keyword: e.target.value })}
-          style={{
-            width:"25vw",
-            borderRadius:"2.2vh",
-            height:"4.25vh",
-            paddingLeft:"0.5vw",
-            border:"none",
-            backgroundColor:'#f5f9fc',
-            color:"#062e58",  
-            fontWeight:"bold",
-          }}
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          className="search-input"
         ></input>
-        <button type="submit" style={{
-          paddingTop:"20px",
-          margin:"-25px",
-          backgroundColor:"transparent",
-          border:"none",
-          cursor:"pointer"
-        }}><div><FaSearch></FaSearch></div></button>
+        </div>
+        <div className="search-form-div">
+        <button
+          type="submit"
+        >
+          <div className="search-icon-div">
+            <FaSearch className="search-icon"></FaSearch>
+          </div>
+        </button>
+        </div>
       </form>
     </div>
   );

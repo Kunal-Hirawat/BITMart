@@ -43,13 +43,13 @@ export const createProductController = async (req, res) => {
     }
 
     await product.save();
-    res.status(201).send({
+    return res.status(201).send({
       success: true,
       message: "product successfully created",
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Something Went Wrong. Please Try Again",
     });
@@ -59,14 +59,14 @@ export const createProductController = async (req, res) => {
 export const getProductController = async (req, res) => {
   try {
     const products = await productModel.find({}).select("-photo").limit(12);
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       productsCount: products.length,
       products,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error in getting products",
     });
@@ -76,13 +76,13 @@ export const getProductController = async (req, res) => {
 export const getSingleProductController = async (req, res) => {
   try {
     const product = await productModel.findById(req.params.pid);
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       product,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error in getting the product",
     });
@@ -98,7 +98,7 @@ export const productPhotoController = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error in fetching photo",
       error,
@@ -110,13 +110,13 @@ export const productPhotoController = async (req, res) => {
 export const deleteProductController = async (req, res) => {
   try {
     await productModel.findByIdAndDelete(req.params.pid).select("-photo");
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       message: "Product Deleted successfully",
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error while deleting product",
       error,
@@ -155,14 +155,14 @@ export const updateProductController = async (req, res) => {
       products.photo.contentType = photo.type;
     }
     await products.save();
-    res.status(201).send({
+    return res.status(201).send({
       success: true,
       message: "Product Updated Successfully",
       products,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       error,
       message: "Error in Updating product",
@@ -184,7 +184,7 @@ export const searchProductController = async (req, res) => {
     res.json(results);
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       error,
       message: "Error in searching product",
@@ -195,7 +195,7 @@ export const searchProductController = async (req, res) => {
 export const getUserProductController = async (req, res) => {
   try {
     const products = await productModel.find({email: req.params.email}).select("-photo");
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       productsCount: products.length,
       products,
@@ -203,7 +203,7 @@ export const getUserProductController = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error in getting products",
     });
@@ -216,14 +216,14 @@ export const productFilterController=async(req,res)=>{
 
       const {radio}=req.body
       const products=await productModel.find({price:{$gt:radio[0],$lte:radio[1]}})
-      res.status(200).send({
+      return res.status(200).send({
         success:true,
         products,
       })
       
   } catch (error) {
       console.log(error);
-    res.status(400).send({
+    return res.status(400).send({
       success: false,
       message: "Error while applying filter",
       error,
@@ -235,13 +235,13 @@ export const productFilterController=async(req,res)=>{
 export const deletedUserProductController = async (req, res) => {
   try {
     await productModel.deleteMany({email:req.params.email});
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       message: "Product Deleted successfully",
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error while deleting product",
       error,

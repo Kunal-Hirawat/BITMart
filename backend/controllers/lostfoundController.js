@@ -43,13 +43,13 @@ export const createLostfoundController = async (req, res) => {
     }
 
     await product.save();
-    res.status(201).send({
+    return res.status(201).send({
       success: true,
       message: "Lost Found successfully created",
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Something Went Wrong. Please Try Again",
     });
@@ -60,13 +60,13 @@ export const createLostfoundController = async (req, res) => {
 export const getSingleLostfoundController = async (req, res) => {
     try {
       const product = await LostfoundModel.findById(req.params.pid);
-      res.status(200).send({
+      return res.status(200).send({
         success: true,
         product,
       });
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      return res.status(500).send({
         success: false,
         message: "Error in getting the product",
       });
@@ -77,14 +77,14 @@ export const getSingleLostfoundController = async (req, res) => {
 export const getLostfoundController = async (req, res) => {
     try {
       const products = await LostfoundModel.find({}).select("-photo").limit(12);
-      res.status(200).send({
+      return res.status(200).send({
         success: true,
         productsCount: products.length,
         products,
       });
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      return res.status(500).send({
         success: false,
         message: "Error in getting items",
       });
@@ -101,7 +101,7 @@ export const getLostfoundController = async (req, res) => {
       }
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      return res.status(500).send({
         success: false,
         message: "Error in fetching photo",
         error,
@@ -112,14 +112,14 @@ export const getLostfoundController = async (req, res) => {
 
   export const deleteLostfoundController = async (req, res) => {
     try {
-      await LostfoundModel.findByIdAndDelete(req.params.pid).select("-photo");
-      res.status(200).send({
+    await LostfoundModel.findByIdAndDelete(req.params.pid).select("-photo");
+      return res.status(200).send({
         success: true,
         message: "Product Deleted successfully",
       });
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      return res.status(500).send({
         success: false,
         message: "Error while deleting product",
         error,
@@ -159,14 +159,14 @@ export const getLostfoundController = async (req, res) => {
         products.photo.contentType = photo.type;
       }
       await products.save();
-      res.status(201).send({
+      return res.status(201).send({
         success: true,
         message: "Item Updated Successfully",
         products,
       });
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      return res.status(500).send({
         success: false,
         error,
         message: "Error in Updating item",
@@ -190,7 +190,7 @@ export const getLostfoundController = async (req, res) => {
       res.json(results);
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      return res.status(500).send({
         success: false,
         error,
         message: "Error in searching product",
@@ -203,14 +203,14 @@ export const getLostfoundController = async (req, res) => {
   export const getUserLostfoundController = async (req, res) => {
     try {
       const products = await LostfoundModel.find({email: req.params.email}).select("-photo");
-      res.status(200).send({
+      return res.status(200).send({
         success: true,
         productsCount: products.length,
         products,
       });
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      return res.status(500).send({
         success: false,
         message: "Error in getting products",
       });
@@ -223,14 +223,14 @@ export const getLostfoundController = async (req, res) => {
   
         const {startDate,endDate}=req.body
         const products=await LostfoundModel.find({datetime:{$gte:startDate,$lte:endDate}})
-        res.status(200).send({
+        return res.status(200).send({
           success:true,
           products,
         })
         
     } catch (error) {
         console.log(error);
-      res.status(400).send({
+      return res.status(400).send({
         success: false,
         message: "Error while applying filter",
         error,
@@ -242,13 +242,13 @@ export const getLostfoundController = async (req, res) => {
   export const deletedUserLostFoundController = async (req, res) => {
     try {
       await LostfoundModel.deleteMany({email:req.params.email});
-      res.status(200).send({        
+      return res.status(200).send({        
         success: true,
         message: "Product Deleted successfully",
       });
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      return res.status(500).send({
         success: false,
         message: "Error while deleting product",
         error,

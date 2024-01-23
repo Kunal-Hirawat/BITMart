@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <Layout title={"Contact us"}>
       <div className="row contactus " >
-        <img src={supportImage} style={{
+        <img src={supportImage} alt="support" style={{
           height:"60vh",
           width:"30vw"
         }}></img>

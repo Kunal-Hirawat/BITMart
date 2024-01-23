@@ -51,7 +51,7 @@ const CreateProductUser = () => {
         isLostFound==="true"?"http://localhost:5000/api/lostfound/create-product":"http://localhost:5000/api/product/create-product",
         productData
       );
-      if (data?.success) {
+      if (data?.success==false) {
         toast.error(data?.message);
       } else {
         toast.success("Product Created Successfully");

@@ -4,7 +4,9 @@ const SearchContext = createContext();
 const SearchProvider = ({ children }) => {
   const [state, setState] = useState({
     keyword: "",
-    results: [],
+    type:"All",
+    BuySellResults: [],
+    LostFoundResults:[],
   });
 
   return (
