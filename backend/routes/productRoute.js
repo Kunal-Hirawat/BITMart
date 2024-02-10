@@ -28,7 +28,6 @@ router.post(
 router.put(
   "/update-product/:pid",
   requireSignIn,
-  isAdmin,
   formidable(),
   updateProductController
 );

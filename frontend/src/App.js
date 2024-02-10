@@ -27,6 +27,7 @@ import LostFound from "./pages/LostFound.js";
 import UpdateLostFoundProduct from "./pages/user/UpdateLostFoundProduct.js";
 import AdminProfile from "./pages/Admin/AdminProfile.js";
 import UpdateAdminLostFound from "./pages/Admin/UpdateAdminLostFoundProduct.js";
+import LostFoundProduct from "./pages/LostFoundProduct.js";
 
 function App() {
   const [auth] = useAuth();
@@ -89,6 +90,7 @@ function App() {
         <Route path="/buy-sell" element={<BuySell />}></Route>
         <Route path="/lost-found" element={<LostFound></LostFound>}></Route>
         <Route path="*" element={<Pagenotfound />} />
+        <Route path="/lostfound/:id" element={<LostFoundProduct/>} />
       </Routes>
     </>
   );
