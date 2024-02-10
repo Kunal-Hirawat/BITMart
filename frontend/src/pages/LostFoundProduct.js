@@ -6,7 +6,7 @@ import { useCart } from "../context/cart";
 import "../ProductDetails.css";
 import toast from "react-hot-toast";
 
-const Product = () => {
+const LostFoundProduct = () => {
   const params = useParams();
   const [cart, setCart] = useCart();
   const [product, setProduct] = useState({});
@@ -19,7 +19,7 @@ const Product = () => {
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/product/get-product/${params.id}`
+        `http://localhost:5000/api/lostfound/get-product/${params.id}`
       );
       setProduct(data?.product);
     } catch (error) {
@@ -33,7 +33,7 @@ const Product = () => {
       <div className="row container product-details">
         <div className="col-md-6">
           <img
-            src={`http://localhost:5000/api/product/product-photo/${product._id}`}
+            src={`http://localhost:5000/api/lostfound/product-photo/${product._id}`}
             className="card-img-top imgBorder"
             alt={product.name}
             height="300"
@@ -46,13 +46,13 @@ const Product = () => {
           <hr />
           <h6>Name : {product.name}</h6>
           <h6>Description : {product.description}</h6>
-          <h6>
+          {/* <h6>
             Price :
             {product?.price?.toLocaleString("en-US", {
               style: "currency",
               currency: "INR",
             })}
-          </h6>
+          </h6> */}
           <button
             className="submit-button2"
             onClick={() => {
@@ -88,6 +88,5 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default LostFoundProduct;
 
-///  1 2 3 4

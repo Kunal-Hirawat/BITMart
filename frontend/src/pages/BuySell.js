@@ -261,6 +261,7 @@ const BuySell = () => {
                     className="card-img-top"
                     alt={p.name}
                   />
+<<<<<<< HEAD
                   <div className="card-body">
                     <div className="card-name-price">
                       <h5 className="card-title">{p.name}</h5>
@@ -291,6 +292,37 @@ const BuySell = () => {
                         </button>
                       )}
                     </div>
+=======
+                <div className="card-body">
+                  <div className="card-name-price">
+                    <h5 className="card-title">{p.name}</h5>
+                    <h5 className="card-title card-price">
+                      {p.price.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "INR",
+                      })}
+                    </h5>
+                  </div>
+                  <p className="card-text ">
+                    {p.description.substring(0, 20)}...
+                  </p>
+                  <div className="card-name-price">
+                    {!auth.user ? (
+                      <button
+                        className="btn btn-info ms-1"
+                        onClick={() => navigate(`/login`)}
+                      >
+                        More Details
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-info ms-1"
+                        onClick={() => navigate(`/product/${p._id}`)}
+                      >
+                        More Details
+                      </button>
+                    )}
+>>>>>>> Kunal
                   </div>
                 </div>
               ))}
