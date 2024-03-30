@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
+import { useAuth } from "../context/auth";
 import "../ProductDetails.css";
 import toast from "react-hot-toast";
 
 const Product = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const [cart, setCart] = useCart();
+  const [auth] = useAuth();
   const [product, setProduct] = useState({});
 
   //initalp details
@@ -53,6 +56,7 @@ const Product = () => {
               currency: "INR",
             })}
           </h6>
+        
           <button
             className="submit-button2"
             onClick={() => {
