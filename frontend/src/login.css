@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f9fc;
+  background: white;
 }
 
 .login {
@@ -22,19 +22,19 @@
   padding: 70px;
   padding-left: 50px;
   padding-right: 120px;
-  color: #062e58;
+  color: black;
   font-weight: 700;
   font-size: larger;
 }
 
 .login p {
-  color: gray;
+  color: black;
   font-weight: 200;
   font-size: small;
 }
 
 .login a {
-  color: gray;
+  color: black;
   font-weight: 200;
   font-size: small;
   text-decoration: underline;
@@ -42,6 +42,7 @@
 
 .login h1 {
   padding: 10px;
+  font-weight: bolder;
 }
 
 .login form {
@@ -58,11 +59,11 @@
 .form-input input {
   outline: none;
   border: none;
-  border-bottom: 2px solid #062e58;
-  background: #f5f9fc;
+  border-bottom: 2px solid black;
+  background: white;
   width: 320px;
   font-size: large;
-  color: #062e58;
+  color: black;
   font-weight: 700;
 }
 .form-input i {
@@ -76,9 +77,9 @@
 
 .submit-button {
   align-items: center;
-  background-color: #062e58;
+  background-color: black;
   border-radius: 100px;
-  color: white;
+  color: black;
   cursor: pointer;
   display: inline-flex;
   font-size: 16px;
@@ -94,16 +95,16 @@
   padding-right: 20px;
   text-align: center;
   touch-action: manipulation;
-  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-    box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-    color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  box-shadow: 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  color: 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
   vertical-align: middle;
 }
 
 .submit-button:hover,
 .submit-button:focus {
-  background-color: #16437e;
-  color: white;
+  background-color: black;
+  color: black;
 }
 
 .submit-button:active {

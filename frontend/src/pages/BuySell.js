@@ -9,6 +9,7 @@ import { RiHeart3Fill } from "react-icons/ri";
 import "../BuySell.css";
 import { Prices } from "../components/Prices";
 import toast from "react-hot-toast";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const BuySell = () => {
   const navigate = useNavigate();
@@ -88,10 +89,7 @@ const BuySell = () => {
 
   const deselectOnClick = async (e) => {
     const { value } = e.target;
-    console.log(value);
-    console.log(selectedValue);
     if (value == selectedValue) {
-      console.log("double clicked button", value);
       setSelectedValue(null);
       setRadio([]);
     }
@@ -253,7 +251,7 @@ const BuySell = () => {
                       onClick={() => handleClick(p)}
                     ></RiHeart3Fill>
                   </div>
-                  <img
+                  <LazyLoadImage
                     src={`http://localhost:5000/api/product/product-photo/${p._id}`}
                     onClick={() =>
                       navigate(!auth.user ? `/login` : `/product/${p._id}`)

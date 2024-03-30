@@ -23,38 +23,39 @@ function Header() {
   };
 
   return (
+    <div className="padding-div">
     <nav className="nav">
       <Link to="/" className="nav_name">
         <MdShoppingCart id="cart-logo" />
-        BITMart
+        BITMART
       </Link>
       <SearchInput></SearchInput>
       <ul className={active}>
         <li className="nav_item">
           <NavLink to="/" className="nav_link">
-            Home
+            HOME
           </NavLink>
         </li>
         <li className="nav_item">
           <NavLink to="/buy-sell" className="nav_link">
-            Buy/Sell
+            BUY/SELL
           </NavLink>
         </li>
         <li className="nav_item">
           <NavLink to="/lost-found" className="nav_link">
-            Lost/Found
+            LOST/FOUND
           </NavLink>
         </li>
         {!auth.user ? (
           <>
             <li className="nav_item">
               <NavLink to="/login" className="nav_link">
-                SignIn
+                 SIGNIN
               </NavLink>
             </li>
             <li className="nav_item">
               <NavLink to="/register" className="nav_link">
-                SignUp
+                SIGNUP
               </NavLink>
             </li>
           </>
@@ -81,6 +82,7 @@ function Header() {
         <div className="line3"></div>
       </div>
     </nav>
+    </div>
   );
 }
 

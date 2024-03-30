@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Layout from "./../components/Layout/Layout";
 import { useAuth } from "../context/auth";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../BuySell.css";
 import toast from "react-hot-toast";
 
@@ -155,7 +156,7 @@ const LostFound = () => {
             <div className="d-flex flex-wrap">
               {products?.map((p) => (
                 <div className="card m-2" key={p._id}>
-                  <img
+                  <LazyLoadImage
                     src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}

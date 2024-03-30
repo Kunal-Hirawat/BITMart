@@ -7,6 +7,7 @@ import "../../BuySell.css";
 import "../../components/styles/CartStyles.css";
 import { useAuth } from "../../context/auth";
 import UserMenu from "../../components/Layout/UserMenu";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const UserProduct = () => {
   const [products, setProducts] = useState([]);
@@ -67,7 +68,7 @@ const UserProduct = () => {
                     className="product-link"
                   >
                     <div className="card m-2" style={{ width: "18rem" }}>
-                      <img
+                      <LazyLoadImage
                         src={`http://localhost:5000/api/product/product-photo/${p._id}`}
                         className="card-img-top"
                         alt={p.name}
@@ -92,7 +93,7 @@ const UserProduct = () => {
                     className="product-link"
                   >
                     <div className="card m-2" style={{ width: "18rem" }}>
-                      <img
+                      <LazyLoadImage
                         src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
                         className="card-img-top"
                         alt={p.name}

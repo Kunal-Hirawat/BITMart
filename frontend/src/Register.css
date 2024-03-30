@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f9fc;
+  background: white;
 }
 
 .register {
@@ -23,20 +23,20 @@
   padding-left: 100px;
   padding-right: 120px;
   padding-left: 80px;
-  color: #062e58;
+  color: black;
   font-weight: 700;
   font-size: larger;
 }
 
 .register p {
-  color: gray;
+  color: black;
   font-weight: 200;
   font-size: small;
   padding-bottom: 30px;
 }
 
 .register a {
-  color: gray;
+  color: black;
   font-weight: 200;
   font-size: small;
   text-decoration: underline;
@@ -61,12 +61,12 @@
 .form-input select {
   outline: none;
   border: none;
-  border-bottom: 2px solid #062e58;
+  border-bottom: 2px solid black;
   /* background: #f5f9fc; */
-  background: #c1d0dc;
-  width: 22vw;
+  background: white;
+  min-width: 27vw;
   font-size: large;
-  color: #062e58;
+  color: black;
   font-weight: 700;
 }
 
@@ -81,7 +81,7 @@ i {
 
 .submit-button {
   align-items: center;
-  background-color: #062e58;
+  background-color: black;
   border-radius: 100px;
   color: white;
   cursor: pointer;
@@ -119,7 +119,7 @@ i {
 .submit-button:disabled {
   cursor: not-allowed;
   background: rgba(0, 0, 0, 0.08);
-  color: rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
 #image {

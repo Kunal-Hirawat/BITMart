@@ -17,7 +17,7 @@ li {
 }
 a {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 a:hover {
@@ -28,12 +28,24 @@ a:hover {
   transition: all 0.4s ease 0s;
 }
 
+.padding-div{
+  height: 10vh;
+}
+
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-around;
   height: 10vh;
-  background: rgb(0, 33, 65);
+  width: 100%;
+  backdrop-filter: blur(20px);
+  box-shadow: 0px 0px 20px 0px rgba(13, 2, 134, 0.215);
+  background: rgb(255, 255, 255);
+  position: fixed;
+  margin: 0;
+  z-index: 100;
+  font-size: 1.9rem;
+  font-weight: 600;
 }
 .nav_name {
   font-family: "Baloo Bhai 2", sans-serif;
@@ -86,7 +98,9 @@ input[type="search"]::-webkit-search-results-decoration {
     right: 0;
     height: 93vh;
     width: 40vw;
-    background: rgb(0, 33, 65);
+    backdrop-filter: blur(20px);
+    box-shadow: 0px 0px 20px 0px rgba(13, 2, 134, 0.215);
+    background: transparent;
     opacity: 0.9;
     flex-direction: column;
     transform: translateX(100%);

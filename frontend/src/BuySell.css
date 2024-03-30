@@ -151,7 +151,12 @@
 }
 
 .home-page .card img:hover {
-  transform: scale(1.04);
+  transform: scale(1.021);
+  cursor: pointer;
+}
+
+.home-page .card img{
+  transition: transform 0.28s ease-in-out;
 }
 
 .home-page .card-img-top {
@@ -185,4 +190,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.filter-input-container input{
+  padding: 2px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  transition: border 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+
+.filter-input-container input:hover{
+  border: 1px solid blue;
 }

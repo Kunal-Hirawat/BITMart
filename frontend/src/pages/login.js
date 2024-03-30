@@ -57,8 +57,7 @@ const Login = () => {
       <div className="login-page">
         <FaUser size={"115"} id="login-image"></FaUser>
         <div className="login">
-          <div></div>
-          <h1>Welcome Back</h1>
+          <h1>WELCOME</h1>
           <form method="post" onSubmit={handleSubmit}>
             <div className="form-input">
               <i>

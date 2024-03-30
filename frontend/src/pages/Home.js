@@ -6,7 +6,9 @@ import Layout from "../components/Layout/Layout";
 import { useAuth } from "../context/auth";
 import { useCart } from "../context/cart";
 import { RiHeart3Fill } from "react-icons/ri";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../Home.css";
+import { FaArrowRight } from "react-icons/fa6";
 
 const Home = () => {
   const [auth] = useAuth();
@@ -14,6 +16,7 @@ const Home = () => {
   const [cart, setCart] = useCart();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const [lostFound, setLostFound] = useState([]);
 
   const getProducts = async () => {
     try {
@@ -22,6 +25,19 @@ const Home = () => {
       );
       // console.log(data.products);
       setProducts(data.products);
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went Wrong");
+    }
+  };
+
+  const getLostFoundProducts = async () => {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:5000/api/lostfound/get-product"
+      );
+      // console.log(data.products);
+      setLostFound(data.products);
     } catch (error) {
       console.log(error);
       toast.error("Something Went Wrong");
@@ -57,11 +73,31 @@ const Home = () => {
     }
   };
 
+  const formatDate = (date) => {
+    const datetime = new Date(date);
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+    const formattedDate = formatter.format(datetime);
+    const [datePart, timePart] = formattedDate.split(", ");
+    const [month, day, year] = datePart.split("/");
+    const [time, ampm] = timePart.split(" ");
+    const output = `${day}-${month}-${year} ${time}${ampm}`;
+    return output;
+  };
+
   // Fetch products from the backend
   useEffect(() => {
     getProducts();
+    getLostFoundProducts();
   }, []);
   const latestProducts = products.slice(-4);
+  const lostFoundProducts = lostFound.slice(-4);
 
   useEffect(() => {
     const initialWishlistState = {};
@@ -77,35 +113,84 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="welcome">
-        {/* <h2>Welcome to BITMart</h2> */}
-        {/* <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan quam ac nisl sodales, eu dictum metus luctus. 
-                    Maecenas et tincidunt dui. In id mattis est, sed congue tortor. Cras vitae quam ut sem elementum ultrices vel et felis.
-                     Mauris condimentum lectus vel dui dapibus.
-                </p> */}
-      </div>
-      <div className="products">
-        <h2 className="prod_head">Latest Products</h2>
-        <div className="card_container">
-          {latestProducts?.map((p) => (
-            <div key={p._id}>
-              <div className="card" style={{ width: "28rem" }}>
-                <div className="heart-container">
-                  <RiHeart3Fill
-                    className={wishlist[p._id] ? "heart-active" : "heart"}
-                    onClick={() => handleClick(p)}
-                  ></RiHeart3Fill>
+      <div>
+        <div className="welcome"></div>
+        <div className="products-container">
+        <div className="products" id="products">
+          <p className="prod_head">Checkout New Products</p>
+          <div className="card_container">
+            {latestProducts?.map((p) => (
+              <div key={p._id}>
+                <div className="card" style={{ width: "28rem" }}>
+                  <div className="heart-container">
+                    <RiHeart3Fill
+                      className={wishlist[p._id] ? "heart-active" : "heart"}
+                      onClick={() => handleClick(p)}
+                    ></RiHeart3Fill>
+                  </div>
+                  <LazyLoadImage
+                    src={`http://localhost:5000/api/product/product-photo/${p._id}`}
+                    className="card-img"
+                    alt={p.name}
+                  />
+                  <div className="card-body">
+                    <h3 className="card-title">{p.name}</h3>
+                    <p className="card-text">Desc : {p.description} </p>
+                    <p className="card-text">Price : {p.price} </p>
+                    <p className="card-text">Quantity : {p.quantity} </p>
+                    <div className="card-name-price">
+                      {!auth.user ? (
+                        <button
+                          className="btn btn-info ms-1"
+                          onClick={() => navigate(`/login`)}
+                        >
+                          More Details
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-info ms-1"
+                          onClick={() => navigate(`/product/${p._id}`)}
+                        >
+                          More Details
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </div>
-                <img
-                  src={`http://localhost:5000/api/product/product-photo/${p._id}`}
+              </div>
+            ))}
+            <Link
+              to="/buy-sell"
+              className="card view-more-button"
+              style={{ width: "20rem" }}
+            >
+              <b>View More</b>
+              <i>
+                <FaArrowRight></FaArrowRight>
+              </i>
+            </Link>
+          </div>
+        </div>
+        <div className="products" id="products">
+          <p className="prod_head">Lost Something?</p>
+          <div className="card_container">
+            {lostFoundProducts?.map((p) => (
+              <div className="card" key={p._id}>
+                <LazyLoadImage
+                  src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
                   className="card-img"
                   alt={p.name}
+                  onClick={() =>
+                    navigate(!auth.user ? `/login` : `/lostfound/${p._id}`)
+                  }
                 />
                 <div className="card-body">
-                  <h3 className="card-title">{p.name}</h3>
-                  <p className="card-text">Desc : {p.description} </p>
-                  <p className="card-text">Price : {p.price} </p>
-                  <p className="card-text">Quantity : {p.quantity} </p>
+                  <h5 className="card-title">{p.name}</h5>
+                  <h5 className="card-text">{formatDate(p.datetime)}</h5>
+                  <p className="card-text ">{p.description.substring(0, 60)}</p>
+                  <p className="card-text ">
+                    <b>Location:</b> {p.location.substring(0, 60)}
+                  </p>
                   <div className="card-name-price">
                     {!auth.user ? (
                       <button
@@ -117,7 +202,7 @@ const Home = () => {
                     ) : (
                       <button
                         className="btn btn-info ms-1"
-                        onClick={() => navigate(`/product/${p._id}`)}
+                        onClick={() => navigate(`/lostfound/${p._id}`)}
                       >
                         More Details
                       </button>
@@ -125,13 +210,20 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+            <Link
+              to="/lost-found"
+              className="card view-more-button"
+              style={{ width: "20rem" }}
+            >
+              <b>View More</b>
+              <i>
+                <FaArrowRight></FaArrowRight>
+              </i>
+            </Link>
+          </div>
         </div>
-
-        <Link to="/buy-sell" className="more-btn">
-          <button>For More Products Click Here</button>
-        </Link>
+      </div>
       </div>
     </Layout>
   );

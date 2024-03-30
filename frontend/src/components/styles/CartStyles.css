@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 /* .dashboard-body{
   background-image: url("../../assets/images/OR68V80.jpg");
   min-height: 70vh;
 }  */
 
+=======
+/* body{
+  background-image: url("../../assets/images/OR68V80.jpg");
+} */
+>>>>>>> 9e90e60402389865770929724cada85634a6738e
 .cart-page {
   margin-top: 64px;
 }
