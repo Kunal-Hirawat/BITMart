@@ -5,21 +5,12 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import "../../components/styles/CartStyles.css";
 import { Link, useNavigate } from "react-router-dom";
+import AdminMenu from "../../components/Layout/AdminMenu";
 
 export default function AdminProfile() {
   const navigate = useNavigate();
   const [auth, setAuth] = useAuth();
-  const handleLogout = () => {
-    setAuth({
-      ...auth,
-      user: null,
-      token: "",
-    });
-    localStorage.removeItem("auth");
-    localStorage.removeItem("cart");
-    toast.success("LogOut Successful");
-    window.location.reload();
-  };
+
   //state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -69,23 +60,13 @@ export default function AdminProfile() {
 
   return (
     <Layout title={"Your Profile"}>
+    <div className="dashboard-body">
       <div className="menu-layout">
-        <div className="menu">
-          <h1>Dashboard</h1>
-          <div className="menu-tabs">
-            <a href="/dashboard/admin/profile">Update Profile</a>
-            <a href="/dashboard/admin/create-product">Create Product</a>
-            <a href="/dashboard/admin/user-products">Products</a>
-            <a href="/dashboard/admin/users">Users</a>
-            <Link onClick={handleLogout} to="../" className="nav_link">
-              LogOut
-            </Link>
-          </div>
-        </div>
+        <AdminMenu />
 
         <div className="form ">
           <form onSubmit={handleSubmit} className="form-container-2">
-            <h1> User Profile </h1>
+            <h1> Admin Profile </h1>
             <input
               type="text"
               value={name}
@@ -123,6 +104,7 @@ export default function AdminProfile() {
             </button>
           </form>
         </div>
+      </div>
       </div>
     </Layout>
   );

@@ -24,6 +24,7 @@ const Spinner = () => {
           <span className="visually-hidden">Loading...</span>
         </div>
       </div> */}
+      <div className="dashboard-body">
       <div className="spin" style={{ height: "100vh" }}>
         <h1>Redirecting to the login page in {count} seconds </h1>
         <div>
@@ -31,6 +32,7 @@ const Spinner = () => {
             <img src={loading} alt="loading"></img>
           </span>
         </div>
+      </div>
       </div>
     </>
   );

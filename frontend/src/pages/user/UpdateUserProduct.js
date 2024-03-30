@@ -6,6 +6,7 @@ import Layout from "../../components/Layout/Layout";
 import "../../components/styles/CartStyles.css";
 import { useAuth } from "../../context/auth";
 import { Link } from "react-router-dom";
+import UserMenu from "../../components/Layout/UserMenu";
 
 const UpdateUserProduct = () => {
   const navigate = useNavigate();
@@ -18,17 +19,7 @@ const UpdateUserProduct = () => {
   const [id, setId] = useState("");
 
   const [auth, setAuth] = useAuth();
-  const handleLogout = () => {
-    setAuth({
-      ...auth,
-      user: null,
-      token: "",
-    });
-    localStorage.removeItem("auth");
-    localStorage.removeItem("cart");
-    toast.success("LogOut Successful");
-    window.location.reload();
-  };
+  
 
   //get single product
   const getSingleProduct = async () => {
@@ -95,19 +86,9 @@ const UpdateUserProduct = () => {
   };
   return (
     <Layout title={"Dashboard - Create Product"}>
+    <div className="dashboard-body">
       <div className="menu-layout">
-        <div className="menu">
-          <h1>Dashboard</h1>
-          <div className="menu-tabs">
-            <a href="/dashboard/user/profile">Update Profile</a>
-            <a href="/dashboard/user/create-product">Create Product</a>
-            <a href="/dashboard/user/user-products">Products</a>
-            <a href="/cart">My Favourites</a>
-            <Link onClick={handleLogout} to="../" className="nav_link">
-              LogOut
-            </Link>
-          </div>
-        </div>
+        <UserMenu />
 
         <div className="form ">
           <form className="form-container-2">
@@ -198,6 +179,7 @@ const UpdateUserProduct = () => {
             </div>
           </form>
         </div>
+      </div>
       </div>
     </Layout>
   );

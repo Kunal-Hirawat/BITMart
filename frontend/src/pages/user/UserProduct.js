@@ -6,23 +6,13 @@ import Layout from "../../components/Layout/Layout";
 import "../../BuySell.css";
 import "../../components/styles/CartStyles.css";
 import { useAuth } from "../../context/auth";
+import UserMenu from "../../components/Layout/UserMenu";
 
 const UserProduct = () => {
   const [products, setProducts] = useState([]);
   const [lostfound, setLostFound] = useState([]);
   const [auth, setAuth] = useAuth();
 
-  const handleLogout = () => {
-    setAuth({
-      ...auth,
-      user: null,
-      token: "",
-    });
-    localStorage.removeItem("auth");
-    localStorage.removeItem("cart");
-    toast.success("LogOut Successful");
-    window.location.reload();
-  };
 
   //get all products
   const getAllProducts = async () => {
@@ -60,19 +50,9 @@ const UserProduct = () => {
   }, []);
   return (
     <Layout>
+    <div className="dashboard-body">
       <div className="menu-layout">
-        <div className="menu">
-          <h1>Dashboard</h1>
-          <div className="menu-tabs">
-            <a href="/dashboard/user/profile">Update Profile</a>
-            <a href="/dashboard/user/create-product">Create Product</a>
-            <a href="/dashboard/user/user-products">Products</a>
-            <a href="/cart">My Favourites</a>
-            <Link onClick={handleLogout} to="../" className="nav_link">
-              LogOut
-            </Link>
-          </div>
-        </div>
+        <UserMenu />
 
         <div className="form ">
           <form className="form-container-2">
@@ -128,6 +108,7 @@ const UserProduct = () => {
             </div>
           </form>
         </div>
+      </div>
       </div>
     </Layout>
   );
