@@ -6,6 +6,7 @@ import Layout from "../components/Layout/Layout";
 import { useAuth } from "../context/auth";
 import { useCart } from "../context/cart";
 import { RiHeart3Fill } from "react-icons/ri";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../Home.css";
 
 const Home = () => {
@@ -77,6 +78,7 @@ const Home = () => {
 
   return (
     <Layout>
+      <div>
       <div className="welcome">
         {/* <h2>Welcome to BITMart</h2> */}
         {/* <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan quam ac nisl sodales, eu dictum metus luctus. 
@@ -84,7 +86,7 @@ const Home = () => {
                      Mauris condimentum lectus vel dui dapibus.
                 </p> */}
       </div>
-      <div className="products">
+      <div className="products" id="products">
         <h2 className="prod_head">Latest Products</h2>
         <div className="card_container">
           {latestProducts?.map((p) => (
@@ -96,7 +98,7 @@ const Home = () => {
                     onClick={() => handleClick(p)}
                   ></RiHeart3Fill>
                 </div>
-                <img
+                <LazyLoadImage
                   src={`http://localhost:5000/api/product/product-photo/${p._id}`}
                   className="card-img"
                   alt={p.name}
@@ -132,6 +134,7 @@ const Home = () => {
         <Link to="/buy-sell" className="more-btn">
           <button>For More Products Click Here</button>
         </Link>
+      </div>
       </div>
     </Layout>
   );

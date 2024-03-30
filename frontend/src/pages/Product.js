@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useCart } from "../context/cart";
 import "../ProductDetails.css";
 import toast from "react-hot-toast";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Product = () => {
   const params = useParams();
@@ -32,7 +33,7 @@ const Product = () => {
       {/* console.log({product._id}); */}
       <div className="row container product-details">
         <div className="col-md-6">
-          <img
+          <LazyLoadImage
             src={`http://localhost:5000/api/product/product-photo/${product._id}`}
             className="card-img-top imgBorder"
             alt={product.name}

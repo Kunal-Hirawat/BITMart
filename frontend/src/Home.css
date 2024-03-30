@@ -1,10 +1,13 @@
 .welcome {
   height: 90vh;
   width: 100%;
-  background-color: #f5f9fc;
-  background: url("../src/assets/images/5138228.gif") no-repeat;
+  background-color:black;
+  background: url("../src/assets/images/ddf7620b1a1af96d24f1413bb336f096.gif");
+  background-repeat: no-repeat;  
   background-size: 100% 100%;
-  opacity: 0.9;
+  opacity: 1;
+  padding: 100px 0;
+  overflow: none;
 }
 
 .welcome h2 {
@@ -16,6 +19,7 @@
   -ms-flex: 0 0 100%;
   flex: 0 0 105%;
   max-width: 100%;
+  background: rgb(240, 240, 240);
 }
 
 .prod_head {
@@ -36,7 +40,7 @@
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #f5f9fc;
+  background-color: white;
   background-clip: border-box;
   border: 1px solid lightcyan;
   border-radius: 0.25rem;
@@ -74,7 +78,7 @@
   /* size: 12rem; */
   border-radius: 0.25rem;
   border-color: whitesmoke;
-  background-color: #f5f9fc;
+  background-color: white;
   cursor: pointer;
   margin-left: 12vw;
   width: 76%;
@@ -134,7 +138,7 @@
   font-size: 35px;
   color: rgb(124, 118, 118);
   margin-top: 7px;
-  width: 70px;
+  width: 31px;
   outline: none;
   text-transform: uppercase;
   cursor: pointer;
@@ -158,8 +162,8 @@
 }
 
 .heart-container {
-  height: 6vh;
-  width: 6vh;
+  height: 5vh;
+  width: 5vh;
   border-radius: 50%;
   backdrop-filter: blur(20px);
   background-color: rgb(213, 207, 207);
@@ -167,4 +171,10 @@
   align-items: center;
   justify-content: center;
   margin: 5px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 1;
+  opacity: 90%;
+  padding: 2px;
 }
