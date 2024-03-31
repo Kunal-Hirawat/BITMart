@@ -44,6 +44,7 @@
   display: -ms-flexbox !important;
   display: flex !important;
   justify-content: center;
+  /* flex-wrap: wrap; */
 }
 
 .card {
@@ -74,14 +75,14 @@
   padding: 1.25rem;
 }
 
-.card-title {
+/* .card-title {
   margin-bottom: 0.75rem;
   text-align: center !important;
-}
+} */
 
-.card-text:last-child {
+/* .card-text:last-child {
   margin-bottom: 0;
-}
+} */
 
 .more-btn {
   align-self: center;
@@ -109,14 +110,14 @@
   margin-bottom: 5px;
 }
 
-.card-name-price {
+/* .card-name-price {
   padding-top: 3px;
-}
+} */
 
 .card-name-price button {
   align-items: center;
   background-color: #1D1D1D;
-  border-radius: 100px;
+  border-radius: 1rem;
   color: white;
   cursor: pointer;
   display: inline-flex;
@@ -126,7 +127,7 @@
   line-height: 20px;
   max-width: 480px;
   min-height: 40px;
-  min-width: 255px;
+  min-width: 50%;
   overflow: hidden;
   padding: 0px;
   padding-left: 20px;
@@ -134,12 +135,12 @@
   text-align: center;
   touch-action: manipulation;
   transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-    box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-    color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+  color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
   vertical-align: middle;
-}
+} 
 
-.card-name-price button:hover,
+ .card-name-price button:hover,
 .card-name-price button:focus {
   opacity: 0.8;
   color: white;
@@ -161,6 +162,7 @@
   color: rgb(124, 118, 118);
   margin-top: 7px;
   width: 31px;
+  margin-right: 7px;
   outline: none;
   text-transform: uppercase;
   cursor: pointer;
@@ -176,7 +178,7 @@
   font-size: 35px;
   color: rgb(192, 39, 39);
   margin-top: 7px;
-  width: 70px;
+  width: 41px;
   outline: none;
   text-transform: uppercase;
   cursor: pointer;

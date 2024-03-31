@@ -260,16 +260,20 @@
 .menu-layout {
   display: flex;
   flex-direction: row;
-  gap: 2;
+  background-image: url("../../assets/images/db.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  gap: 25vw;
 }
 
 .menu-layout .menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
   padding: 20px;
-  background-color:white;
-  color: black;
-  height: max-content;
-  border: 2px solid rgba(130, 130, 130, 0.2);
-  box-shadow: 0px 0px 20px 0px rgba(13,2,134,0.215);
+  background-color: #333333;
+  color: white;
+  height: 70vh;
 }
 
 .menu-layout .menu .menu-tabs a:hover {
@@ -286,6 +290,8 @@
   font-size: 20px;
   display: flex;
   flex-direction: column;
+  height: 50vh;
+  gap: 3vh;
 }
 
 .form-container-2 {
@@ -307,7 +313,6 @@
 
 .form {
   /* background-color: rgba(0, 0, 255, 0.072); */
-  background-color: white;
   color: black;
   padding: 20px;
   padding-left: 100px;
@@ -316,26 +321,10 @@
   margin-left: 40px;
   margin-right: 40px;
   display: flex;
-  border-radius: 5%;
-  border: 2px solid rgba(130, 130, 130, 0.2);
-  box-shadow: 0px 0px 6px 2px rgba(13,2,134,0.215);
+
 }
 
-.form-2 {
-  /* background-color: rgba(0, 0, 255, 0.072); */
-  background-color: white;
-  color: black;
-  padding: 20px;
-  padding-left: 100px;
-  padding-right: 100px;
-  margin: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  border-radius: 5%;
-  border: 2px solid rgba(130, 130, 130, 0.2);
-  box-shadow: 0px 0px 6px 2px rgba(13,2,134,0.215);
-}
+
 
 .form h1 {
   /* border: 4px solid black; */
@@ -353,7 +342,9 @@
 }
 
 .menu-tabs a {
-  color: black;
+  color: white;
+  box-shadow: 0px 0px 15px 0px rgba(13,2,134,0.215);
+  padding-left: 5px;
 }
 
 .submit-button1 {
