@@ -47,6 +47,7 @@ const Search = () => {
                   products?.LostFoundResults.length
                 } products for "${products.keyword}" in "${products.type}"`}
           </h3>
+          <div className="no-products-container" style={{display:products?.BuySellResults.length + products?.LostFoundResults.length>0?"none":"flex"}}></div>
           <div
             style={{
               display: products?.BuySellResults.length ? "block" : "none",
