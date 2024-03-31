@@ -175,7 +175,7 @@ const BuySell = () => {
         <h1 className="text-center">All Products</h1>
         <div className="form-input">
           <div className="form-label">
-            <label for="sortSelect">Sort By:</label>
+            <label for="sortSelect">Sort By: </label>
             <select id="sortSelect" onChange={(e) => setSortby(e.target.value)}>
               <option value="0" selected>
                 Featured
