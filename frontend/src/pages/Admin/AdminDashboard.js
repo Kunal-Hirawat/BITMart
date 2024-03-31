@@ -13,7 +13,7 @@ const AdminDashboard = () => {
       <div className="dashboard-body">
       <div className="menu-layout">
         <AdminMenu />
-        <div className="form ">
+        <div className="form-2 ">
           <form className="form-container-2">
             <h1> Admin Details </h1>
             <h3> Admin Name : {auth?.user?.name}</h3>
