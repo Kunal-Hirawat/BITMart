@@ -115,7 +115,7 @@
 
 .card-name-price button {
   align-items: center;
-  background-color: #062e58;
+  background-color: #1D1D1D;
   border-radius: 100px;
   color: white;
   cursor: pointer;
@@ -141,7 +141,7 @@
 
 .card-name-price button:hover,
 .card-name-price button:focus {
-  background-color: #16437e;
+  opacity: 0.8;
   color: white;
 }
 
@@ -185,18 +185,13 @@
 
 .heart-container {
   height: 5vh;
-  width: 5vh;
+  width: 100%;
   border-radius: 50%;
   backdrop-filter: blur(20px);
-  background-color: rgb(213, 207, 207);
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 5px;
-  position: absolute;
-  top: 15px;
-  left: 15px;
+  justify-content: flex-end;
   z-index: 1;
   opacity: 90%;
-  padding: 2px;
 }
+
