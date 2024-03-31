@@ -27,7 +27,7 @@ function Header() {
     <nav className="nav">
       <Link to="/" className="nav_name">
         <MdShoppingCart id="cart-logo" />
-        BITMart
+        BITMART
       </Link>
       <SearchInput></SearchInput>
       <ul className={active}>
