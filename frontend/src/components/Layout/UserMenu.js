@@ -1,37 +1,35 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../../UserMenu.css";
 import "../styles/CartStyles.css";
+import { useAuth } from "../../context/auth";
+import toast from "react-hot-toast";
 const UserMenu = () => {
+  const [auth, setAuth] = useAuth();
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    localStorage.removeItem("cart");
+    toast.success("LogOut Successful");
+    window.location.reload();
+  };
   return (
-    <div>
-      {/* <div className="text-center dashboard-menu">
-        <div className="list-group">
-          <h4>Dashboard</h4>
-          <NavLink
-            to="/dashboard/user/profile"
-            className="list-group-item list-group-item-action"
-          >
-            Profile
-          </NavLink>
-          <NavLink
-            to="/dashboard/user/orders"
-            className="list-group-item list-group-item-action"
-          >
-            Orders
-          </NavLink>
-        </div>
-      </div> */}
-      <div className="menu-layout">
-        <div className="menu">
+      <div className="menu">
           <h1>Dashboard</h1>
           <div className="menu-tabs">
-            <a href="/dashboard/user/profile">Profile</a>
-            <a href="/dashboard/user/orders">Orders</a>
+            <a href="/dashboard/user/profile">Update Profile</a>
+            <a href="/dashboard/user/create-product">Create Product</a>
+            <a href="/dashboard/user/user-products">Products</a>
+            <a href="/cart">My Favourites</a>
+            <Link onClick={handleLogout} to="../" className="nav_link">
+              LogOut
+            </Link>
           </div>
         </div>
-      </div>
-    </div>
   );
 };
 

@@ -121,28 +121,26 @@
   border-radius: 15px;
 }
 
-.home-page .card-name-price {
+.card-name-price {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.home-page .card-price {
+.card-price {
   color: green;
   font-weight: bold;
 }
 
-.home-page button {
-  border-radius: 0;
+.card-name-price button {
+  border-radius: 1rem;
   width: 100%;
-  border-top-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.home-page .card-text {
+.card-text {
   color: rgb(90, 89, 89);
 }
 

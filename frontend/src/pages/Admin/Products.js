@@ -6,24 +6,13 @@ import Layout from "../../components/Layout/Layout";
 import "../../BuySell.css";
 import "../../components/styles/CartStyles.css";
 import { useAuth } from "../../context/auth";
+import AdminMenu from "../../components/Layout/AdminMenu";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [lostfound, setLostFound] = useState([]);
   const [auth, setAuth] = useAuth();
-
-  const handleLogout = () => {
-    setAuth({
-      ...auth,
-      user: null,
-      token: "",
-    });
-    localStorage.removeItem("auth");
-    localStorage.removeItem("cart");
-    toast.success("LogOut Successful");
-    window.location.reload();
-  };
 
   //get all products
   const getAllProducts = async () => {
@@ -57,19 +46,9 @@ const Products = () => {
   }, []);
   return (
     <Layout>
+    <div className="dashboard-body">
       <div className="menu-layout">
-        <div className="menu">
-          <h1>Admin Panel</h1>
-          <div className="menu-tabs">
-            <a href="/dashboard/admin/profile">Update Profile</a>
-            <a href="/dashboard/admin/create-product">Create Product</a>
-            <a href="/dashboard/admin/products">Products</a>
-            <a href="/dashboard/admin/users">Users</a>
-            <Link onClick={handleLogout} to="/" className="nav_link">
-              LogOut
-            </Link>
-          </div>
-        </div>
+        <AdminMenu />
 
         <div className="form ">
           <form className="form-container-2">
@@ -125,6 +104,7 @@ const Products = () => {
             </div>
           </form>
         </div>
+      </div>
       </div>
     </Layout>
   );

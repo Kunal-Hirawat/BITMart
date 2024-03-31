@@ -116,28 +116,102 @@ const Home = () => {
       <div>
         <div className="welcome"></div>
         <div className="products-container">
-        <div className="products" id="products">
-          <p className="prod_head">Checkout New Products</p>
-          <div className="card_container">
-            {latestProducts?.map((p) => (
-              <div key={p._id}>
-                <div className="card" style={{ width: "28rem" }}>
-                  <div className="heart-container">
-                    <RiHeart3Fill
-                      className={wishlist[p._id] ? "heart-active" : "heart"}
-                      onClick={() => handleClick(p)}
-                    ></RiHeart3Fill>
+          <div className="products" id="products">
+            <p className="prod_head">Checkout New Products</p>
+            <div className="card_container">
+              {latestProducts?.map((p) => (
+                <div key={p._id}>
+                  <div className="card" style={{ width: "28rem" }}>
+                    <div className="heart-container">
+                      <RiHeart3Fill
+                        className={wishlist[p._id] ? "heart-active" : "heart"}
+                        onClick={() => handleClick(p)}
+                      ></RiHeart3Fill>
+                    </div>
+                    <LazyLoadImage
+                      src={`http://localhost:5000/api/product/product-photo/${p._id}`}
+                      className="card-img"
+                      alt={p.name}
+                    />
+                    <div className="card-body">
+                      <div className="card-name-price">
+                        <h5 className="card-title">{p.name}</h5>
+                        <h5 className="card-title card-price">
+                          {p.price.toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "INR",
+                          })}
+                        </h5>
+                      </div>
+                      <p className="card-text ">
+                        {p.description.substring(0, 60)}
+                      </p>
+                      <p className="card-text ">
+                      <b>Quantity: </b>
+                      {p.quantity}
+                      </p>
+                      <div className="card-name-price">
+                        {!auth.user ? (
+                          <button
+                            className="btn btn-info ms-1"
+                            onClick={() => navigate(`/login`)}
+                          >
+                            More Details
+                          </button>
+                        ) : (
+                          <button
+                            className="btn btn-info ms-1"
+                            onClick={() => navigate(`/product/${p._id}`)}
+                          >
+                            More Details
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </div>
+                </div>
+              ))}
+              <Link
+                to="/buy-sell"
+                className="card view-more-button"
+                style={{ width: "20rem" }}
+              >
+                <b>View More</b>
+                <i>
+                  <FaArrowRight></FaArrowRight>
+                </i>
+              </Link>
+            </div>
+          </div>
+          <div className="products" id="products">
+            <p className="prod_head">Lost Something?</p>
+            <div className="card_container">
+              {lostFoundProducts?.map((p) => (
+                <div className="card" key={p._id}>
                   <LazyLoadImage
-                    src={`http://localhost:5000/api/product/product-photo/${p._id}`}
+                    src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
                     className="card-img"
                     alt={p.name}
+                    onClick={() =>
+                      navigate(!auth.user ? `/login` : `/lostfound/${p._id}`)
+                    }
                   />
                   <div className="card-body">
-                    <h3 className="card-title">{p.name}</h3>
-                    <p className="card-text">Desc : {p.description} </p>
-                    <p className="card-text">Price : {p.price} </p>
-                    <p className="card-text">Quantity : {p.quantity} </p>
+                    <div className="card-name-price">
+                      <h5 className="card-title">{p.name}</h5>
+                      <h5 className="card-title card-price">
+                        {formatDate(p.datetime).toLocaleString("en-US", {
+                          style: "currency",
+                        })}
+                      </h5>
+                    </div>
+                    <p className="card-text ">
+                      {p.description.substring(0, 60)}
+                    </p>
+                    <p className="card-text ">
+                      <b>Location: </b>
+                      {p.location.substring(0, 30)}
+                    </p>
                     <div className="card-name-price">
                       {!auth.user ? (
                         <button
@@ -149,7 +223,7 @@ const Home = () => {
                       ) : (
                         <button
                           className="btn btn-info ms-1"
-                          onClick={() => navigate(`/product/${p._id}`)}
+                          onClick={() => navigate(`/lostfound/${p._id}`)}
                         >
                           More Details
                         </button>
@@ -157,73 +231,20 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-            <Link
-              to="/buy-sell"
-              className="card view-more-button"
-              style={{ width: "20rem" }}
-            >
-              <b>View More</b>
-              <i>
-                <FaArrowRight></FaArrowRight>
-              </i>
-            </Link>
+              ))}
+              <Link
+                to="/lost-found"
+                className="card view-more-button"
+                style={{ width: "20rem" }}
+              >
+                <b>View More</b>
+                <i>
+                  <FaArrowRight></FaArrowRight>
+                </i>
+              </Link>
+            </div>
           </div>
         </div>
-        <div className="products" id="products">
-          <p className="prod_head">Lost Something?</p>
-          <div className="card_container">
-            {lostFoundProducts?.map((p) => (
-              <div className="card" key={p._id}>
-                <LazyLoadImage
-                  src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
-                  className="card-img"
-                  alt={p.name}
-                  onClick={() =>
-                    navigate(!auth.user ? `/login` : `/lostfound/${p._id}`)
-                  }
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{p.name}</h5>
-                  <h5 className="card-text">{formatDate(p.datetime)}</h5>
-                  <p className="card-text ">{p.description.substring(0, 60)}</p>
-                  <p className="card-text ">
-                    <b>Location:</b> {p.location.substring(0, 60)}
-                  </p>
-                  <div className="card-name-price">
-                    {!auth.user ? (
-                      <button
-                        className="btn btn-info ms-1"
-                        onClick={() => navigate(`/login`)}
-                      >
-                        More Details
-                      </button>
-                    ) : (
-                      <button
-                        className="btn btn-info ms-1"
-                        onClick={() => navigate(`/lostfound/${p._id}`)}
-                      >
-                        More Details
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-            <Link
-              to="/lost-found"
-              className="card view-more-button"
-              style={{ width: "20rem" }}
-            >
-              <b>View More</b>
-              <i>
-                <FaArrowRight></FaArrowRight>
-              </i>
-            </Link>
-          </div>
-        </div>
-      </div>
       </div>
     </Layout>
   );

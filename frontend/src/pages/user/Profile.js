@@ -5,21 +5,11 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import "../../components/styles/CartStyles.css";
 import { Link, useNavigate } from "react-router-dom";
+import UserMenu from "../../components/Layout/UserMenu";
 
 export default function Profile() {
   const navigate = useNavigate();
   const [auth, setAuth] = useAuth();
-  const handleLogout = () => {
-    setAuth({
-      ...auth,
-      user: null,
-      token: "",
-    });
-    localStorage.removeItem("auth");
-    localStorage.removeItem("cart");
-    toast.success("LogOut Successful");
-    window.location.reload();
-  };
   //state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -69,19 +59,9 @@ export default function Profile() {
 
   return (
     <Layout title={"Your Profile"}>
+    <div className="dashboard-body">
       <div className="menu-layout">
-        <div className="menu">
-          <h1>Dashboard</h1>
-          <div className="menu-tabs">
-            <a href="/dashboard/user/profile">Update Profile</a>
-            <a href="/dashboard/user/create-product">Create Product</a>
-            <a href="/dashboard/user/user-products">Products</a>
-            <a href="/cart">My Favourites</a>
-            <Link onClick={handleLogout} to="../" className="nav_link">
-              LogOut
-            </Link>
-          </div>
-        </div>
+        <UserMenu />
 
         <div className="form ">
           <form onSubmit={handleSubmit} className="form-container-2">
@@ -123,6 +103,7 @@ export default function Profile() {
             </button>
           </form>
         </div>
+      </div>
       </div>
     </Layout>
   );
