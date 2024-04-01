@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./../../components/Layout/Layout";
 import "../../components/styles/CartStyles.css";
-import { useAuth } from "../../context/auth";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import AdminMenu from "../../components/Layout/AdminMenu";
 
 const Users = () => {
-  const [auth, setAuth] = useAuth();
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   

@@ -12,7 +12,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 const UserProduct = () => {
   const [products, setProducts] = useState([]);
   const [lostfound, setLostFound] = useState([]);
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
 
 
   //get all products

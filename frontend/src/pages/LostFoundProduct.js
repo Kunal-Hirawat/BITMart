@@ -6,11 +6,15 @@ import { useCart } from "../context/cart";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../ProductDetails.css";
 import toast from "react-hot-toast";
+import { useAuth } from "../context/auth";
 
 const LostFoundProduct = () => {
   const params = useParams();
   const [cart, setCart] = useCart();
   const [product, setProduct] = useState({});
+  const [auth] = useAuth();
+  const [showDetails, setShowDetails]=useState(false);
+  const [buttonText,setButtonText]=useState("SHOW SELLER DETAILS");
 
   //initalp details
   useEffect(() => {
@@ -23,6 +27,8 @@ const LostFoundProduct = () => {
         `http://localhost:5000/api/lostfound/get-product/${params.id}`
       );
       setProduct(data?.product);
+      console.log("product"); 
+      console.log(data?.product);
     } catch (error) {
       console.log(error);
     }
@@ -46,6 +52,17 @@ const LostFoundProduct = () => {
     return output;
   };
 
+  const detailsFunction=()=>{
+    if(showDetails===false){
+      setShowDetails(true);
+      setButtonText("HIDE Contact DETAILS");
+    }
+    else{
+      setShowDetails(false);
+      setButtonText("SHOW Contact DETAILS");
+    }
+  }
+
   return (
     <Layout>
       <div className="product-container">
@@ -59,39 +76,19 @@ const LostFoundProduct = () => {
         <div className="product-details">
         <h1 className="product-name">{product.name}</h1>
         <p className="product-price">
-          {formatDate(product.datetime)}
+          {product.datetime? formatDate(product?.datetime):""}
         </p>
         <p className="product-description">{product.description}</p>
         <p className="product-quantity">
           Location: {product.location}
         </p>
+        <div className="seller-details" style={{display:showDetails?"block":"none"}}>
+            <h2> Contact DETAILS:</h2>
+            <p>Contact : {auth?.user?.contact}</p>
+            <p>Email-ID : {auth?.user?.email}</p>
+          </div>
 
-      <button
-        className="add-to-bag-button"
-        onClick={() => {
-          const items = JSON.parse(localStorage.getItem("cart"));
-          let exists = false;
-
-          if (items.length) {
-            for (const item of items) {
-              if (item?._id === product?._id) {
-                exists = true;
-                break;
-              }
-            }
-          }
-          if (exists) {
-            toast.error("Item already exists in favourites");
-          } else {
-            setCart([...cart, product]);
-            localStorage.setItem("cart", JSON.stringify([...cart, product]));
-            toast.success("Item added to favourites");
-          }
-        }}
-      >
-        ADD TO FAVOURITES
-      </button>
-      <button className="contact-seller-button">CONTACT</button>
+      <button className="contact-seller-button" onClick={(e)=>detailsFunction()}>{buttonText}</button>
       </div>
       </div>
     </Layout>

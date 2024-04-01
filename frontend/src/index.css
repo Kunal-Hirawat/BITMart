@@ -18,18 +18,18 @@
 .pnf-title {
   font-size: 100px;
   font-weight: 700;
-  color: #062e58;
+  color: black;
 }
 
 .pnf-heading {
   font-weight: normal;
   padding-bottom: 20px;
-  color: #062e58;
+  color: black;
 }
 
 .pnf-btn {
   align-items: center;
-  background-color: #062e58;
+  background-color: black;
   border-radius: 100px;
   color: white;
   cursor: pointer;
@@ -55,12 +55,12 @@
 
 .pnf-btn:hover,
 .pnf-btn:focus {
-  background-color: #16437e;
+  background-color: black;
   color: white;
 }
 
 .pnf-btn:active {
-  background: #09223b;
+  background: black;
   color: rgb(255, 255, 255, 0.7);
 }
 
@@ -82,7 +82,7 @@
 
 .product-link {
   text-decoration: none !important;
-  color: #062e58 !important;
+  color: black !important;
 }
 
 .cat-btn {

@@ -17,7 +17,7 @@ const CreateProductUser = () => {
   const [location, setLocation] = useState("");
   const [datetime, setDateTime] = useState("");
   const [isLostFound, setIsLostFound] = useState("false");
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
 
 
   //create product function
@@ -71,7 +71,7 @@ const CreateProductUser = () => {
                   <select
                     onChange={(event) => setIsLostFound(event.target.value)}
                   >
-                    <option value="false" selected>
+                    <option value="false" default>
                       Buy/Sell
                     </option>
                     <option value="true">Lost/Found</option>

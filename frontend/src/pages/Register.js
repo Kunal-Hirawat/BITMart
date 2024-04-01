@@ -115,7 +115,7 @@ const Register = () => {
               <select
                 onChange={(event) => setSecurityQuestion(event.target.value)}
               >
-                <option value="" disabled selected hidden>
+                <option value="" disabled default hidden>
                   Please Choose A Security Question
                 </option>
                 <option value="What is your all-time favorite book or movie?">

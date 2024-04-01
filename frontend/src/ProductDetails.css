@@ -46,7 +46,9 @@
   text-decoration: none;
   border-radius: 5px;
   margin-top: 5vh;
+  margin-right: 1vw;
   min-width: 17vw;
+  cursor: pointer;
 }
 
 .product-details{

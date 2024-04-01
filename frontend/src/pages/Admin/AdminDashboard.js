@@ -5,7 +5,7 @@ import "../../components/styles/CartStyles.css";
 import AdminMenu from "../../components/Layout/AdminMenu";
 
 const AdminDashboard = () => {
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   return (
     <Layout>
       <div className="dashboard-body">
