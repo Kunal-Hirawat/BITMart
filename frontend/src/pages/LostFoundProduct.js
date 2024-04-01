@@ -6,11 +6,15 @@ import { useCart } from "../context/cart";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../ProductDetails.css";
 import toast from "react-hot-toast";
+import { useAuth } from "../context/auth";
 
 const LostFoundProduct = () => {
   const params = useParams();
   const [cart, setCart] = useCart();
   const [product, setProduct] = useState({});
+  const [auth] = useAuth();
+  const [showDetails, setShowDetails]=useState(false);
+  const [buttonText,setButtonText]=useState("SHOW SELLER DETAILS");
 
   //initalp details
   useEffect(() => {
@@ -48,6 +52,17 @@ const LostFoundProduct = () => {
     return output;
   };
 
+  const detailsFunction=()=>{
+    if(showDetails===false){
+      setShowDetails(true);
+      setButtonText("HIDE Contact DETAILS");
+    }
+    else{
+      setShowDetails(false);
+      setButtonText("SHOW Contact DETAILS");
+    }
+  }
+
   return (
     <Layout>
       <div className="product-container">
@@ -67,7 +82,13 @@ const LostFoundProduct = () => {
         <p className="product-quantity">
           Location: {product.location}
         </p>
-      <button className="contact-seller-button">CONTACT</button>
+        <div className="seller-details" style={{display:showDetails?"block":"none"}}>
+            <h2> Contact DETAILS:</h2>
+            <p>Contact : {auth?.user?.contact}</p>
+            <p>Email-ID : {auth?.user?.email}</p>
+          </div>
+
+      <button className="contact-seller-button" onClick={(e)=>detailsFunction()}>{buttonText}</button>
       </div>
       </div>
     </Layout>

@@ -6,10 +6,12 @@ import { useCart } from "../context/cart";
 import "../ProductDetails.css";
 import toast from "react-hot-toast";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useAuth } from "../context/auth";
 
 const Product = () => {
   const params = useParams();
   const [cart, setCart] = useCart();
+  const [auth] = useAuth();
   const [product, setProduct] = useState({});
   const [showDetails, setShowDetails]=useState(false);
   const [buttonText,setButtonText]=useState("SHOW SELLER DETAILS");
@@ -64,6 +66,11 @@ const Product = () => {
           <p className="product-quantity">
             Available: {product.quantity} in stock
           </p>
+          <div className="seller-details" style={{display:showDetails?"block":"none"}}>
+            <h2> SELLER DETAILS:</h2>
+            <p>Contact : {auth?.user?.contact}</p>
+            <p>Email-ID : {auth?.user?.email}</p>
+          </div>
 
           <button
             className="add-to-bag-button"
@@ -98,7 +105,8 @@ const Product = () => {
           >
             ADD TO FAVOURITES
           </button>
-          <button className="contact-seller-button">CONTACT SELLER</button>
+          <button className="contact-seller-button"
+                  onClick={(e)=>detailsFunction()}>{buttonText}</button>
         </div>
       </div>
     </Layout>
