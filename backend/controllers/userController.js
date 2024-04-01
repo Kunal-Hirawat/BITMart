@@ -81,7 +81,7 @@ export const loginController = async (req, res) => {
     //checking if email/contact and password are entered
 
     if (!email || !contact || !password) {
-      return res.status(404).send({
+      return res.status(200).send({
         success: false,
         message: "Invalid email/contact or password",
       });
@@ -89,7 +89,7 @@ export const loginController = async (req, res) => {
 
     const user = await userModel.findOne({ contact, email });
     if (!user) {
-      return res.status(404).send({
+      return res.status(200).send({
         success: false,
         message: "User Not Found",
       });
@@ -151,7 +151,7 @@ export const forgotPasswordController = async (req, res) => {
       { securityAnswer: hashedAnswer }
     );
     if (!user) {
-      return res.status(404).send({
+      return res.status(200).send({
         success: false,
         message: "Answer to the security question is wrong",
       });
@@ -180,7 +180,7 @@ export const getSecurityQuestionController = async (req, res) => {
     }
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.status(404).send({
+      return res.status(200).send({
         success: false,
         message: "No User found for this email id",
       });
@@ -209,7 +209,7 @@ export const checkSecurityAnswerController = async (req, res) => {
     }
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.status(404).send({
+      return res.status(200).send({
         success: false,
         message: "Answer to the security question is wrong",
       });
@@ -219,7 +219,7 @@ export const checkSecurityAnswerController = async (req, res) => {
       user.securityAnswer
     );
     if (!correctAnswer) {
-      return res.status(404).send({
+      return res.status(200).send({
         success: false,
         message: "Answer to the security question is wrong",
       });

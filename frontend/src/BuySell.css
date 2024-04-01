@@ -111,9 +111,7 @@
 }
 
 .home-page .card {
-  /* background-color: rgba(128, 128, 128, 0.097); */
   width: 31.5rem;
-  /* border: 1rem ridge ; */
   border: 2px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
   box-shadow: 0px 0px 20px 0px rgba(13, 2, 134, 0.215);
@@ -121,7 +119,6 @@
   padding: 1vw;
   padding-bottom: 0.4vw;
   border-radius: 15px;
-  /* rgba(0, 33, 65, 0.6); */
 }
 
 .card-name-price {
@@ -145,6 +142,17 @@
 
 .card-text {
   color: rgb(90, 89, 89);
+}
+
+.no-products-container{
+  background: url("../src/assets/images/no-results-found.png");
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;  
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  min-height: 80vh;
 }
 
 .home-page .card img:hover {

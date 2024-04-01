@@ -3,6 +3,7 @@ import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useCart } from "../context/cart";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../ProductDetails.css";
 import toast from "react-hot-toast";
 
@@ -27,61 +28,70 @@ const LostFoundProduct = () => {
     }
   };
 
+  const formatDate = (date) => {
+    const datetime = new Date(date);
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+    const formattedDate = formatter.format(datetime);
+    const [datePart, timePart] = formattedDate.split(", ");
+    const [month, day, year] = datePart.split("/");
+    const [time, ampm] = timePart.split(" ");
+    const output = `${day}-${month}-${year} ${time}${ampm}`;
+    return output;
+  };
+
   return (
     <Layout>
-      {/* console.log({product._id}); */}
-      <div className="row container product-details">
-        <div className="col-md-6">
-          <img
-            src={`http://localhost:5000/api/lostfound/product-photo/${product._id}`}
-            className="card-img-top imgBorder"
-            alt={product.name}
-            height="300"
-            width={"350px"}
-          />
-        </div>
-        <div className="col-md-6 product-details-info">
-          <div className="content">
-          <h1 className="text-center">Product Details</h1>
-          <hr />
-          <h6>Name : {product.name}</h6>
-          <h6>Description : {product.description}</h6>
-          {/* <h6>
-            Price :
-            {product?.price?.toLocaleString("en-US", {
-              style: "currency",
-              currency: "INR",
-            })}
-          </h6> */}
-          <button
-            className="submit-button2"
-            onClick={() => {
-              const items = JSON.parse(localStorage.getItem("cart"));
-              let exists = false;
+      <div className="product-container">
+        <LazyLoadImage
+          src={`http://localhost:5000/api/lostfound/product-photo/${product._id}`}
+          className="product-image"
+          alt={product.name}
+          height="300"
+          width={"350px"}
+        />
+        <div className="product-details">
+        <h1 className="product-name">{product.name}</h1>
+        <p className="product-price">
+          {formatDate(product.datetime)}
+        </p>
+        <p className="product-description">{product.description}</p>
+        <p className="product-quantity">
+          Location: {product.location}
+        </p>
 
-              if (items.length) {
-                for (const item of items) {
-                  if (item?._id === product?._id) {
-                    exists = true;
-                    break;
-                  }
-                }
+      <button
+        className="add-to-bag-button"
+        onClick={() => {
+          const items = JSON.parse(localStorage.getItem("cart"));
+          let exists = false;
+
+          if (items.length) {
+            for (const item of items) {
+              if (item?._id === product?._id) {
+                exists = true;
+                break;
               }
-              if (exists) {
-                toast.error("Item already exists in favourites");
-              } else {
-                setCart([...cart, product]);
-                localStorage.setItem(
-                  "cart",
-                  JSON.stringify([...cart, product])
-                );
-                toast.success("Item added to favourites");
-              }
-            }}
-          >
-            ADD TO FAVOURITES
-          </button>
-        </div>
+            }
+          }
+          if (exists) {
+            toast.error("Item already exists in favourites");
+          } else {
+            setCart([...cart, product]);
+            localStorage.setItem("cart", JSON.stringify([...cart, product]));
+            toast.success("Item added to favourites");
+          }
+        }}
+      >
+        ADD TO FAVOURITES
+      </button>
+      <button className="contact-seller-button">CONTACT</button>
       </div>
       </div>
     </Layout>

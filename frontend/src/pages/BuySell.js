@@ -241,6 +241,7 @@ const BuySell = () => {
           </div>
         </div>
         <div className="container-fluid row mt-3 home-page">
+        <div className="no-products-container" style={{display:products.length?"none":"flex"}}></div>
           <div className="col-md-9 ">
             <div className="d-flex flex-wrap">
               {products?.map((p) => (
