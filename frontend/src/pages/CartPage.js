@@ -3,6 +3,7 @@ import Layout from "./../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import "../components/styles/CartStyles.css";
+import { BASE_URL } from "../url.js";
 
 const CartPage = () => {
   const [auth] = useAuth();
@@ -47,7 +48,7 @@ const CartPage = () => {
                 <div className="row0 card flex-row" key={p._id}>
                   <div className="col-md-4">
                     <img
-                      src={`http://localhost:5000/api/product/product-photo/${p._id}`}
+                      src={`${BASE_URL}/api/product/product-photo/${p._id}`}
                       className="card-img-top cart-img"
                       alt={p.name}
                       width="100%"

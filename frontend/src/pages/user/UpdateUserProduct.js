@@ -6,6 +6,8 @@ import Layout from "../../components/Layout/Layout";
 import "../../components/styles/CartStyles.css";
 import { useAuth } from "../../context/auth";
 import UserMenu from "../../components/Layout/UserMenu";
+import { BASE_URL } from "../../url.js";
+
 
 const UpdateUserProduct = () => {
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const UpdateUserProduct = () => {
   const getSingleProduct = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/product/get-product/${params.id}`
+        `${BASE_URL}/api/product/get-product/${params.id}`
       );
       setName(data.product.name);
       setId(data.product._id);
@@ -51,7 +53,7 @@ const UpdateUserProduct = () => {
       productData.append("quantity", quantity);
       photo && productData.append("photo", photo);
       const { data } = axios.put(
-        `http://localhost:5000/api/product/update-product/${params.id}`,
+        `${BASE_URL}/api/product/update-product/${params.id}`,
         productData
       );
       if (data?.success) {
@@ -74,7 +76,7 @@ const UpdateUserProduct = () => {
       );
       if (!answer) return;
       const { data } = await axios.delete(
-        `http://localhost:5000/api/product/delete-product/${id}`
+        `${BASE_URL}/api/product/delete-product/${id}`
       );
       toast.success("Product Deleted Successfully");
       navigate("/dashboard/user/user-products");
@@ -119,7 +121,7 @@ const UpdateUserProduct = () => {
                   ) : (
                     <div className="text-center">
                       <img
-                        src={`http://localhost:5000/api/product/product-photo/${id}`}
+                        src={`${BASE_URL}/api/product/product-photo/${id}`}
                         alt="product_photo"
                         height={"200px"}
                         className="img img-responsive"

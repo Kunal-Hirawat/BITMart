@@ -6,6 +6,7 @@ import Layout from "../../components/Layout/Layout";
 import "../../components/styles/CartStyles.css";
 import { useAuth } from "../../context/auth";
 import AdminMenu from "../../components/Layout/AdminMenu";
+import { BASE_URL } from "../../url.js";
 
 const UpdateAdminLostFound = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const UpdateAdminLostFound = () => {
   const getSingleProduct = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/lostfound/get-product/${params.id}`
+        `${BASE_URL}/api/lostfound/get-product/${params.id}`
       );
       setName(data.product.name);
       setId(data.product._id);
@@ -51,7 +52,7 @@ const UpdateAdminLostFound = () => {
       productData.append("datetime", datetime);
       photo && productData.append("photo", photo);
       const { data } = axios.put(
-        `http://localhost:5000/api/lostfound/update-product/${id}`,
+        `${BASE_URL}/api/lostfound/update-product/${id}`,
         productData
       );
       if (data?.success) {
@@ -74,7 +75,7 @@ const UpdateAdminLostFound = () => {
       );
       if (!answer) return;
       const { data } = await axios.delete(
-        `http://localhost:5000/api/lostfound/delete-product/${id}`
+        `${BASE_URL}/api/lostfound/delete-product/${id}`
       );
       toast.success("Product Deleted Successfully");
       navigate("/dashboard/admin/products");
@@ -120,7 +121,7 @@ const UpdateAdminLostFound = () => {
                   ) : (
                     <div className="text-center">
                       <img
-                        src={`http://localhost:5000/api/lostfound/product-photo/${id}`}
+                        src={`${BASE_URL}/api/lostfound/product-photo/${id}`}
                         alt="product_photo"
                         height={"200px"}
                         className="img img-responsive"

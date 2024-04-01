@@ -7,6 +7,7 @@ import "../ProductDetails.css";
 import toast from "react-hot-toast";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useAuth } from "../context/auth";
+import { BASE_URL } from "../url.js";
 
 const Product = () => {
   const params = useParams();
@@ -24,7 +25,7 @@ const Product = () => {
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/product/get-product/${params.id}`
+        `${BASE_URL}/api/product/get-product/${params.id}`
       );
       setProduct(data?.product);
     } catch (error) {
@@ -48,7 +49,7 @@ const Product = () => {
       {/* console.log({product._id}); */}
       <div className="product-container">
         <LazyLoadImage
-          src={`http://localhost:5000/api/product/product-photo/${product._id}`}
+          src={`${BASE_URL}/api/product/product-photo/${product._id}`}
           className="product-image"
           alt={product.name}
           height="300"

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "../../components/styles/CartStyles.css";
 import { useAuth } from "../../context/auth";
 import UserMenu from "../../components/Layout/UserMenu";
+import { BASE_URL } from "../../url.js";
 
 const CreateProductUser = () => {
   const navigate = useNavigate();
@@ -39,8 +40,8 @@ const CreateProductUser = () => {
       }
       const { data } = axios.post(
         isLostFound === "true"
-          ? "http://localhost:5000/api/lostfound/create-product"
-          : "http://localhost:5000/api/product/create-product",
+          ? `${BASE_URL}/api/lostfound/create-product`
+          : `${BASE_URL}/api/product/create-product`,
         productData
       );
       if (data?.success) {

@@ -9,6 +9,7 @@ import { RiHeart3Fill } from "react-icons/ri";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../Home.css";
 import { FaArrowRight } from "react-icons/fa6";
+import { BASE_URL } from "../url.js";
 
 const Home = () => {
   const [auth] = useAuth();
@@ -21,7 +22,7 @@ const Home = () => {
   const getProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/product/get-product"
+        `${BASE_URL}/api/product/get-product`
       );
       // console.log(data.products);
       setProducts(data.products);
@@ -34,7 +35,7 @@ const Home = () => {
   const getLostFoundProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/lostfound/get-product"
+        `${BASE_URL}/api/lostfound/get-product`
       );
       // console.log(data.products);
       setLostFound(data.products);
@@ -129,7 +130,7 @@ const Home = () => {
                       ></RiHeart3Fill>
                     </div>
                     <LazyLoadImage
-                      src={`http://localhost:5000/api/product/product-photo/${p._id}`}
+                      src={`${BASE_URL}/api/product/product-photo/${p._id}`}
                       className="card-img"
                       alt={p.name}
                     />
@@ -189,7 +190,7 @@ const Home = () => {
               {lostFoundProducts?.map((p) => (
                 <div className="card" key={p._id}>
                   <LazyLoadImage
-                    src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
+                    src={`${BASE_URL}/api/lostfound/product-photo/${p._id}`}
                     className="card-img"
                     alt={p.name}
                     onClick={() =>

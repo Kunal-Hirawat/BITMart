@@ -7,6 +7,7 @@ import "../../BuySell.css";
 import "../../components/styles/CartStyles.css";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { BASE_URL } from "../../url.js";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -16,7 +17,7 @@ const Products = () => {
   const getAllProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/product/get-product"
+        `${BASE_URL}/api/product/get-product`
       );
       setProducts(data.products);
     } catch (error) {
@@ -28,7 +29,7 @@ const Products = () => {
   const getLostfoundProducts = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/lostfound/get-product`
+        `${BASE_URL}/api/lostfound/get-product`
       );
       setLostFound(data.products);
     } catch (error) {
@@ -62,7 +63,7 @@ const Products = () => {
                   >
                     <div className="card m-2" style={{ width: "18rem" }}>
                       <LazyLoadImage
-                        src={`http://localhost:5000/api/product/product-photo/${p._id}`}
+                        src={`${BASE_URL}/api/product/product-photo/${p._id}`}
                         className="card-img-top"
                         alt={p.name}
                       />
@@ -87,7 +88,7 @@ const Products = () => {
                   >
                     <div className="card m-2" style={{ width: "18rem" }}>
                       <LazyLoadImage
-                        src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
+                        src={`${BASE_URL}/api/lostfound/product-photo/${p._id}`}
                         className="card-img-top"
                         alt={p.name}
                       />

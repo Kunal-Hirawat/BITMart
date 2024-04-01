@@ -11,6 +11,7 @@ import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 import "../Register.css";
+import { BASE_URL } from "../url.js";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -37,7 +38,7 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const url = "http://localhost:5000/api/auth/register";
+      const url = `${BASE_URL}/api/auth/register`;
       const res = await axios.post(`${url}`, {
         name,
         email,

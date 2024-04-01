@@ -10,6 +10,7 @@ import "../BuySell.css";
 import { Prices } from "../components/Prices";
 import toast from "react-hot-toast";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { BASE_URL } from "../url.js";
 
 const BuySell = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const BuySell = () => {
   const getAllProducts = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/product/get-product`
+        `${BASE_URL}/api/product/get-product`
       );
 
       setProducts(data.products);
@@ -48,7 +49,7 @@ const BuySell = () => {
     }
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/product/product-filter",
+        `${BASE_URL}/api/product/product-filter`,
         { radio: [min, max] }
       );
       setProducts(data?.products);
@@ -70,7 +71,7 @@ const BuySell = () => {
   const handleFilter = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/product/product-filter",
+        `${BASE_URL}/api/product/product-filter`,
         { radio }
       );
       setProducts(data?.products);
@@ -253,7 +254,7 @@ const BuySell = () => {
                     ></RiHeart3Fill>
                   </div>
                   <LazyLoadImage
-                    src={`http://localhost:5000/api/product/product-photo/${p._id}`}
+                    src={`${BASE_URL}/api/product/product-photo/${p._id}`}
                     onClick={() =>
                       navigate(!auth.user ? `/login` : `/product/${p._id}`)
                     }

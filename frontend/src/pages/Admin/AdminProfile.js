@@ -6,6 +6,7 @@ import axios from "axios";
 import "../../components/styles/CartStyles.css";
 import { useNavigate } from "react-router-dom";
 import AdminMenu from "../../components/Layout/AdminMenu";
+import { BASE_URL } from "../../url.js";
 
 export default function AdminProfile() {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export default function AdminProfile() {
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        "http://localhost:5000/api/auth/profile",
+        `${BASE_URL}/api/auth/profile`,
         {
           name,
           email,

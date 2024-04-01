@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import AdminMenu from "../../components/Layout/AdminMenu";
+import { BASE_URL } from "../../url.js";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -14,7 +15,7 @@ const Users = () => {
   //get all users
   const getAllUsers = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/auth/users");
+      const { data } = await axios.get(`${BASE_URL}/api/auth/users`);
       setUsers(data.users);
     } catch (error) {
       console.log(error);
@@ -28,17 +29,17 @@ const Users = () => {
       let answer = window.confirm("Are You Sure want to delete this user ? ");
       if (!answer) return;
       const { data } = await axios.delete(
-        `http://localhost:5000/api/auth/delete-user/${email}`
+        `${BASE_URL}/api/auth/delete-user/${email}`
       );
       if (!data?.success) {
         toast.error(data.message);
         return;
       }
       await axios.delete(
-        `http://localhost:5000/api/product/deleted-user-product/${email}`
+        `${BASE_URL}/api/product/deleted-user-product/${email}`
       );
       await axios.delete(
-        `http://localhost:5000/api/lostfound/deleted-user-product/${email}`
+        `${BASE_URL}/api/lostfound/deleted-user-product/${email}`
       );
       toast.success("User Deleted Successfully");
       navigate("/dashboard/admin");

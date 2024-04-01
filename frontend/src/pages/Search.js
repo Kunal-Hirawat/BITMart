@@ -4,6 +4,7 @@ import { useSearch } from "../context/search";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth";
 import "../BuySell.css";
+import { BASE_URL } from "../url.js";
 
 const formatDate = (date) => {
   const datetime = new Date(date);
@@ -58,7 +59,7 @@ const Search = () => {
               {products?.BuySellResults.map((p) => (
                 <div className="card m-2" key={p._id}>
                   <img
-                    src={`http://localhost:5000/api/product/product-photo/${p._id}`}
+                    src={`${BASE_URL}/api/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />
@@ -108,7 +109,7 @@ const Search = () => {
               {products?.LostFoundResults.map((p) => (
                 <div className="card m-2" key={p._id}>
                   <img
-                    src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
+                    src={`${BASE_URL}/api/lostfound/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />

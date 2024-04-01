@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useSearch } from "../../context/search";
 import { FaSearch } from "react-icons/fa";
+import { BASE_URL } from "../../url";
 import "./searchInput.css";
 
 const SearchInput = () => {
@@ -14,7 +15,7 @@ const SearchInput = () => {
 
   const searchBuySell = async () => {
     try {
-      const url = "http://localhost:5000/api/product/search";
+      const url = `${BASE_URL}/api/product/search`;
       const { data } = await axios.get(`${url}/${keyword}`);
       setState({
         ...state,
@@ -31,7 +32,7 @@ const SearchInput = () => {
 
   const searchLostFound = async () => {
     try {
-      const url = "http://localhost:5000/api/lostfound/search";
+      const url = `${BASE_URL}/api/lostfound/search`;
       const { data } = await axios.get(`${url}/${keyword}`);
       setState({
         ...state,
@@ -49,10 +50,10 @@ const SearchInput = () => {
   const searchBoth = async () => {
     try {
       const { data: lostFoundData } = await axios.get(
-        `http://localhost:5000/api/lostfound/search/${keyword}`
+        `${BASE_URL}/api/lostfound/search/${keyword}`
       );
       const { data: buySellData } = await axios.get(
-        `http://localhost:5000/api/product/search/${keyword}`
+        `${BASE_URL}/api/product/search/${keyword}`
       );
       setState({
         ...state,

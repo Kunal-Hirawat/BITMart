@@ -10,6 +10,7 @@ import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 import "../ForgotPassword.css";
 import { FaLock, FaQuestion } from "react-icons/fa6";
+import { BASE_URL } from "../url.js";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -35,7 +36,7 @@ const ForgotPassword = () => {
     e.preventDefault();
 
     try {
-      const url = "http://localhost:5000/api/auth/getSecurityQuestion";
+      const url = `${BASE_URL}/api/auth/getSecurityQuestion`;
       const res = await axios.get(`${url}?email=${email}`);
 
       if (res.data.success) {
@@ -53,7 +54,7 @@ const ForgotPassword = () => {
   const handleAnswerInput = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:5000/api/auth/checkSecurityAnswer";
+      const url = `${BASE_URL}/api/auth/checkSecurityAnswer`;
       const res = await axios.post(`${url}`, {
         email,
         securityAnswer,
@@ -71,7 +72,7 @@ const ForgotPassword = () => {
   const handlePasswordInput = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:5000/api/auth/forgotPassword";
+      const url = `${BASE_URL}/api/auth/forgotPassword`;
       const res = await axios.post(`${url}`, {
         email,
         securityAnswer,

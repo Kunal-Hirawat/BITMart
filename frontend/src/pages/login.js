@@ -11,6 +11,7 @@ import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 import "../login.css";
 import { useAuth } from "../context/auth";
+import { BASE_URL } from "../url.js";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -34,7 +35,7 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const url = "http://localhost:5000/api/auth/login";
+      const url = `${BASE_URL}/api/auth/login`;
       const res = await axios.post(`${url}`, { email, contact, password });
       if (res.data.success) {
         toast.success(res.data && res.data.message);

@@ -6,6 +6,7 @@ import { useAuth } from "../context/auth";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../BuySell.css";
 import toast from "react-hot-toast";
+import { BASE_URL } from "../url.js";
 
 const LostFound = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const LostFound = () => {
   const getAllProducts = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/lostfound/get-product`
+        `${BASE_URL}/api/lostfound/get-product`
       );
 
       setProducts(data.products);
@@ -37,7 +38,7 @@ const LostFound = () => {
   const handleFilter = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/lostfound/product-filter",
+        `${BASE_URL}/api/lostfound/product-filter`,
         { startDate, endDate }
       );
       setProducts(data?.products);
@@ -157,7 +158,7 @@ const LostFound = () => {
               {products?.map((p) => (
                 <div className="card m-2" key={p._id}>
                   <LazyLoadImage
-                    src={`http://localhost:5000/api/lostfound/product-photo/${p._id}`}
+                    src={`${BASE_URL}/api/lostfound/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                     onClick={() =>
