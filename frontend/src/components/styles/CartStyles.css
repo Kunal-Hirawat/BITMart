@@ -1,11 +1,3 @@
-/* .dashboard-body{
-  background-image: url("../../assets/images/OR68V80.jpg");
-  min-height: 70vh;
-}  */
-
-/* body{
-  background-image: url("../../assets/images/OR68V80.jpg");
-} */
 .cart-page {
   margin-top: 64px;
 }
@@ -13,7 +5,6 @@
 .cart-page h1 {
   padding: 15px !important;
   font-weight: normal;
-  /* background-color: cornflowerblue !important; */
   border: 2px solid rgba(130, 130, 130, 0.2);
   box-shadow: 0px 0px 6px 2px rgba(13,2,134,0.215);
 }
@@ -38,7 +29,6 @@
 
 .cart-page .cart-summary {
   text-align: center;
-  /* margin-top: -140px !important; */
 }
 
 .container {
@@ -106,16 +96,6 @@
   padding-right: 15px;
   padding-left: 15px;
 }
-
-/* .col-md-9 {
-  -ms-flex: 0 0 58.333333%;
-  flex: 0 0 58.333333%;
-  max-width: 58.333333%;
-  position: relative;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px
-} */
 
 .p-0 {
   padding: 0 !important;
@@ -243,10 +223,7 @@
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-/* a {
-  text-decoration: none;
-  color: black;
-} */
+
 .dashboard {
   margin-top: 100px !important;
 }
@@ -328,14 +305,7 @@
   margin-left: 8vw !important;
 }
 .form-2 , .form {
-  /* background-color: rgba(0, 0, 255, 0.072); */
   color: black;
-  /* padding: 20px;
-  padding-left: 100px;
-  padding-right: 100px;
-  margin: 20px;
-  margin-left: 40px;
-  margin-right: 40px; */
   display: flex;
   backdrop-filter: blur(20px);
   box-shadow: 0px 0px 20px 0px rgba(13, 2, 134, 0.215);
@@ -352,7 +322,6 @@
 
 
 .form-2,.form h1 {
-  /* border: 4px solid black; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -524,7 +493,6 @@
   background: rgba(0, 0, 0, 0.08);
   color: rgba(0, 0, 0, 0.3);
 }
-/* d-flex flex-column justify-content-center align-items-center */
 .spin {
   flex-direction: column;
   justify-content: center;

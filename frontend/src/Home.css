@@ -73,15 +73,6 @@
   padding: 1.25rem;
 }
 
-/* .card-title {
-  margin-bottom: 0.75rem;
-  text-align: center !important;
-} */
-
-/* .card-text:last-child {
-  margin-bottom: 0;
-} */
-
 .more-btn {
   align-self: center;
   margin-top: 50%;
@@ -106,10 +97,6 @@
   font-weight: bolder;
   margin-bottom: 5px;
 }
-
-/* .card-name-price {
-  padding-top: 3px;
-} */
 
 .card-name-price button {
   align-items: center;

@@ -17,7 +17,6 @@ const Spinner = () => {
     <>
       <div className="dashboard-body">
       <div className="spin" style={{ height: "100vh" }}>
-        {/* <h1>Redirecting to the login page in {count} seconds </h1> */}
         <div>
           <span>
             <img src={loading} alt="loading"></img>

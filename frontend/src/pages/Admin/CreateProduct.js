@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../components/styles/CartStyles.css";
-import { Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import AdminMenu from "../../components/Layout/AdminMenu";
 

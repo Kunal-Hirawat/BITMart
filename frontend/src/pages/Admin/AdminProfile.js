@@ -4,7 +4,7 @@ import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
 import "../../components/styles/CartStyles.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AdminMenu from "../../components/Layout/AdminMenu";
 
 export default function AdminProfile() {

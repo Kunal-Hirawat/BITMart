@@ -1,9 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import "../../components/styles/CartStyles.css";
-import toast from "react-hot-toast";
 import UserMenu from "../../components/Layout/UserMenu";
 
 const Dashboard = () => {

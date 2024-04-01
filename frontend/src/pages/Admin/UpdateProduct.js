@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import "../../components/styles/CartStyles.css";
 import { useAuth } from "../../context/auth";
-import { Link } from "react-router-dom";
 import AdminMenu from "../../components/Layout/AdminMenu";
 
 const UpdateProduct = () => {
