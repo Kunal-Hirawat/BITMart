@@ -1,6 +1,6 @@
 import React from "react";
 import "../../UserMenu.css";
-import { NavLink } from "react-router-dom";
+import { NavLink , Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 
@@ -27,9 +27,9 @@ const AdminMenu = () => {
             <NavLink to="/dashboard/admin/create-product" className="nav_link">Create Product</NavLink>
             <NavLink to="/dashboard/admin/products" className="nav_link">Products</NavLink>
             <NavLink to="/dashboard/admin/users" className="nav_link">Users</NavLink>
-            <NavLink onClick={handleLogout} to="/" className="nav_link">
+            <Link onClick={handleLogout} to="/" className="nav_link">
               LogOut
-            </NavLink>
+            </Link>
           </div>
         </div>
         </div>

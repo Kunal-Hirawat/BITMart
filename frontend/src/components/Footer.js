@@ -61,7 +61,7 @@ const Footer = () => {
         <Link to="./">Terms Of Use</Link>
       </p>
 
-      <h6>© 2023 BITMart Ltd</h6>
+      <h6>© 2024 BITMart Ltd</h6>
     </div>
   );
 };

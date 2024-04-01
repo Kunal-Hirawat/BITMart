@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink , Link} from "react-router-dom";
 import "../../UserMenu.css";
 import "../styles/CartStyles.css";
 import { useAuth } from "../../context/auth";
@@ -26,9 +26,9 @@ const UserMenu = () => {
             <NavLink to="/dashboard/user/create-product" className="nav_link">Create Product</NavLink>
             <NavLink to="/dashboard/user/user-products" className="nav_link">Products</NavLink>
             <NavLink to="/cart" className="nav_link">My Favourites</NavLink>
-            <NavLink onClick={handleLogout} to="/" className="nav_link">
+            <Link onClick={handleLogout} to="/" className="nav_link">
               LogOut
-            </NavLink>
+            </Link>
           </div>
         </div>
         </div>
