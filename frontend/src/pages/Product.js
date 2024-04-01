@@ -11,6 +11,8 @@ const Product = () => {
   const params = useParams();
   const [cart, setCart] = useCart();
   const [product, setProduct] = useState({});
+  const [showDetails, setShowDetails]=useState(false);
+  const [buttonText,setButtonText]=useState("SHOW SELLER DETAILS");
 
   //initalp details
   useEffect(() => {
@@ -27,6 +29,17 @@ const Product = () => {
       console.log(error);
     }
   };
+
+  const detailsFunction=()=>{
+    if(showDetails===false){
+      setShowDetails(true);
+      setButtonText("HIDE SELLER DETAILS");
+    }
+    else{
+      setShowDetails(false);
+      setButtonText("SHOW SELLER DETAILS");
+    }
+  }
 
   return (
     <Layout>
