@@ -6,7 +6,7 @@ import { FaLock, FaUser, FaQuestion } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
 import { TiHome } from "react-icons/ti";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , NavLink } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
@@ -179,7 +179,7 @@ const Register = () => {
             </div>
           </form>
           <p>
-            Already have an account? <a href="../login">Sign in</a>
+            Already have an account? <NavLink to="../login">Sign in</NavLink>
           </p>
         </div>
       </div>

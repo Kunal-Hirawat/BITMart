@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md";
 import { FaLock, FaUser } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , NavLink } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
@@ -105,8 +105,8 @@ const Login = () => {
               ></Icon>
             </div>
             <div>
-              <p style={{ width: "270px", textAlign: "end" }}>
-                <a href="../forgotPassword">Forgot Password?</a>
+              <p style={{ width: "440px", textAlign: "end" }}>
+                <NavLink to="../forgotPassword" className="nav_link">Forgot Password?</NavLink>
               </p>
             </div>
             <div className="button">
@@ -118,7 +118,7 @@ const Login = () => {
             </div>
           </form>
           <p>
-            Don't have an account yet? <a href="../register">Sign up</a>
+            Don't have an account yet? <NavLink to="../register" className="nav_link">Sign up</NavLink>
           </p>
         </div>
       </div>
