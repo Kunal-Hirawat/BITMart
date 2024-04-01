@@ -18,6 +18,7 @@ const UserMenu = () => {
     window.location.reload();
   };
   return (
+    <div className="padding-div-admin-menu">
       <div className="menu">
           <h1>Dashboard</h1>
           <div className="menu-tabs">
@@ -29,6 +30,7 @@ const UserMenu = () => {
               LogOut
             </Link>
           </div>
+        </div>
         </div>
   );
 };

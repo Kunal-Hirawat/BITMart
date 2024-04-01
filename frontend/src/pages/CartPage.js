@@ -48,7 +48,7 @@ const CartPage = () => {
                   <div className="col-md-4">
                     <img
                       src={`http://localhost:5000/api/product/product-photo/${p._id}`}
-                      className="card-img-top"
+                      className="card-img-top cart-img"
                       alt={p.name}
                       width="100%"
                       height={"130px"}

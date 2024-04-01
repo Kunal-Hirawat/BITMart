@@ -25,7 +25,7 @@
 
 .cart-page .card {
   padding: 5px !important;
-  height: 150px !important;
+  height: 26vh !important;
   margin-bottom: 5px !important;
   width: 90vw;
 }
@@ -156,6 +156,11 @@
   border-top-right-radius: calc(0.25rem - 1px);
 }
 
+.cart-img{
+  margin-left: 10vw;
+  height: 25vh !important;
+  width: 50% !important;
+}
 .btn {
   display: inline-block;
   font-weight: 400;
@@ -263,7 +268,7 @@
   background-image: url("../../assets/images/db.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  gap: 25vw;
+  /* gap: 25vw; */
 }
 
 .menu-layout .menu {
@@ -271,14 +276,23 @@
   flex-direction: column;
   gap: 4vh;
   padding: 20px;
-  background-color: #333333;
+  background-color: #1d1d1d;
   color: white;
-  height: 70vh;
+  height: 90vh;
+}
+
+.padding-div-admin-menu{
+  min-height:90vh;
+  min-width:10vw;
 }
 
 .menu-layout .menu .menu-tabs a:hover {
   background: silver;
   transition: 0.3s ease;
+}
+
+.menu{
+  position: fixed;
 }
 
 .menu-tabs li {
@@ -298,7 +312,6 @@
   padding: 20px;
   flex-direction: column;
   display: flex;
-  gap: 4;
 }
 
 .form-container-2 input {
@@ -311,32 +324,66 @@
   font-size: medium;
 }
 
-.form {
+.form-2{
+  margin-left: 8vw !important;
+}
+.form-2 , .form {
   /* background-color: rgba(0, 0, 255, 0.072); */
   color: black;
-  padding: 20px;
+  /* padding: 20px;
   padding-left: 100px;
   padding-right: 100px;
   margin: 20px;
   margin-left: 40px;
-  margin-right: 40px;
+  margin-right: 40px; */
   display: flex;
-
+  backdrop-filter: blur(20px);
+  box-shadow: 0px 0px 20px 0px rgba(13, 2, 134, 0.215);
+  background: transparent;
+  min-width: 40vw;
+  margin-left: 20vw;
+  justify-content: center;
+  align-items: center;
+  min-height:50vh;
+  margin-top: 10vh;
+  border-radius: 1vw;
+  margin-bottom: 10vh;
 }
 
 
-.form h1 {
+.form-2,.form h1 {
   /* border: 4px solid black; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.form button {
+.form-2,.form button {
   margin-top: 20px;
 }
 
 .form-container-2 h1 {
+  margin-bottom: 5px;
+}
+
+
+.form-container-3 {
+  padding: 20px;
+  flex-direction: column;
+  display: flex;
+  padding-left: 1vw;
+}
+
+.form-container-3 input {
+  text-align: center;
+  margin-top: 5px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  width: 100%;
+  font-size: medium;
+}
+.form-container-3 h1 {
   margin-bottom: 5px;
 }
 

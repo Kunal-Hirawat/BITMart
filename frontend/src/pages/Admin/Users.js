@@ -60,8 +60,8 @@ const Users = () => {
     <div className="dashboard-body">
       <div className="menu-layout">
         <AdminMenu />
-        <div className="form ">
-          <form className="form-container-2">
+        <div className="form-2">
+          <form className="form-container-3">
             <h1>All Users</h1>
             <div className="d-flex flex-wrap">
               {users?.map((u) => (

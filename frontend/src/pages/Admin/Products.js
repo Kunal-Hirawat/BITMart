@@ -50,8 +50,8 @@ const Products = () => {
       <div className="menu-layout">
         <AdminMenu />
 
-        <div className="form ">
-          <form className="form-container-2">
+        <div className="form-2 ">
+          <form className="form-container-3">
             <h1>All Products List</h1>
             <div style={{ display: products.length ? "block" : "none" }}>
               <h2>Buy/Sell Products:</h2>

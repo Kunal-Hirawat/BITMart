@@ -20,6 +20,7 @@ const AdminMenu = () => {
   };
   return (
     <>
+    <div className="padding-div-admin-menu">
       <div className="menu">
           <h1>Admin Panel</h1>
           <div className="menu-tabs">
@@ -31,6 +32,7 @@ const AdminMenu = () => {
               LogOut
             </Link>
           </div>
+        </div>
         </div>
     </>
   );
