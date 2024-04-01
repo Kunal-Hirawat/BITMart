@@ -5,14 +5,12 @@ import { Link } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import "../../BuySell.css";
 import "../../components/styles/CartStyles.css";
-import { useAuth } from "../../context/auth";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [lostfound, setLostFound] = useState([]);
-  const [auth, setAuth] = useAuth();
 
   //get all products
   const getAllProducts = async () => {

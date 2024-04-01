@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useCart } from "../context/cart";
-import { useAuth } from "../context/auth";
 import "../ProductDetails.css";
 import toast from "react-hot-toast";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Product = () => {
-  const navigate = useNavigate();
   const params = useParams();
   const [cart, setCart] = useCart();
-  const [auth] = useAuth();
   const [product, setProduct] = useState({});
 
   //initalp details
@@ -43,50 +40,56 @@ const Product = () => {
           width={"350px"}
         />
         <div className="product-details">
-        <h1 className="product-name">{product.name}</h1>
-        <p className="product-price">
-          {product?.price?.toLocaleString("en-US", {
-            style: "currency",
-            currency: "INR",
-          })}
-        </p>
-        <p className="product-description">{product.description}</p>
-        <p className="product-quantity">
-          Available: {product.quantity} in stock
-        </p>
+          <h1 className="product-name">{product.name}</h1>
+          <p className="product-price">
+            {product?.price?.toLocaleString("en-US", {
+              style: "currency",
+              currency: "INR",
+            })}
+          </p>
+          <p className="product-description">{product.description}</p>
+          <p className="product-quantity">
+            Available: {product.quantity} in stock
+          </p>
 
-      <button
-        className="add-to-bag-button"
-        onClick={() => {
-          const items = JSON.parse(localStorage.getItem("cart"));
-          let exists = false;
+          <button
+            className="add-to-bag-button"
+            onClick={() => {
+              const items = JSON.parse(localStorage.getItem("cart")) || [];
+              let exists = false;
 
-          if (items.length) {
-            for (const item of items) {
-              if (item?._id === product?._id) {
-                exists = true;
-                break;
+              if (items.length) {
+                for (const item of items) {
+                  if (item?._id === product._id) {
+                    exists = true;
+                    break;
+                  }
+                }
               }
-            }
-          }
-          if (exists) {
-            toast.error("Item already exists in favourites");
-          } else {
-            setCart([...cart, product]);
-            localStorage.setItem("cart", JSON.stringify([...cart, product]));
-            toast.success("Item added to favourites");
-          }
-        }}
-      >
-        ADD TO FAVOURITES
-      </button>
-      <button className="contact-seller-button">CONTACT SELLER</button>
-      </div>
+              if (exists) {
+                const updatedCart = cart.filter(
+                  (item) => item._id !== product._id
+                );
+                setCart(updatedCart);
+                localStorage.setItem("cart", JSON.stringify(updatedCart));
+                toast("Product removed from favourites", { icon: "🥺" });
+              } else {
+                setCart([...cart, product]);
+                localStorage.setItem(
+                  "cart",
+                  JSON.stringify([...cart, product])
+                );
+                toast("Product added to favourites", { icon: "❤️" });
+              }
+            }}
+          >
+            ADD TO FAVOURITES
+          </button>
+          <button className="contact-seller-button">CONTACT SELLER</button>
+        </div>
       </div>
     </Layout>
   );
 };
 
 export default Product;
-
-///  1 2 3 4

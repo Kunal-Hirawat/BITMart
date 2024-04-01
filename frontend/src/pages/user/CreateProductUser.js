@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../components/styles/CartStyles.css";
-import { Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import UserMenu from "../../components/Layout/UserMenu";
 
@@ -18,7 +17,7 @@ const CreateProductUser = () => {
   const [location, setLocation] = useState("");
   const [datetime, setDateTime] = useState("");
   const [isLostFound, setIsLostFound] = useState("false");
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
 
 
   //create product function
@@ -72,7 +71,7 @@ const CreateProductUser = () => {
                   <select
                     onChange={(event) => setIsLostFound(event.target.value)}
                   >
-                    <option value="false" selected>
+                    <option value="false" default>
                       Buy/Sell
                     </option>
                     <option value="true">Lost/Found</option>

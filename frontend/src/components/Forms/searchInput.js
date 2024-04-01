@@ -97,7 +97,7 @@ const SearchInput = () => {
             onChange={(e) => setType(e.target.value)}
             className="search-select"
           >
-            <option value="All" selected>
+            <option value="All" default>
               All
             </option>
             <option value="BuySell">Buy/Sell</option>

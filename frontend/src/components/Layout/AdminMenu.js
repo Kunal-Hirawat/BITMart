@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import "../../UserMenu.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";

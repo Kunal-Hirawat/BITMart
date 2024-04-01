@@ -2,12 +2,10 @@ import React from "react";
 import Layout from "./../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import "../../components/styles/CartStyles.css";
-import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
 import AdminMenu from "../../components/Layout/AdminMenu";
 
 const AdminDashboard = () => {
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   return (
     <Layout>
       <div className="dashboard-body">
