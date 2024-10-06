@@ -15,7 +15,7 @@ const LostFoundProduct = () => {
   const [product, setProduct] = useState({});
   const [auth] = useAuth();
   const [showDetails, setShowDetails]=useState(false);
-  const [buttonText,setButtonText]=useState("SHOW SELLER DETAILS");
+  const [buttonText,setButtonText]=useState("SHOW CONTACT DETAILS");
 
   //initalp details
   useEffect(() => {
@@ -85,8 +85,8 @@ const LostFoundProduct = () => {
         </p>
         <div className="seller-details" style={{display:showDetails?"block":"none"}}>
             <h2> Contact DETAILS:</h2>
-            <p>Contact : {auth?.user?.contact}</p>
-            <p>Email-ID : {auth?.user?.email}</p>
+            <p>Contact : {product.contact}</p>
+            <p>Email-ID : {product.email}</p>
           </div>
 
       <button className="contact-seller-button" onClick={(e)=>detailsFunction()}>{buttonText}</button>
